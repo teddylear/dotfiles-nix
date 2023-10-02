@@ -11,9 +11,7 @@
 
   outputs = inputs@{ self, darwin, home-manager, nixpkgs, ... }:
     let
-      ### START OPTIONS ###
-      username = "<insert username>"; # should match your host username
-      ### END OPTIONS ###
+      username = "kennethlear";
 
       ### START SYSTEMS ###
       darwin-system = import ./system/darwin.nix { inherit inputs username; };
