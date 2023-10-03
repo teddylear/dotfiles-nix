@@ -17,6 +17,7 @@
       zsh
       fd
       gh
+      awscli2
   ];
   home.stateVersion = "23.05";
 }
