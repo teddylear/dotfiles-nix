@@ -17,6 +17,7 @@
       fd
       gh
       awscli2
+      unzip
       # NOTE: Add eza when it's available
       # eza
 
