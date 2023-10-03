@@ -18,6 +18,7 @@
       gh
       awscli2
       unzip
+      _1password
       # NOTE: Add eza when it's available
       # eza
 
@@ -26,6 +27,7 @@
       cmake
       gettext
       ninja
+
   ];
   home.stateVersion = "23.05";
 
@@ -94,6 +96,5 @@
     # TODO: fix this later once I'm ready for linux
     # terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
-
 }
 
