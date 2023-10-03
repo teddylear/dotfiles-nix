@@ -15,6 +15,8 @@
       neofetch
       mcfly
       zsh
+      fd
+      gh
   ];
   home.stateVersion = "23.05";
 }
