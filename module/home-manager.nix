@@ -3,6 +3,7 @@
 {
   # add home-manager user settings here
   # TODO: Add rust? Maybe cargo too
+  # pyenv, tfenv, etc? or at least check if present
   home.packages = with pkgs; [
       # cli tools
       git
@@ -20,7 +21,6 @@
       awscli2
       unzip
       _1password
-      zsh-powerlevel10k
       oh-my-zsh
       # NOTE: Add eza when it's available
       # eza
