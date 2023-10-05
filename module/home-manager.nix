@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
       # cli tools
       git
+      rustup
       ripgrep
       bat
       jq
@@ -45,8 +46,15 @@
     VISUAL = "nvim";
     MANPAGER = "nvim +Man!";
     MANWIDTH = "999";
+    PYENV_ROOT = "$HOME/.pyenv";
   };
 
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+    "$PYENV_ROOT/bin"
+    "$HOME/.pkenv/bin"
+    "$HOME/.tfenv/bin"
+  ];
   home.stateVersion = "23.05";
 
 
@@ -86,6 +94,11 @@
         bindkey '^R' history-incremental-search-backward
 
         eval "$(mcfly init zsh)"
+
+        # TODO: finish this
+        if type pyenv &> /dev/null; then
+            eval "$(pyenv init -)"
+        fi
 
         tfsetup() {
             echo "==> Cleaning up directory"
@@ -136,21 +149,6 @@
         fi
     '';
   };
-
-  # programs.zsh = {
-    # enable = true;
-    # oh-my-zsh = {
-      # enable = true;
-      # plugins = [
-        # "evalcache"
-        # "git"
-        # "zsh-syntax-highlighting"
-        # "zsh-autosuggestions"
-      # ];
-    # };
-  # };
-
-  # programs.zsh.promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
 
   programs.go = {
     enable = true;
