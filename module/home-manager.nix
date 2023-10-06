@@ -32,7 +32,7 @@
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
-  home.file.".config/nvim/".source = ././config/nvim/;
+  home.file.".config/nvim".source = ./config/nvim;
 
   home.sessionVariables = {
     EDITOR = "nvim";
