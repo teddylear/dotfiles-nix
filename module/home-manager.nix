@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 {
-  # add home-manager user settings here
-  # TODO: Add rust? Maybe cargo too
-  # pyenv, tfenv, etc? or at least check if present
   home.packages = with pkgs; [
       # cli tools
       git
@@ -33,6 +30,19 @@
       ninja
 
   ];
+
+  # TODO: How to get this working?
+  # home.file.".config/alacritty/alacritty.yml".source = builtins.path {
+    # name = "alacritty_config";
+    # path = "./alacritty.yml";
+  # };
+  home.file."source with spaced!".source = ././alacritty.yml;
+  # home.file.".config/alacritty/alacritty.yml".source = "./config/alacritty.yml";
+  # home.file = {
+    # ".config/alacritty/alacritty.yml" = {
+        # source = ./config/alacritty.yml;
+    # };
+  # };
 
   home.sessionVariables = {
     EDITOR = "nvim";
