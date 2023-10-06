@@ -13,6 +13,32 @@ inputs.darwin.lib.darwinSystem {
     {
       services.nix-daemon.enable = true;
       users.users.${username}.home = "/Users/${username}";
+
+       homebrew = {
+        enable = true;
+        taps = [
+          "kwilczynski/homebrew-pkenv"
+          "homebrew/cask-fonts"
+        ];
+        casks  = [
+          "alacritty"
+          "amethyst"
+          "1password"
+          "brave-browser"
+          "caffeine"
+          "font-meslo-lg-nerd-font"
+          "vlc"
+        ];
+
+
+        brews = [
+          "pyenv"
+          "tfenv"
+          "pkenv"
+          "eza"
+          "docker"
+        ];
+      };
     }
     system-config
 
