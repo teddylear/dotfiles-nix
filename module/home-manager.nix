@@ -36,8 +36,8 @@
     # name = "alacritty_config";
     # path = "./alacritty.yml";
   # };
-  home.file."source with spaced!".source = ././alacritty.yml;
-  # home.file.".config/alacritty/alacritty.yml".source = "./config/alacritty.yml";
+  home.file.".config/alacritty/alacritty.yml".source = ././alacritty.yml;
+  # home.file."source with spaced!".source = ././alacritty.yml;
   # home.file = {
     # ".config/alacritty/alacritty.yml" = {
         # source = ./config/alacritty.yml;
