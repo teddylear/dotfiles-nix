@@ -33,6 +33,9 @@
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
   home.file.".config/nvim".source = ./config/nvim;
+  # Later for not mac only
+  # home.file.".config/i3/config".source = ././config/i3-config;
+  # home.file.".config/compton.conf".source = ././config/compton.conf;
 
   home.sessionVariables = {
     EDITOR = "nvim";
