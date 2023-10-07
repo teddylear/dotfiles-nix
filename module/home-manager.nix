@@ -33,7 +33,12 @@
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
   home.file.".config/nvim".source = ./config/nvim;
-  # Later for not mac only
+  home.file."tmux-session.sh" = {
+    source = ././scripts/tmux-session.sh;
+    executable = true;
+  };
+
+  # Later for linux
   # home.file.".config/i3/config".source = ././config/i3-config;
   # home.file.".config/compton.conf".source = ././config/compton.conf;
 
