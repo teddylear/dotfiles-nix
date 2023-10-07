@@ -11,7 +11,10 @@
 
   outputs = inputs@{ self, darwin, home-manager, nixpkgs, ... }:
     let
+      # TODO: figure out how to make two different profiles
       username = "kennethlear";
+      git-username = "teddylear";
+      git-email = "20077627+teddylear@users.noreply.github.com";
 
       ### START SYSTEMS ###
       darwin-system = import ./system/darwin.nix { inherit inputs username; };
