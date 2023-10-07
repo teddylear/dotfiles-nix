@@ -37,6 +37,7 @@ inputs.darwin.lib.darwinSystem {
           "pkenv"
           "eza"
           "docker"
+          "ansible"
         ];
       };
     }
