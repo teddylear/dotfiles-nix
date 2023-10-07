@@ -154,11 +154,7 @@
         bindkey '^R' history-incremental-search-backward
 
         eval "$(mcfly init zsh)"
-
-        # TODO: finish this
-        if type pyenv &> /dev/null; then
-            eval "$(pyenv init -)"
-        fi
+        eval "$(pyenv init -)"
 
         tfsetup() {
             echo "==> Cleaning up directory"
@@ -200,7 +196,6 @@
             echo "gh is not installed"
           fi
         }
-
 
         # Adding local config file for things that cant be checked into git
         # Putting at the end of the file to override any unnecessary aliases
