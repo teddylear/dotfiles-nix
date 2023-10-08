@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/run/current-system/sw/bin/zsh
 
 SESSIONNAME="personal"
 tmux new-session -s $SESSIONNAME -c "$HOME/Documents/journal" -d
