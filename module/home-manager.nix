@@ -33,6 +33,7 @@
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
   home.file.".config/nvim".source = ./config/nvim;
+  home.file.".ssh/config".source = ././config/ssh-agent-config;
   home.file."tmux-session.sh" = {
     source = ././scripts/tmux-session.sh;
     executable = true;
@@ -55,6 +56,8 @@
     MANPAGER = "nvim +Man!";
     MANWIDTH = "999";
     PYENV_ROOT = "$HOME/.pyenv";
+    # TODO: have this only for mac?
+    SSH_AUTH_SOCK="$HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
   };
 
   home.sessionPath = [

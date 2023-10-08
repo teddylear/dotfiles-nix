@@ -7,3 +7,6 @@ Right now only have macos working on current computer, have to figure out more f
 
 ## Install
 Follow steps in [original wiki here](/docs/OG_README.md)
+
+Then do the following:
+- [1password ssh agent setup](https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent)
