@@ -1,3 +1,5 @@
+{ git-username, git-email, ... }:
+
 { pkgs, ... }:
 
 {
@@ -20,8 +22,6 @@
       _1password
       oh-my-zsh
       neovim
-      # NOTE: Add eza when it's available
-      # eza
 
       # Lua and Neovim build stuff
       luajitPackages.luarocks-nix
@@ -121,11 +121,9 @@
       rebase.autoStash = true;
     };
 
-     # userEmail = ${git-email};
-     # userName = ${git-username};
-     extraConfig.github.user = "teddylear";
-     userEmail = "teddylear";
-     userName = "20077627+teddylear@users.noreply.github.com";
+     extraConfig.github.user = "${git-username}";
+     userEmail = "${git-username}";
+     userName = "${git-email}";
   };
 
 

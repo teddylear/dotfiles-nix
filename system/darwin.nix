@@ -1,13 +1,15 @@
-{ inputs, username }:
+{ inputs, system, username, git-username, git-email }:
 
-system:
+# TODO: might bring this back
+# system:
 
 let
   system-config = import ../module/configuration.nix;
   home-manager-config = import ../module/home-manager.nix;
 in
 inputs.darwin.lib.darwinSystem {
-  inherit system;
+  # inherit system;
+  system = "${system}";
   # modules: allows for reusable code
   modules = [
     {
@@ -48,7 +50,10 @@ inputs.darwin.lib.darwinSystem {
       # add home-manager settings here
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users."${username}" = home-manager-config;
+      home-manager.users."${username}" = home-manager-config {
+        git-email = "${git-email}";
+        git-username = "${git-username}";
+      };
     }
     # add more nix modules here
   ];

@@ -11,25 +11,28 @@
 
   outputs = inputs@{ self, darwin, home-manager, nixpkgs, ... }:
     let
-      # TODO: figure out how to make two different profiles
-      username = "kennethlear";
-      git-username = "teddylear";
-      git-email = "20077627+teddylear@users.noreply.github.com";
-
-      ### START SYSTEMS ###
-      darwin-system = import ./system/darwin.nix { inherit inputs username; };
-      nixos-system = import ./system/nixos.nix { inherit inputs username; };
-      ### END SYSTEMS ###
+      ## START SYSTEMS ###
+      darwin-system = import ./system/darwin.nix;
+      # nixos-system = import ./system/nixos.nix { inherit inputs username; };
+      ## END SYSTEMS ###
     in
     {
       darwinConfigurations = {
-        darwin-aarch64 = darwin-system "aarch64-darwin";
-        darwin-x86_64 = darwin-system "x86_64-darwin";
+        # darwin-aarch64 = darwin-system "aarch64-darwin";
+        # darwin-x86_64 = darwin-system "x86_64-darwin";
+        personal-laptop = darwin-system {
+          inherit inputs;
+          system = "x86_64-darwin";
+          username = "kennethlear";
+          git-username = "teddylear";
+          git-email = "20077627+teddylear@users.noreply.github.com";
+        };
       };
 
-      nixosConfigurations = {
-        nixos-aarch64 = nixos-system "aarch64-linux";
-        nixos-x86_64 = nixos-system "x86_64-linux";
-      };
+      # Commenting out for now
+      # nixosConfigurations = {
+        # nixos-aarch64 = nixos-system "aarch64-linux";
+        # nixos-x86_64 = nixos-system "x86_64-linux";
+      # };
     };
 }
