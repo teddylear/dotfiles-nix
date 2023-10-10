@@ -1,6 +1,6 @@
-{ git-username, git-email, ... }:
+{ inputs, git-username, git-email }:
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -21,14 +21,13 @@
       unzip
       _1password
       oh-my-zsh
-      neovim
+      neovim-nightly
 
       # Lua and Neovim build stuff
       luajitPackages.luarocks-nix
       cmake
       gettext
       ninja
-
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;

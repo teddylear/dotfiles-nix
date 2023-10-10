@@ -1,4 +1,4 @@
-{ inputs, system, username, git-username, git-email }:
+{ inputs, overlays, system, username, git-username, git-email }:
 
 # TODO: might bring this back
 # system:
@@ -12,6 +12,7 @@ inputs.darwin.lib.darwinSystem {
   system = "${system}";
   # modules: allows for reusable code
   modules = [
+    { nixpkgs.overlays = overlays; }
     {
       services.nix-daemon.enable = true;
       users.users.${username}.home = "/Users/${username}";
@@ -51,6 +52,7 @@ inputs.darwin.lib.darwinSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users."${username}" = home-manager-config {
+        inputs = inputs;
         git-email = "${git-email}";
         git-username = "${git-username}";
       };
