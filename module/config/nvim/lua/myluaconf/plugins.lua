@@ -18,7 +18,7 @@ local function lazy()
     -- https://github.com/antonk52/dot-files/blob/master/nvim/init.lua
     local lazy_options = {
         root = PLUGINS_LOCATION,
-        lockfile = vim.fn.expand("~/shell_config/nvim/.config/nvim/lua")
+        lockfile = vim.fn.expand("~/dotfiles-nix/module/config/nvim/lua")
             .. "/lazy-lock.json",
         performance = {
             rtp = {
