@@ -23,6 +23,7 @@
       oh-my-zsh
       neovim-nightly
       pipenv
+      fzf
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
