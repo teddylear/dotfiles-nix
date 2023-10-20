@@ -22,12 +22,7 @@
       _1password
       oh-my-zsh
       neovim-nightly
-
-      # Lua and Neovim build stuff
-      luajitPackages.luarocks-nix
-      cmake
-      gettext
-      ninja
+      pipenv
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
