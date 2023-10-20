@@ -3,6 +3,6 @@
 lock:
 	nix flake update
 
-rebuild:
-	darwin-rebuild switch --flake ".#darwin-x86_64"
+personal-laptop:
+	darwin-rebuild switch --flake ".#personal-laptop"
 
