@@ -143,6 +143,7 @@
       tfclean="rm -rf .terraform; rm plan.out";
       cat = "bat";
       p = "nvim `fzf --reverse --preview=\"bat --color always {}\"`";
+      gb = "git switch `git branch | fzf --reverse | tr -d '[:space:]'`";
       gsw = "git switch";
       gsc = "git switch -c";
       gs = "git status";
