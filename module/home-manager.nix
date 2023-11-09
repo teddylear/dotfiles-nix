@@ -25,6 +25,7 @@
       pipenv
       fzf
       just
+      fish
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
@@ -54,6 +55,7 @@
     PYENV_ROOT = "$HOME/.pyenv";
     # TODO: have this only for mac?
     SSH_AUTH_SOCK="$HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+    # TODO: Does this work?
     SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
@@ -123,7 +125,40 @@
      userName = "${git-email}";
   };
 
+  programs.fish = {
+    # enable = true;
+    shellAbbrs = {
+      gsw = "git switch";
+      gsc = "git switch -c";
+      gs = "git status";
+      gr = "git restore";
+      gp = "git pull";
+      gps = "git push";
+      gcm = "git commit -m";
+      ll = "eza -l -g -a --icons";
+    };
+    shellAliases = {
+      vim = "nvim";
+      oldvim = "\vim";
+      tfclean="rm -rf .terraform; rm plan.out";
+      cat = "bat";
+      p = "nvim `fzf --reverse --preview=\"bat --color always {}\"`";
+      gb = "git switch `git branch | fzf --reverse | tr -d '[:space:]'`";
+      tmuxsession = "zsh $TMUX_SCRIPT_PATH";
+    };
 
+    # TODO: move functions?
+    # Possibly setup source file and then source it at bottom?
+    shellInit = ''
+        bindkey -v
+        bindkey '^R' history-incremental-search-backward
+
+        mcfly init fish | source
+        pyenv init - | source
+    '';
+  };
+
+  # TODO: eventually remove
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
