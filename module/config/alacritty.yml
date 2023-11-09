@@ -65,6 +65,3 @@ cursor:
     style: block
 
 live_config_reload: true
-
-shell:
-  program: /bin/zsh

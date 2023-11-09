@@ -54,6 +54,7 @@
     PYENV_ROOT = "$HOME/.pyenv";
     # TODO: have this only for mac?
     SSH_AUTH_SOCK="$HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+    SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
   home.sessionPath = [
