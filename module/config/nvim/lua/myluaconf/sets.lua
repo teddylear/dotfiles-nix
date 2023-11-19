@@ -47,8 +47,6 @@ end
 
 vim.opt.guicursor = ""
 
--- vim.cmd("colorscheme gruvbox-flat")
-
 -- Create default mappings for smart comments
 vim.cmd("let g:NERDCreateDefaultMappings = 1")
 

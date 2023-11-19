@@ -26,5 +26,3 @@ require("lualine").setup({
     },
     extensions = { "fzf", "fugitive" },
 })
-
-require("colorizer").setup()

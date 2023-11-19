@@ -66,32 +66,6 @@ local function refactors()
     }):find()
 end
 
-local function set_colorscheme(prompt_bufnr)
-    local content = require("telescope.actions.state").get_selected_entry(
-        prompt_bufnr
-    )
-    require("telescope.actions").close(prompt_bufnr)
-    vim.cmd(string.format("colorscheme %s", content.value))
-end
-
-local function colorscheme()
-    require("telescope.pickers").new({}, {
-        prompt_title = "Colorscheme",
-        finder = require("telescope.finders").new_table({
-            "kanagawa",
-            "tokyonight",
-            -- "gruvbox-flat",
-            "catppuccin",
-        }),
-        sorter = require("telescope.config").values.generic_sorter({}),
-        attach_mappings = function(_, map)
-            map("i", "<CR>", set_colorscheme)
-            map("n", "<CR>", set_colorscheme)
-            return true
-        end,
-    }):find()
-end
-
 local Path = require("plenary.path")
 local homedir = os.getenv("HOME")
 
@@ -205,12 +179,6 @@ map("n", "<leader>rr", "", {
     noremap = true,
     callback = refactors,
     desc = "Select Refactoring operation to run",
-})
-
-map("n", "<leader>pc", "", {
-    noremap = true,
-    callback = colorscheme,
-    desc = "Telescope pick and set colorscheme",
 })
 
 map("n", "<leader>iam", "", {

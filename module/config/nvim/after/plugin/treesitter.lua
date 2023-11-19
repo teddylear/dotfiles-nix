@@ -30,6 +30,7 @@ require("nvim-treesitter.configs").setup({
         "cpp",
         "markdown",
         "hcl",
+        "puppet",
         -- "cue",
         "terraform",
         "nix",

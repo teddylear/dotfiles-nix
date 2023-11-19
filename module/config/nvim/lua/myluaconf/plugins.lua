@@ -76,8 +76,6 @@ local function lazy()
 
     local plugins = {
         -- color schemes
-        "folke/tokyonight.nvim",
-        "rebelot/kanagawa.nvim",
         {
             "catppuccin/nvim",
             name = "catppuccin",
@@ -98,15 +96,8 @@ local function lazy()
                 end
             end,
         },
-        -- syntax highlighting
-        "rodjek/vim-puppet",
-        "chr4/nginx.vim",
-        -- TODO: do I need this?
-        -- "hashivim/vim-terraform",
         -- smart comments, so useful
         "preservim/nerdcommenter",
-        -- floating menus
-        "voldikss/vim-floaterm",
         -- The prime coconut oil experience
         "ThePrimeagen/harpoon",
         -- better icons
@@ -121,19 +112,17 @@ local function lazy()
         "christoomey/vim-tmux-navigator",
         -- Telescope stuffs
         "nvim-telescope/telescope.nvim",
-        "nvim-lua/popup.nvim",
+        -- "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-fzy-native.nvim",
-        -- Closing brackets and such
-        "windwp/nvim-autopairs",
+
         -- Neovim lsp plugins
         "neovim/nvim-lspconfig",
-        -- TODO: Do I need this?
-        "tjdevries/nlua.nvim",
+        -- TODO: Set this up later?
+        "folke/neodev.nvim",
         -- TODO: Do I need this?
         "onsails/lspkind-nvim",
         -- shows lsp status in bottom right corner
-        -- "j-hui/fidget.nvim",
         {
             "j-hui/fidget.nvim",
             tag = "legacy",
@@ -148,8 +137,6 @@ local function lazy()
                 ts_update()
             end,
         },
-        -- helps with writing treesitter queries for current files
-        "nvim-treesitter/playground",
         -- autocomplete
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
@@ -165,10 +152,6 @@ local function lazy()
         "MunifTanjim/nui.nvim",
         -- better notifications
         "rcarriga/nvim-notify",
-        -- TODO: Do I need this?
-        "norcalli/nvim-colorizer.lua",
-        -- TODO: Do I even use this?
-        "mbbill/undotree",
         -- make `jk` mapping work faster
         {
             "max397574/better-escape.nvim",
@@ -181,24 +164,26 @@ local function lazy()
         -- shows context for current code (function name, if statements)
         "nvim-treesitter/nvim-treesitter-context",
         -- measure startup time
+        -- TODO: do I need this?
         "dstein64/vim-startuptime",
         -- install lsp servers
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         refactoring_plug_config,
-        -- completely for fun plugin
-        "eandrju/cellular-automaton.nvim",
         -- have output for lsp errors
         "folke/trouble.nvim",
         "laytan/cloak.nvim",
         -- more focused code editing
         "folke/zen-mode.nvim",
+
+        -- rust stuff
         -- TODO: have to play with this more
         -- "simrat39/rust-tools.nvim",
         -- way better way to manage crates
+        -- might have to look into this, might PR change
         "Saecki/crates.nvim",
-        -- requirement for crates.nvim
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
+
         -- neotest and it's deps
         "nvim-neotest/neotest",
         "antoinemadec/FixCursorHold.nvim",
