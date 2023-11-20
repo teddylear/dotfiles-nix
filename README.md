@@ -10,10 +10,13 @@ Right now only have macos working on current computer, have to figure out more f
 **NOTE**: probably have to restart shell between a lot of the steps
 
 ### Macos
-- Base developer tools: `xcode-select --install`
+- Base developer tools:
+```zsh
+xcode-select --install
+```
 - Install homebrew:
 ```zsh
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 - Follow steps in [original wiki for macos here](/docs/OG_README.md)
 
