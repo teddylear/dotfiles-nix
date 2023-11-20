@@ -26,10 +26,10 @@ xcode-select --install
 ```zsh
 gh auth login
 ```
-    - This should work post login:
-    ```zsh
-    gh auth status
-    ```
+This should work post login:
+```zsh
+gh auth status
+```
 - `pyenv`, `tfenv`, `pkenv` version installs
 
 ### Macos
