@@ -31,6 +31,10 @@ This should work post login:
 gh auth status
 ```
 - `pyenv`, `tfenv`, `pkenv` version installs
+- in brave with vimium installed, add this custom keymapping:
+```
+map gp togglePinTab
+```
 
 ### Macos
 - [Docker-desktop install](https://docs.docker.com/desktop/install/mac-install/)
