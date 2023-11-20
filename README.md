@@ -22,8 +22,14 @@ xcode-select --install
 
 ## Post nix & friends install:
 - [1password ssh agent setup](https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent)
-- github cli login: `gh auth login`
-    - `gh auth status` should work post login
+- github cli login:
+```zsh
+gh auth login
+```
+    - This should work post login:
+    ```zsh
+    gh auth status
+    ```
 - `pyenv`, `tfenv`, `pkenv` version installs
 
 ### Macos
