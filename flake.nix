@@ -43,6 +43,15 @@
           git-username = "teddylear";
           git-email = "20077627+teddylear@users.noreply.github.com";
         };
+
+        business-laptop = darwin-system {
+          inherit inputs;
+          inherit overlays;
+          system = "aarch64-darwin";
+          username = "klear";
+          git-username = "klear-nasuni";
+          git-email = "73537396+klear-nasuni@users.noreply.github.com";
+        };
       };
 
       # Commenting out for now

@@ -25,6 +25,7 @@
       pipenv
       fzf
       just
+      nodejs_20
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
@@ -61,6 +62,8 @@
     "$PYENV_ROOT/bin"
     "$HOME/.pkenv/bin"
     "$HOME/.tfenv/bin"
+    # # TODO: how to only do this for macos?
+    # "/opt/homebrew/bin"
   ];
   home.stateVersion = "23.05";
 
@@ -140,7 +143,6 @@
     shellAliases = {
       vim = "nvim";
       oldvim = "\vim";
-      tfclean="rm -rf .terraform; rm plan.out";
       cat = "bat";
       p = "nvim `fzf --reverse --preview=\"bat --color always {}\"`";
       gb = "git switch `git branch | fzf --reverse | tr -d '[:space:]'`";
@@ -156,11 +158,22 @@
     };
 
     initExtra = ''
+        # https://discourse.nixos.org/t/brew-not-on-path-on-m1-mac/26770/4
+        # make sure brew is on the path for M1
+        if [[ $(uname -m) == 'arm64' ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
+
         bindkey -v
         bindkey '^R' history-incremental-search-backward
 
         eval "$(mcfly init zsh)"
         eval "$(pyenv init -)"
+
+        tfclean() {
+          rm -rf .terraform;
+          rm plan.out;
+        }
 
         tfsetup() {
             echo "==> Cleaning up directory"
