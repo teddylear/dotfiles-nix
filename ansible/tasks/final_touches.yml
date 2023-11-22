@@ -1,0 +1,10 @@
+- name: Make code directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/code"
+    state: directory
+- name: Clone aws-iam-actions-list
+  ansible.builtin.git:
+    repo: 'git@github.com:TryTryAgain/aws-iam-actions-list.git'
+    dest: "{{ lookup('env', 'HOME') }}/code/aws-iam-actions-list"
+    force: yes
+    update: yes
