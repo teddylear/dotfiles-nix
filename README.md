@@ -35,6 +35,10 @@ gh auth status
 ```
 map gp togglePinTab
 ```
+- final touches
+```zsh
+just ansible-final-touches
+```
 
 ### Macos
 - [Docker-desktop install](https://docs.docker.com/desktop/install/mac-install/)
