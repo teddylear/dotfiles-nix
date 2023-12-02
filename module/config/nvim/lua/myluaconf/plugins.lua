@@ -100,6 +100,10 @@ local function lazy()
         "preservim/nerdcommenter",
         -- The prime coconut oil experience
         "ThePrimeagen/harpoon",
+        {
+            "ThePrimeagen/harpoon",
+            branch = "harpoon2",
+        },
         -- better icons
         "nvim-tree/nvim-web-devicons",
         -- statusline
