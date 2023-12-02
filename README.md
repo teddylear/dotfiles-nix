@@ -35,7 +35,7 @@ gh auth status
 ```
 map gp togglePinTab
 ```
-- final touches
+- final touches with ansible for directories and running some updates on repos...
 ```zsh
 just ansible-final-touches
 ```
