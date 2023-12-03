@@ -41,14 +41,18 @@ map("n", "<C-s>", "", {
     desc = "Open harpoon file 4",
 })
 
--- local function open_terminal_first_tab()
-    -- vim.cmd("tabnew")
-    -- require("harpoon.term").gotoTerminal(1)
-    -- vim.cmd("tabmove 0")
--- end
+local function open_terminal_first_hp_position()
+    if harpoon:list():length() > 0 and string.match(harpoon:list():get(1).value, "term://", 1) then
+        print("found terminal existing terminal at harpoon 1, removing...")
+        harpoon:list():removeAt(1)
+    end
 
--- map("n", "<leader>hp", "", {
-    -- noremap = true,
-    -- callback = open_terminal_first_tab,
-    -- desc = "Open new harpoon terminal in new tab and move to first tab position",
--- })
+    vim.cmd(":terminal")
+    harpoon:list():prepend()
+end
+
+map("n", "<leader>hp", "", {
+    noremap = true,
+    callback = open_terminal_first_hp_position,
+    desc = "Open new harpoon terminal in first harpoon position",
+})

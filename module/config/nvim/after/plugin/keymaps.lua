@@ -76,8 +76,14 @@ map("n", "<leader>f", "", {
 })
 
 -- from prime, start find and replace on current word
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {
+map("n", "<leader>rp", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {
     noremap = true,
     silent = true,
     desc = "start find and replace on current word",
+})
+
+map("n", "<leader>so", ':source %<CR>', {
+    noremap = true,
+    silent = true,
+    desc = "source current file",
 })
