@@ -144,7 +144,18 @@ require("fidget").setup({
 })
 
 require("nvim-web-devicons").setup({})
-require("trouble").setup({})
+
+require("trouble").setup({
+    icons = false,
+    signs = {
+            -- icons / text used for a diagnostic
+            error = "",
+            warning = "",
+            hint = "",
+            information = "",
+            other = "﫠"
+        },
+})
 
 local map = vim.api.nvim_set_keymap
 
