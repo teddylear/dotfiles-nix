@@ -225,6 +225,12 @@
     '';
   };
 
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   programs.go = {
     enable = true;
     goPath = "Development/language/go";
