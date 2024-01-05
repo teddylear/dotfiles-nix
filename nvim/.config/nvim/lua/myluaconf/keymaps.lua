@@ -42,12 +42,6 @@ map(
     { noremap = true, desc = "Center when merging pervious line" }
 )
 
--- Setting undo breakpoints
-map("i", ",", ",<c-g>u", { noremap = true, desc = "Set undo breakpoint" })
-map("i", ".", ".<c-g>u", { noremap = true, desc = "Set undo breakpoint" })
-map("i", "!", "!<c-g>u", { noremap = true, desc = "Set undo breakpoint" })
-map("i", "?", "?<c-g>u", { noremap = true, desc = "Set undo breakpoint" })
-
 -- Setting Prime's keymaps for moving visual block up & down
 map("v", "J", ":m '>+1<CR>gv=gv", {
     noremap = true,
@@ -73,13 +67,6 @@ map("n", "<leader>f", "", {
     silent = true,
     callback = vim.lsp.buf.format,
     desc = "format from lsp",
-})
-
--- from prime, start find and replace on current word
-map("n", "<leader>rp", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {
-    noremap = true,
-    silent = true,
-    desc = "start find and replace on current word",
 })
 
 map("n", "<leader>so", ':source %<CR>', {

@@ -24,3 +24,6 @@ ubuntu-update:
     sudo apt update
     sudo apt upgrade
     sudo apt autoremove
+
+nvim-stow:
+    stow -R nvim

@@ -87,3 +87,10 @@ vim.api.nvim_create_autocmd(
     "ColorScheme",
     { callback = transparentBackground, group = my_augroup }
 )
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    pattern = { "*.tf", "*.tfvars" },
+    callback = function()
+        vim.cmd("setfiletype terraform")
+    end,
+})

@@ -27,10 +27,22 @@
       just
       nodejs_20
       ansible
+      stow
+
+      # lsps
+      gopls
+      terraform-ls
+      lua-language-server
+      marksman
+      nodePackages.bash-language-server
+      nodePackages.pyright
+
+      # formatters
+      nixpkgs-fmt
+      stylua
   ];
 
   home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
-  home.file.".config/nvim".source = ./config/nvim;
   home.file.".ssh/config".source = ././config/ssh-agent-config;
   home.file."tmux-session.sh" = {
     source = ././scripts/tmux-session.sh;
