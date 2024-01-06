@@ -14,10 +14,10 @@ return {
                 require("neotest-rust"),
                 require("neotest-go"),
                 -- require("neotest-python")({
-                    -- python = function()
-                        -- local root_dir = util.root_pattern(".git", "Pipfile")
-                        -- return get_python_path(root_dir)
-                    -- end,
+                -- python = function()
+                -- local root_dir = util.root_pattern(".git", "Pipfile")
+                -- return get_python_path(root_dir)
+                -- end,
                 -- }),
             },
             icons = {

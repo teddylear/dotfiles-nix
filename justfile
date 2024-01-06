@@ -1,3 +1,6 @@
+fmt:
+    stylua nvim/.config/nvim/
+
 update-nix:
 	nix flake update
 

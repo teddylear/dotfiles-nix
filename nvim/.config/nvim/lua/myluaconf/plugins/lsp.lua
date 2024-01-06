@@ -12,22 +12,23 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             "hrsh7th/cmp-nvim-lua",
-             { "folke/neodev.nvim", opts = {} },
+            { "folke/neodev.nvim", opts = {} },
         },
         config = function()
             local util = require("lspconfig/util")
             local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+            capabilities =
+                require("cmp_nvim_lsp").default_capabilities(capabilities)
 
             require("lspconfig").lua_ls.setup({
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  completion = {
-                    callSnippet = "Replace"
-                  }
-                }
-              }
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        completion = {
+                            callSnippet = "Replace",
+                        },
+                    },
+                },
             })
 
             -- From below thread on this issue
@@ -37,8 +38,14 @@ return {
                 local python_path
                 -- Use activated virtualenv.
                 if vim.env.VIRTUAL_ENV then
-                    python_path = path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-                    print(string.format("In a venv! Using that for lsp: %s", python_path))
+                    python_path =
+                        path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+                    print(
+                        string.format(
+                            "In a venv! Using that for lsp: %s",
+                            python_path
+                        )
+                    )
                     return python_path
                 end
 
@@ -46,7 +53,9 @@ return {
                 local match = vim.fn.glob(path.join(workspace, "Pipfile"))
                 if match ~= "" then
                     local venv = vim.fn.trim(
-                        vim.fn.system("PIPENV_PIPFILE=" .. match .. " pipenv --venv")
+                        vim.fn.system(
+                            "PIPENV_PIPFILE=" .. match .. " pipenv --venv"
+                        )
                     )
                     python_path = path.join(venv, "bin", "python")
                     print(
@@ -60,7 +69,9 @@ return {
 
                 -- Fallback to system Python.
                 print("No venv or Pipfile found, using system python")
-                return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+                return vim.fn.exepath("python3")
+                    or vim.fn.exepath("python")
+                    or "python"
             end
 
             require("lspconfig").pyright.setup({
@@ -68,9 +79,8 @@ return {
                     params.processId = vim.NIL
                 end,
                 on_init = function(client)
-                    client.config.settings.python.pythonPath = get_python_path(
-                        client.config.root_dir
-                    )
+                    client.config.settings.python.pythonPath =
+                        get_python_path(client.config.root_dir)
                 end,
                 root_dir = util.root_pattern(".git", "Pipfile"),
                 capabilities = capabilities,
@@ -114,16 +124,12 @@ return {
                 })
             end
 
-            vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                vim.lsp.diagnostic.on_publish_diagnostics,
-                {
+            vim.lsp.handlers["textDocument/publishDiagnostics"] =
+                vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
                     update_in_insert = false,
-                }
-            )
-
+                })
 
             local map = vim.api.nvim_set_keymap
-
 
             map("n", "<leader>gd", "", {
                 noremap = true,
@@ -152,4 +158,3 @@ return {
         end,
     },
 }
-

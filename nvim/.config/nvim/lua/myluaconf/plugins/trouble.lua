@@ -3,13 +3,13 @@ return {
     opts = {
         icons = false,
         signs = {
-                -- icons / text used for a diagnostic
-                error = "",
-                warning = "",
-                hint = "",
-                information = "",
-                other = "﫠"
-            },
+            -- icons / text used for a diagnostic
+            error = "",
+            warning = "",
+            hint = "",
+            information = "",
+            other = "﫠",
+        },
     },
     keys = {
         {
@@ -18,6 +18,6 @@ return {
             silent = true,
             noremap = true,
             desc = "Open Trouble menu to show lsp diagnostics",
-        }
+        },
     },
 }

@@ -25,7 +25,12 @@ return {
                     print("Error creating branch: ", branch_name)
                     print(result)
                 else
-                    print(string.format("Created branch '%s' successfully!", branch_name))
+                    print(
+                        string.format(
+                            "Created branch '%s' successfully!",
+                            branch_name
+                        )
+                    )
                 end
             else
                 print(string.format("Branch '%s' already exists!", branch_name))

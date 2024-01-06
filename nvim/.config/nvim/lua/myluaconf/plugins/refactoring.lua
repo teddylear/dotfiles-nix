@@ -3,8 +3,8 @@ local map = vim.api.nvim_set_keymap
 return {
     "ThePrimeagen/refactoring.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
     },
     config = function()
         require("refactoring").setup({
@@ -56,12 +56,17 @@ return {
             desc = "Refactoring plugin debug cleanup print statements",
         })
 
-        map("v", "<Leader>dv", ":lua require('refactoring').debug.print_var()<CR>", {
-            noremap = true,
-            silent = true,
-            expr = false,
-            desc = "Refactoring plugin debug print var",
-        })
+        map(
+            "v",
+            "<Leader>dv",
+            ":lua require('refactoring').debug.print_var()<CR>",
+            {
+                noremap = true,
+                silent = true,
+                expr = false,
+                desc = "Refactoring plugin debug print var",
+            }
+        )
 
         map(
             "n",
@@ -76,4 +81,3 @@ return {
         )
     end,
 }
-

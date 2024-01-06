@@ -64,14 +64,18 @@ return {
             end
             local iam_actions_map = iam_file_path:readlines()
 
-            require("telescope.pickers").new({}, {
-                prompt_title = "Iam actions",
-                finder = require("telescope.finders").new_table(iam_actions_map),
-                sorter = require("telescope.config").values.generic_sorter({}),
-                attach_mappings = function(_, _)
-                    return true
-                end,
-            }):find()
+            require("telescope.pickers")
+                .new({}, {
+                    prompt_title = "Iam actions",
+                    finder = require("telescope.finders").new_table(
+                        iam_actions_map
+                    ),
+                    sorter = require("telescope.config").values.generic_sorter({}),
+                    attach_mappings = function(_, _)
+                        return true
+                    end,
+                })
+                :find()
         end
 
         local function get_keymaps_with_desc()
@@ -98,13 +102,15 @@ return {
         end
 
         local function keymaps()
-            require("telescope.pickers").new({}, {
-                prompt_title = "Custom Keymaps",
-                finder = require("telescope.finders").new_table({
-                    results = get_keymaps_with_desc(),
-                }),
-                sorter = require("telescope.config").values.generic_sorter({}),
-            }):find()
+            require("telescope.pickers")
+                .new({}, {
+                    prompt_title = "Custom Keymaps",
+                    finder = require("telescope.finders").new_table({
+                        results = get_keymaps_with_desc(),
+                    }),
+                    sorter = require("telescope.config").values.generic_sorter({}),
+                })
+                :find()
         end
 
         local map = vim.api.nvim_set_keymap

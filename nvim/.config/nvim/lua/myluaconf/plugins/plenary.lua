@@ -24,15 +24,24 @@ return {
 
             -- Sanitize removing newline character
             if string.sub(bash_location, -1) == "\n" then
-                bash_location = string.sub(
-                    bash_location,
-                    1,
-                    string.len(bash_location) - 1
-                )
+                bash_location =
+                    string.sub(bash_location, 1, string.len(bash_location) - 1)
             end
 
-            vim.api.nvim_buf_set_lines(bufnr, 0, 1, false, { "#!" .. bash_location })
-            vim.api.nvim_buf_set_lines(bufnr, 1, 2, false, { 'echo "Hello World!"' })
+            vim.api.nvim_buf_set_lines(
+                bufnr,
+                0,
+                1,
+                false,
+                { "#!" .. bash_location }
+            )
+            vim.api.nvim_buf_set_lines(
+                bufnr,
+                1,
+                2,
+                false,
+                { 'echo "Hello World!"' }
+            )
 
             vim.cmd(":w test.sh")
 
@@ -54,9 +63,8 @@ return {
 
         local function removeLspLog()
             local lsp_file_path = "/.local/state/nvim/lsp.log"
-            local lsp_file = Path:new(
-                string.format("%s%s", vim.env.HOME, lsp_file_path)
-            )
+            local lsp_file =
+                Path:new(string.format("%s%s", vim.env.HOME, lsp_file_path))
             if lsp_file:exists() then
                 lsp_file:rm()
             else
@@ -103,7 +111,8 @@ return {
                 vim.wo.relativenumber = true
             end
 
-            local alacritty_file_string = table.concat(alacritty_file_contents, "\n")
+            local alacritty_file_string =
+                table.concat(alacritty_file_contents, "\n")
             alacritty_config_path:write(alacritty_file_string, "w")
         end
 
@@ -151,7 +160,10 @@ return {
             local venv_name = venv:sub(end_index + 1, #venv)
 
             local pyright_config_string = string.format(
-                "{\n" .. '    "venvPath": "%s",\n' .. '    "venv": "%s"\n' .. "}",
+                "{\n"
+                    .. '    "venvPath": "%s",\n'
+                    .. '    "venv": "%s"\n'
+                    .. "}",
                 venv_path,
                 venv_name
             )

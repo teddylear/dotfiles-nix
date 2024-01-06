@@ -69,7 +69,7 @@ map("n", "<leader>f", "", {
     desc = "format from lsp",
 })
 
-map("n", "<leader>so", ':source %<CR>', {
+map("n", "<leader>so", ":source %<CR>", {
     noremap = true,
     silent = true,
     desc = "source current file",

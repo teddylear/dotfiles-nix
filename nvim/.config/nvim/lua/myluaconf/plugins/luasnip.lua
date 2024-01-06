@@ -1,6 +1,6 @@
 return {
-	"L3MON4D3/LuaSnip",
-	version = "2.2.0",
+    "L3MON4D3/LuaSnip",
+    version = "2.2.0",
     config = function()
         local ls = require("luasnip")
         local fmt = require("luasnip.extras.fmt").fmt
@@ -33,15 +33,24 @@ return {
             ls.parser.parse_snippet("fn", "local function $1($2)\n    $0\nend"),
             ls.parser.parse_snippet("cfn", "function $1:$2($3)\n    $0\nend"),
             ls.parser.parse_snippet("ifs", "if $1 then\n    $0\nend"),
-            ls.parser.parse_snippet("ifel", "if $1 then\n    $2\nelse $3\n    $0\nend"),
+            ls.parser.parse_snippet(
+                "ifel",
+                "if $1 then\n    $2\nelse $3\n    $0\nend"
+            ),
             s("prn", fmt('print("{}:", {})', { i(1), rep(1) })),
             s("prni", fmt('print("{}:", vim.inspect({}))', { i(1), rep(1) })),
             s("hh", { t({ 'print("Hitting here!")' }) }),
         })
 
         ls.add_snippets("terraform", {
-            ls.parser.parse_snippet("vs", 'variable "$0" {\n  type = string\n}'),
-            ls.parser.parse_snippet("vn", 'variable "$0" {\n  type = number\n}'),
+            ls.parser.parse_snippet(
+                "vs",
+                'variable "$0" {\n  type = string\n}'
+            ),
+            ls.parser.parse_snippet(
+                "vn",
+                'variable "$0" {\n  type = number\n}'
+            ),
             ls.parser.parse_snippet("vb", 'variable "$0" {\n  type = bool\n}'),
             ls.parser.parse_snippet("rs", 'resource "$1" "$2" {\n\t$0\n}'),
             ls.parser.parse_snippet("ds", 'data "$1" "$2" {\n\t$0\n}'),
@@ -54,7 +63,12 @@ return {
         ---@param import_text string: table of InlineNodes to query against
         ---@param inline_nodes table: table of InlineNodes to query against
         ---@return boolean, table
-        local function check_for_import(bufnr, filetype, import_text, inline_nodes)
+        local function check_for_import(
+            bufnr,
+            filetype,
+            import_text,
+            inline_nodes
+        )
             local tsparser = vim.treesitter.get_parser(bufnr, filetype)
             local tstree = tsparser:parse()[1]
             local out = {}
@@ -82,25 +96,27 @@ return {
         local function add_fmt_import_if_not_found_golang()
             local bufnr = vim.api.nvim_get_current_buf()
             local inline_nodes = {
-                InlineNode("(import_spec path: (interpreted_string_literal) @capture)"),
+                InlineNode(
+                    "(import_spec path: (interpreted_string_literal) @capture)"
+                ),
             }
             local import_text = '"fmt"'
 
-            local found_import, out = check_for_import(
-                bufnr,
-                "go",
-                import_text,
-                inline_nodes
-            )
+            local found_import, out =
+                check_for_import(bufnr, "go", import_text, inline_nodes)
 
             if not found_import then
                 local node = out[1]
-                local node_text = vim.treesitter.query.get_node_text(node, bufnr)
+                local node_text =
+                    vim.treesitter.query.get_node_text(node, bufnr)
                 local region = Region:from_node(node, bufnr)
-                local lsp_text_edit = region:to_lsp_text_edit(
-                    import_text .. "\n\t" .. node_text
+                local lsp_text_edit =
+                    region:to_lsp_text_edit(import_text .. "\n\t" .. node_text)
+                vim.lsp.util.apply_text_edits(
+                    { lsp_text_edit },
+                    bufnr,
+                    "utf-16"
                 )
-                vim.lsp.util.apply_text_edits({ lsp_text_edit }, bufnr, "utf-16")
             end
         end
 
@@ -110,16 +126,20 @@ return {
                 i(0),
                 t({ "", "}" }),
             }),
-            s("prn", fmt('fmt.Println(fmt.Sprintf("{}: %v", {}))', { i(1), rep(1) }), {
-                callbacks = {
-                    [-1] = {
-                        -- TODO: Can I make this more direct?
-                        [events.enter] = function(_)
-                            add_fmt_import_if_not_found_golang()
-                        end,
+            s(
+                "prn",
+                fmt('fmt.Println(fmt.Sprintf("{}: %v", {}))', { i(1), rep(1) }),
+                {
+                    callbacks = {
+                        [-1] = {
+                            -- TODO: Can I make this more direct?
+                            [events.enter] = function(_)
+                                add_fmt_import_if_not_found_golang()
+                            end,
+                        },
                     },
-                },
-            }),
+                }
+            ),
             s("hh", {
                 t({ 'fmt.Println("Hitting here!")' }),
             }, {
@@ -137,14 +157,26 @@ return {
         ls.add_snippets("python", {
             s(
                 "prn",
-                fmt('print(f"^%: {^%}")', { i(1), rep(1) }, { delimiters = "^%" })
+                fmt(
+                    'print(f"^%: {^%}")',
+                    { i(1), rep(1) },
+                    { delimiters = "^%" }
+                )
             ),
             s("hh", { t({ 'print("Hitting here!")' }) }),
-            s("main", { t({ 'if __name__=="__main__":', '\tprint("Hello World!")' }) }),
+            s(
+                "main",
+                { t({ 'if __name__=="__main__":', '\tprint("Hello World!")' }) }
+            ),
             s("class", {
                 t({ "class " }),
                 i(0),
-                t({ ":", "", "\tdef __init__(self):", '\t\tprint("Hello World!")' }),
+                t({
+                    ":",
+                    "",
+                    "\tdef __init__(self):",
+                    '\t\tprint("Hello World!")',
+                }),
             }),
         })
 

@@ -10,7 +10,9 @@ return {
 
         map("n", "<leader>a", "", {
             noremap = true,
-            callback = function() harpoon:list():append() end,
+            callback = function()
+                harpoon:list():append()
+            end,
             desc = "Add file to harpoon plugin list",
         })
 
@@ -32,14 +34,21 @@ return {
         for k, v in pairs(file_map) do
             map("n", string.format("<C-%s>", k), "", {
                 noremap = true,
-                callback = function() return harpoon:list():select(v) end,
+                callback = function()
+                    return harpoon:list():select(v)
+                end,
                 desc = string.format("Open harpoon file %s", v),
             })
         end
 
         local function open_terminal_first_hp_position()
-            if harpoon:list():length() > 0 and string.match(harpoon:list():get(1).value, "term://", 1) then
-                print("found terminal existing terminal at harpoon 1, removing...")
+            if
+                harpoon:list():length() > 0
+                and string.match(harpoon:list():get(1).value, "term://", 1)
+            then
+                print(
+                    "found terminal existing terminal at harpoon 1, removing..."
+                )
                 harpoon:list():removeAt(1)
             end
 
