@@ -31,5 +31,5 @@ ubuntu-update:
     sudo apt upgrade
     sudo apt autoremove
 
-nvim-stow:
+stow:
     stow -R nvim

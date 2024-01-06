@@ -21,6 +21,10 @@ xcode-select --install
 - Follow steps in [original wiki for macos here](/docs/OG_README.md)
 
 ## Post nix & friends install:
+- Link nvim config to home directory with:
+```zsh
+just stow
+```
 - [1password ssh agent setup](https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent)
 - github cli login:
 ```zsh
