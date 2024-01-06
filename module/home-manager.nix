@@ -42,7 +42,6 @@
     stylua
   ];
 
-  home.file.".config/alacritty/alacritty.yml".source = ././config/alacritty.yml;
   home.file.".ssh/config".source = ././config/ssh-agent-config;
   home.file."tmux-session.sh" = {
     source = ././scripts/tmux-session.sh;

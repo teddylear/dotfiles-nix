@@ -21,7 +21,7 @@ xcode-select --install
 - Follow steps in [original wiki for macos here](/docs/OG_README.md)
 
 ## Post nix & friends install:
-- Link nvim config to home directory with:
+- Link multiple programs home directory configs with:
 ```zsh
 just stow
 ```

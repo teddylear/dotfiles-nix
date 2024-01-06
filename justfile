@@ -33,3 +33,4 @@ ubuntu-update:
 
 stow:
     stow -R nvim
+    stow -R alacritty
