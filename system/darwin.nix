@@ -17,13 +17,13 @@ inputs.darwin.lib.darwinSystem {
       services.nix-daemon.enable = true;
       users.users.${username}.home = "/Users/${username}";
 
-       homebrew = {
+      homebrew = {
         enable = true;
         taps = [
           "kwilczynski/homebrew-pkenv"
           "homebrew/cask-fonts"
         ];
-        casks  = [
+        casks = [
           "alacritty"
           "amethyst"
           "1password"

@@ -16,8 +16,8 @@
     };
 
     neovim-nightly-overlay = {
-        url = "github:nix-community/neovim-nightly-overlay";
-        inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -56,8 +56,8 @@
 
       # Commenting out for now
       # nixosConfigurations = {
-        # nixos-aarch64 = nixos-system "aarch64-linux";
-        # nixos-x86_64 = nixos-system "x86_64-linux";
+      # nixos-aarch64 = nixos-system "aarch64-linux";
+      # nixos-x86_64 = nixos-system "x86_64-linux";
       # };
     };
 }
