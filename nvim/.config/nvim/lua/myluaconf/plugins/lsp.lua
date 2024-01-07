@@ -149,7 +149,7 @@ return {
                 desc = "vim lsp get references",
             })
 
-            local group = vim.api.nvim_create_augroup('THE_KENSTER_LSP', {})
+            local group = vim.api.nvim_create_augroup("THE_KENSTER_LSP", {})
             vim.api.nvim_create_autocmd({ "BufWritePre" }, {
                 pattern = { "*.tf", "*.tfvars" },
                 group = group,
