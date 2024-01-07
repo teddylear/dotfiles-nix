@@ -8,10 +8,21 @@ return {
             local catppuccin = require("catppuccin")
 
             -- configure it
-            catppuccin.setup()
+            catppuccin.setup({
+                -- flavour = "macchiato",
+                flavour = "mocha",
+                transparent_background = false,
+                integrations = {
+                   fidget = true,
+                   cmp = true,
+                   harpoon = true,
+                   neotest = true,
+                   treesitter_context = true,
+                   lsp_trouble = true,
+                },
+            })
             -- latte, frappe, macchiato, mocha
-            vim.g.catppuccin_flavour = "mocha"
-            vim.cmd([[colorscheme catppuccin]])
+            vim.cmd.colorscheme "catppuccin"
 
             -- TODO: do something better for this
             -- disable all lsp highlighting because we want treesitter to
