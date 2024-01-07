@@ -32,6 +32,7 @@ return {
                     "puppet",
                     "terraform",
                     "nix",
+                    "vimdoc",
                 },
                 highlight = {
                     enable = true,
