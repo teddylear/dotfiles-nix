@@ -1,6 +1,7 @@
 return {
     "Saecki/crates.nvim",
     dependencies = { "nvimtools/none-ls.nvim" },
+    ft = { "rust" },
     config = function()
         local crates = require("crates")
         crates.setup({

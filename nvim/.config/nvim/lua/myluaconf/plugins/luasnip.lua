@@ -1,5 +1,6 @@
 return {
     "L3MON4D3/LuaSnip",
+    dependencies = { "ThePrimeagen/refactoring.nvim" },
     version = "2.2.0",
     config = function()
         local ls = require("luasnip")

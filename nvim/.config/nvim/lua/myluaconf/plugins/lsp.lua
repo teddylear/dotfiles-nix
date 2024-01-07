@@ -1,6 +1,17 @@
+local ft = {
+    "terraform",
+    "rust",
+    "go",
+    "lua",
+    "python",
+    "sh",
+    "markdown",
+}
+
 return {
     {
         "j-hui/fidget.nvim",
+        ft = ft,
         opts = {
             text = {
                 spinner = "bouncing_ball",
@@ -10,9 +21,10 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        ft = ft,
         dependencies = {
-            "hrsh7th/cmp-nvim-lua",
             { "folke/neodev.nvim", opts = {} },
+            "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
             local util = require("lspconfig/util")

@@ -5,20 +5,17 @@ return {
         "antoinemadec/FixCursorHold.nvim",
         "nvim-treesitter/nvim-treesitter",
         "rouge8/neotest-rust",
-        "nvim-neotest/neotest-go",
+        -- NOTE: I don't actually use this yet, leaving here for now
+        -- "nvim-neotest/neotest-go",
     },
+    ft = { "rust", "go" },
     config = function()
         local neotest = require("neotest")
         neotest.setup({
             adapters = {
                 require("neotest-rust"),
-                require("neotest-go"),
-                -- require("neotest-python")({
-                -- python = function()
-                -- local root_dir = util.root_pattern(".git", "Pipfile")
-                -- return get_python_path(root_dir)
-                -- end,
-                -- }),
+                -- NOTE: I don't actually use this yet, leaving here for now
+                -- require("neotest-go"),
             },
             icons = {
                 failed = "",
