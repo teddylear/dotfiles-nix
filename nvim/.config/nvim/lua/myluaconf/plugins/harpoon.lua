@@ -6,7 +6,11 @@ return {
         local map = vim.api.nvim_set_keymap
         local harpoon = require("harpoon")
 
-        harpoon:setup()
+        harpoon:setup({
+            settings = {
+                save_on_toggle = true,
+            },
+        })
 
         map("n", "<leader>a", "", {
             noremap = true,
