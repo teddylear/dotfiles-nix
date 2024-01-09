@@ -1,8 +1,8 @@
 #!/run/current-system/sw/bin/zsh
 
-SESSIONNAME="personal"
-tmux new-session -s $SESSIONNAME -c "$HOME/Documents/journal" -d
-tmux rename-window -t 0 "JOURNAL"
+SESSIONNAME="tmuxsession"
+tmux new-session -s $SESSIONNAME -c "$HOME/Documents" -d
+tmux rename-window -t 0 "Documents"
 tmux send-key -t 0 vim Space . Enter\
 
 tmux new-window -c "$HOME/dotfiles-nix" -n "DOTFILES" -t $SESSIONNAME
