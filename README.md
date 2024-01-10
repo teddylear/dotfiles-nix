@@ -10,11 +10,6 @@ Right now only have macos working on current computer, have to figure out more f
 **NOTE**: probably have to restart shell between a lot of the steps
 
 ### Macos
-- install rust tools:
-```zsh
-rustup install default
-rustup component add rust-analyzer
-```
 - Base developer tools:
 ```zsh
 xcode-select --install
@@ -26,6 +21,11 @@ xcode-select --install
 - Follow steps in [original wiki for macos here](/docs/OG_README.md)
 
 ## Post nix & friends install:
+- install rust tools:
+```zsh
+rustup install default
+rustup component add rust-analyzer
+```
 - Link multiple programs home directory configs with:
 ```zsh
 just stow
