@@ -147,7 +147,6 @@
     functions = {
       gb = ''
         set target_branch (git branch | fzf --reverse | tr -d '[:space:]')
-        # echo "$target_branch is target branch!"
         git switch $target_branch
       '';
     };
