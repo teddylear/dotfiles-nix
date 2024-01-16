@@ -141,7 +141,7 @@
     enable = true;
 
     shellInit = ''
-        fish_config theme choose "Dracula Official"
+      fish_config theme choose "Dracula Official"
     '';
 
     functions = {
@@ -151,9 +151,10 @@
       '';
 
       p = ''
-         set file (fzf --reverse --preview='bat --color always {}')
-         nvim $file
+        set file (fzf --reverse --preview='bat --color always {}')
+        nvim $file
       '';
+      fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color 8be9fd) (fish_mode_prompt) (set_color normal) ' > '";
     };
 
     shellAbbrs = {
