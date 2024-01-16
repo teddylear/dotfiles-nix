@@ -143,6 +143,23 @@
     shellInit = ''
         fish_config theme choose "Dracula Official"
     '';
+
+    shellAbbrs = {
+      vim = "nvim";
+      oldvim = "\vim";
+      cat = "bat";
+      # TODO: have to fix these two to get them working
+      # p = "nvim `fzf --reverse --preview=\"bat --color always {}\"`";
+      # gb = "git switch `git branch | fzf --reverse | tr -d '[:space:]'`";
+      gsw = "git switch";
+      gsc = "git switch -c";
+      gs = "git status";
+      gp = "git pull";
+      gps = "git push";
+      gcm = "git commit -m";
+      ll = "eza -l -g -a --icons";
+      tmuxsession = "fish $TMUX_SCRIPT_PATH";
+    };
   };
 
   programs.zsh = {
