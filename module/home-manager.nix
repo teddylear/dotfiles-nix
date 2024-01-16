@@ -149,15 +149,17 @@
         set target_branch (git branch | fzf --reverse | tr -d '[:space:]')
         git switch $target_branch
       '';
+
+      p = ''
+         set file (fzf --reverse --preview='bat --color always {}')
+         nvim $file
+      '';
     };
 
     shellAbbrs = {
       vim = "nvim";
       oldvim = "\vim";
       cat = "bat";
-      # TODO: have to fix these two to get them working
-      # p = "nvim `fzf --reverse --preview=\"bat --color always {}\"`";
-      # gb = "git switch `git branch | fzf --reverse | tr -d '[:space:]'`";
       gsw = "git switch";
       gsc = "git switch -c";
       gs = "git status";
