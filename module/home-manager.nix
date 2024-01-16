@@ -130,6 +130,7 @@
       merge.conflictstyle = "diff3";
       push.autoSetupRemote = true;
       rebase.autoStash = true;
+      bash.showDirtyState = true;
     };
 
     extraConfig.github.user = "${git-username}";
@@ -196,6 +197,7 @@
       cat = "bat";
       gsw = "git switch";
       gsc = "git switch -c";
+      gd = "git diff";
       gs = "git status";
       gp = "git pull";
       gps = "git push";
