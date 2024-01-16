@@ -43,8 +43,8 @@
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
-  home.file."tmux-session.sh" = {
-    source = ././scripts/tmux-session.sh;
+  home.file."tmux-session.fish" = {
+    source = ././scripts/tmux-session.fish;
     executable = true;
   };
 
@@ -201,7 +201,7 @@
       gps = "git push";
       gcm = "git commit -m";
       ll = "eza -l -g -a --icons";
-      tmuxsession = "fish $TMUX_SCRIPT_PATH";
+      tmuxsession = "fish $HOME/tmux-session.fish";
     };
   };
 
@@ -233,7 +233,6 @@
       gps = "git push";
       gcm = "git commit -m";
       ll = "eza -l -g -a --icons";
-      tmuxsession = "zsh $TMUX_SCRIPT_PATH";
     };
 
     # TODO: can I get rid of homebrew thing now that path is set correctly?
@@ -299,7 +298,6 @@
 
   programs.direnv = {
     enable = true;
-    enableZshIntegration = true;
     nix-direnv.enable = true;
   };
 
@@ -363,7 +361,7 @@
     plugins = with pkgs; [
       tmuxPlugins.vim-tmux-navigator
     ];
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.fish}/bin/fish";
     terminal = "screen-256color";
     # TODO: fix this later once I'm ready for linux
     # terminal = if isDarwin then "screen-256color" else "xterm-256color";

@@ -67,4 +67,4 @@ cursor:
 live_config_reload: true
 
 shell:
-  program: /bin/zsh
+  program: /run/current-system/sw/bin/fish
