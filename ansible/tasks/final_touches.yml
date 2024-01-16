@@ -2,9 +2,35 @@
   file:
     path: "{{ lookup('env', 'HOME') }}/code"
     state: directory
+  tags:
+    - nvim
+    - nvim
+    - fish
 - name: Clone aws-iam-actions-list
   ansible.builtin.git:
     repo: 'git@github.com:TryTryAgain/aws-iam-actions-list.git'
     dest: "{{ lookup('env', 'HOME') }}/code/aws-iam-actions-list"
     force: yes
     update: yes
+  tags:
+    - nvim
+- name: Clone fish Dracula theme
+  ansible.builtin.git:
+    repo: 'git@github.com:dracula/fish.git'
+    dest: "{{ lookup('env', 'HOME') }}/code/fish"
+    force: yes
+    update: yes
+  tags:
+    - fish
+- name: Make config fish themes directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.config/fish/themes"
+    state: directory
+  tags:
+    - fish
+- name: Copy the theme to correct directory
+  ansible.builtin.copy:
+    src: "{{ lookup('env', 'HOME') }}/code/fish/themes/Dracula Official.theme"
+    dest: "{{ lookup('env', 'HOME') }}/.config/fish/themes/Dracula Official.theme"
+  tags:
+    - fish

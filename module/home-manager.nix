@@ -74,8 +74,8 @@
     "$PYENV_ROOT/bin"
     "$HOME/.pkenv/bin"
     "$HOME/.tfenv/bin"
-    # # TODO: how to only do this for macos?
-    # "/opt/homebrew/bin"
+    # TODO: how to only do for macos?
+    "/opt/homebrew/bin/"
   ];
   home.stateVersion = "23.05";
 
@@ -137,6 +137,73 @@
     userName = "${git-email}";
   };
 
+  programs.fish = {
+    enable = true;
+
+    shellInit = ''
+      fish_config theme choose "Dracula Official"
+      set fish_greeting
+
+      pyenv init - | source
+      mcfly init fish | source
+
+      # Adding local config file for things that cant be checked into git
+      # Putting at the end of the file to override any unnecessary aliases
+      if test -f "$HOME/local_fish_config.fish";
+        source $HOME/local_fish_config.fish
+      end
+    '';
+
+    functions = {
+      gb = ''
+        set target_branch (git branch | fzf --reverse | tr -d '[:space:]')
+        git switch $target_branch
+      '';
+
+      p = ''
+        set file (fzf --reverse --preview='bat --color always {}')
+        nvim $file
+      '';
+
+      fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color normal) ' > '";
+
+      fish_user_key_bindings = "fish_vi_key_bindings";
+
+      propen = ''
+        set git_commit_text (git log -1 --pretty=%B)
+        gh pr create --draft --title "$git_commit_text" --body "$git_commit_text"
+        gh pr view -w
+      '';
+
+      tfclean = ''
+        rm -rf .terraform
+        rm plan.out
+      '';
+
+      tfsetup = ''
+        echo "==> Cleaning up directory"
+        tfclean
+        echo "==> Running init"
+        terraform init
+        echo "==> Running plan"
+        terraform plan -out=plan.out
+      '';
+    };
+
+    shellAbbrs = {
+      vim = "nvim";
+      oldvim = "\vim";
+      cat = "bat";
+      gsw = "git switch";
+      gsc = "git switch -c";
+      gs = "git status";
+      gp = "git pull";
+      gps = "git push";
+      gcm = "git commit -m";
+      ll = "eza -l -g -a --icons";
+      tmuxsession = "fish $TMUX_SCRIPT_PATH";
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -169,12 +236,13 @@
       tmuxsession = "zsh $TMUX_SCRIPT_PATH";
     };
 
+    # TODO: can I get rid of homebrew thing now that path is set correctly?
     initExtra = ''
       # https://discourse.nixos.org/t/brew-not-on-path-on-m1-mac/26770/4
       # make sure brew is on the path for M1
-      if [[ $(uname -m) == 'arm64' ]]; then
-          eval "$(/opt/homebrew/bin/brew shellenv)"
-      fi
+      # if [[ $(uname -m) == 'arm64' ]]; then
+          # eval "$(/opt/homebrew/bin/brew shellenv)"
+      # fi
 
       bindkey -v
       bindkey '^R' history-incremental-search-backward
@@ -195,13 +263,6 @@
           echo "==> Running plan"
           terraform plan -out=plan.out
       }
-
-      if [ -f "$HOME/tmux-session.sh" ]
-      then
-          export TMUX_SCRIPT_PATH="$HOME/tmux-session.sh"
-      else
-          export TMUX_SCRIPT_PATH="$HOME/shell_config/tmux-session.sh"
-      fi
 
       # From: https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
       timezsh() {
