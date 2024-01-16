@@ -77,7 +77,7 @@
     # TODO: how to only do for macos?
     "/opt/homebrew/bin/"
   ];
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   # copying altf4's delta and most of git config
   programs.git = {
@@ -211,7 +211,7 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
+    syntaxHighlighting.enable = true;
 
     oh-my-zsh = {
       enable = true;

@@ -25,7 +25,7 @@ inputs.nixpkgs.lib.nixosSystem {
         isNormalUser = true;
         password = "password";
       };
-      system.stateVersion = "23.05";
+      system.stateVersion = "23.11";
     }
     hardware-configuration
     configuration
