@@ -137,6 +137,13 @@
     userName = "${git-email}";
   };
 
+  programs.fish = {
+    enable = true;
+
+    shellInit = ''
+        fish_config theme choose "Dracula Official"
+    '';
+  };
 
   programs.zsh = {
     enable = true;

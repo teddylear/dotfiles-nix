@@ -17,7 +17,15 @@ ansible-final-touches:
     @echo "==> Running ansible..."
     ANSIBLE_NOCOWS=1 ansible-playbook ansible/local.yml
 
-update-nvim-plugins: ansible-final-touches
+ansible-final-touches-nvim:
+    @echo "==> Running ansible..."
+    ANSIBLE_NOCOWS=1 ansible-playbook ansible/local.yml --tags "neovim"
+
+ansible-final-touches-fish:
+    @echo "==> Running ansible..."
+    ANSIBLE_NOCOWS=1 ansible-playbook ansible/local.yml --tags "fish"
+
+update-nvim-plugins: ansible-final-touches-nvim
     @echo "==> Running update on nvim plugins..."
     nvim --headless "+Lazy! sync" +qa
 
