@@ -77,6 +77,14 @@ return {
             end)
         end
 
+        local function gitRebase()
+            local output = vim.fn.system(
+                "git remote show origin | sed -n '/HEAD branch/s/.*: //p'"
+            )
+            local branch = string.sub(output, 1, output:len() - 1)
+            vim.api.nvim_exec2('Git rebase -i "' .. branch .. '"', {})
+        end
+
         local function gitCommit()
             local input = Input({
                 position = "50%",
@@ -121,6 +129,12 @@ return {
             noremap = true,
             callback = gitCommit,
             desc = "Git commit custom function",
+        })
+
+        map("n", "<leader>rb", "", {
+            noremap = true,
+            callback = gitRebase,
+            desc = "Git rebase function",
         })
 
         map("n", "<leader>gb", "", {
