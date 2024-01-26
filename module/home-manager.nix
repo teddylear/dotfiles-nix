@@ -67,6 +67,7 @@
     PYENV_ROOT = "$HOME/.pyenv";
     # TODO: have this only for mac?
     SSH_AUTH_SOCK = "$HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+    PIPENV_SHELL = "$SHELL";
   };
 
   home.sessionPath = [
@@ -76,6 +77,7 @@
     "$HOME/.tfenv/bin"
     # TODO: how to only do for macos?
     "/opt/homebrew/bin/"
+    "$HOME/development/language/go/bin"
   ];
   home.stateVersion = "23.11";
 
@@ -166,7 +168,7 @@
         nvim $file
       '';
 
-      fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color normal) ' > '";
+      fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color normal) '\n > '";
 
       fish_user_key_bindings = "fish_vi_key_bindings";
 
@@ -305,7 +307,7 @@
 
   programs.go = {
     enable = true;
-    goPath = "Development/language/go";
+    goPath = "development/language/go";
   };
 
   programs.tmux = {
