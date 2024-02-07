@@ -3,6 +3,7 @@ return {
     dependencies = {
         "MunifTanjim/nui.nvim",
         "tpope/vim-rhubarb",
+        "sindrets/diffview.nvim",
     },
     config = function()
         local map = vim.api.nvim_set_keymap
@@ -149,9 +150,15 @@ return {
             "<CMD>Git<CR>",
             { noremap = true, desc = "Open vim-fugitive git status window" }
         )
-        map("n", "<leader>df", "<CMD>Gdiff<CR>", {
+
+        map("n", "<leader>df", "<CMD>DiffviewOpen<CR>", {
             noremap = true,
-            desc = "Open vim-fugitive git diff for current file",
+            desc = "Open diffview.nvim git diff for current project",
+        })
+
+        map("n", "<leader>dh", "<CMD>DiffviewFileHistory %<CR>", {
+            noremap = true,
+            desc = "Open diffview.nvim file history diff for current file",
         })
 
         map("n", "<leader>gs", "<CMD>Git push origin --force-with-lease<CR>", {
