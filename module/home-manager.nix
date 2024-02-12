@@ -360,6 +360,8 @@
       # setting colors properly
       set-option -sa terminal-overrides ',xterm-256color:RGB'
 
+      set -g default-command fish
+
       set -g status off
     '';
     plugins = with pkgs; [
