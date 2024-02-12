@@ -149,6 +149,12 @@
 
       pyenv init - | source
       mcfly init fish | source
+
+      # Adding local config file for things that cant be checked into git
+      # Putting at the end of the file to override any unnecessary aliases
+      if test -f "$HOME/local_fish_config.fish";
+        source $HOME/local_fish_config.fish
+      end
     '';
 
     functions = {
