@@ -28,6 +28,7 @@
     nodejs_20
     ansible
     stow
+    jira-cli-go
 
     # lsps
     gopls
