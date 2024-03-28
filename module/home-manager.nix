@@ -14,13 +14,11 @@
     sd
     neofetch
     mcfly
-    zsh
     fd
     gh
     awscli2
     unzip
     _1password
-    oh-my-zsh
     neovim-nightly
     pipenv
     fzf
@@ -208,97 +206,6 @@
       ll = "eza -l -g -a --icons";
       tmuxsession = "fish $HOME/tmux-session.fish";
     };
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableAutosuggestions = true;
-    enableCompletion = true;
-    syntaxHighlighting.enable = true;
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-      ];
-      theme = "robbyrussell";
-    };
-
-    shellAliases = {
-      vim = "nvim";
-      oldvim = "\vim";
-      cat = "bat";
-      p = "nvim `fzf --reverse --preview=\"bat --color always {}\"`";
-      gb = "git switch `git branch | fzf --reverse | tr -d '[:space:]'`";
-      gsw = "git switch";
-      gsc = "git switch -c";
-      gs = "git status";
-      gr = "git restore";
-      gp = "git pull";
-      gps = "git push";
-      gcm = "git commit -m";
-      ll = "eza -l -g -a --icons";
-    };
-
-    # TODO: can I get rid of homebrew thing now that path is set correctly?
-    initExtra = ''
-      # https://discourse.nixos.org/t/brew-not-on-path-on-m1-mac/26770/4
-      # make sure brew is on the path for M1
-      # if [[ $(uname -m) == 'arm64' ]]; then
-          # eval "$(/opt/homebrew/bin/brew shellenv)"
-      # fi
-
-      bindkey -v
-      bindkey '^R' history-incremental-search-backward
-
-      eval "$(mcfly init zsh)"
-      eval "$(pyenv init -)"
-
-      tfclean() {
-        rm -rf .terraform;
-        rm plan.out;
-      }
-
-      tfsetup() {
-          echo "==> Cleaning up directory"
-          tfclean
-          echo "==> Running init"
-          terraform init
-          echo "==> Running plan"
-          terraform plan -out=plan.out
-      }
-
-      # From: https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
-      timezsh() {
-        shell=\$\{1-$SHELL\}
-        for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
-      }
-
-      # From Thorsten Ball for using github cli
-      pr() {
-        if type gh &> /dev/null; then
-          gh pr view -w
-        else
-          echo "gh is not installed"
-        fi
-      }
-
-      propen() {
-        if type gh &> /dev/null; then
-          local git_commit_text=$(git log -1 --pretty=%B)
-          gh pr create --draft --title $git_commit_text --body $git_commit_text
-          pr
-        else
-          echo "gh is not installed"
-        fi
-      }
-
-      # Adding local config file for things that cant be checked into git
-      # Putting at the end of the file to override any unnecessary aliases
-      if test -f "$HOME/local_zsh_config.zsh"; then
-        source $HOME/local_zsh_config.zsh
-      fi
-    '';
   };
 
   programs.direnv = {
