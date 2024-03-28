@@ -1,8 +1,13 @@
-{ inputs, git-username, git-email }:
-
-{ config, lib, pkgs, ... }:
-
 {
+  inputs,
+  git-username,
+  git-email,
+}: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     # cli tools
     rustup
@@ -37,7 +42,7 @@
     nodePackages.pyright
 
     # formatters
-    nixpkgs-fmt
+    alejandra
     stylua
   ];
 
@@ -281,4 +286,3 @@
     # terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
 }
-

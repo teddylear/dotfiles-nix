@@ -1,8 +1,8 @@
 fmt:
     stylua nvim/.config/nvim/
-    nixpkgs-fmt module/
-    nixpkgs-fmt system/
-    nixpkgs-fmt flake.nix
+    alejandra module/
+    alejandra system/
+    alejandra flake.nix
 
 update-nix:
 	nix flake update
