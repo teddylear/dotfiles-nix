@@ -39,11 +39,20 @@
     darwinConfigurations = {
       # darwin-aarch64 = darwin-system "aarch64-darwin";
       # darwin-x86_64 = darwin-system "x86_64-darwin";
-      personal-laptop = darwin-system {
+      personal-laptop-old = darwin-system {
         inherit inputs;
         inherit overlays;
         system = "x86_64-darwin";
         username = "kennethlear";
+        git-username = "teddylear";
+        git-email = "20077627+teddylear@users.noreply.github.com";
+      };
+
+      personal-laptop = darwin-system {
+        inherit inputs;
+        inherit overlays;
+        system = "aarch64-darwin";
+        username = "teddylear";
         git-username = "teddylear";
         git-email = "20077627+teddylear@users.noreply.github.com";
       };
