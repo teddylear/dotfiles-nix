@@ -10,6 +10,9 @@ update-nix:
 personal-laptop:
 	darwin-rebuild switch --flake ".#personal-laptop"
 
+personal-laptop-old:
+	darwin-rebuild switch --flake ".#personal-laptop-old"
+
 business-laptop:
 	darwin-rebuild switch --flake ".#business-laptop"
 
