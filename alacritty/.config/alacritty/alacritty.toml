@@ -1,0 +1,44 @@
+live_config_reload = true
+
+[cursor]
+style = "block"
+
+[font]
+size = 18.0
+
+[font.bold]
+family = "MesloLGS Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "Menlo"
+style = "Bold Italic"
+
+[font.italic]
+family = "MesloLGS Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "MesloLGS Nerd Font"
+style = "Regular"
+
+[scrolling]
+history = 100000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[shell]
+program = "/run/current-system/sw/bin/fish"
+
+[window]
+decorations = "full"
+dynamic_padding = true
+opacity = 0.9
+startup_mode = "Maximized"
+
+[window.padding]
+x = 0
+y = 0
