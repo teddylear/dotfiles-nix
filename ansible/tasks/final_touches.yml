@@ -4,7 +4,6 @@
     state: directory
   tags:
     - nvim
-    - nvim
     - fish
 - name: Clone aws-iam-actions-list
   ansible.builtin.git:

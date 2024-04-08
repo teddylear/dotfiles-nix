@@ -22,7 +22,7 @@ ansible-final-touches:
 
 ansible-final-touches-nvim:
     @echo "==> Running ansible..."
-    ANSIBLE_NOCOWS=1 ansible-playbook ansible/local.yml --tags "neovim"
+    ANSIBLE_NOCOWS=1 ansible-playbook ansible/local.yml --tags "nvim"
 
 ansible-final-touches-fish:
     @echo "==> Running ansible..."
