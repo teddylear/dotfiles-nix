@@ -15,7 +15,7 @@ return {
         map("n", "<leader>a", "", {
             noremap = true,
             callback = function()
-                harpoon:list():append()
+                harpoon:list():add()
             end,
             desc = "Add file to harpoon plugin list",
         })
