@@ -5,6 +5,7 @@ return {
         "antoinemadec/FixCursorHold.nvim",
         "nvim-treesitter/nvim-treesitter",
         "rouge8/neotest-rust",
+        "nvim-neotest/nvim-nio"
         -- NOTE: I don't actually use this yet, leaving here for now
         -- "nvim-neotest/neotest-go",
     },
