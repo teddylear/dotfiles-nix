@@ -80,7 +80,7 @@ return {
         local function screenShare()
             local home_dir = vim.env.HOME
             local alacritty_config_path_string =
-                "/dotfiles-nix/alacritty/.config/alacritty/alacritty.yml"
+                "/dotfiles-nix/alacritty/.config/alacritty/alacritty.toml"
             local alacritty_config_path = Path:new(
                 string.format("%s%s", home_dir, alacritty_config_path_string)
             )
@@ -101,13 +101,13 @@ return {
             end
 
             -- size value is always second value
-            local current_size = tonumber(t[2])
+            local current_size = tonumber(t[3])
             print("current_size:", current_size)
             if current_size == 18 then
-                alacritty_file_contents[size_line_index] = "  size: 25.0"
+                alacritty_file_contents[size_line_index] = "size = 25.0"
                 vim.wo.relativenumber = false
             else
-                alacritty_file_contents[size_line_index] = "  size: 18.0"
+                alacritty_file_contents[size_line_index] = "size = 18.0"
                 vim.wo.relativenumber = true
             end
 
