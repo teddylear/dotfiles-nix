@@ -53,7 +53,7 @@ return {
                 print(
                     "found terminal existing terminal at harpoon 1, removing..."
                 )
-                harpoon:list():removeAt(1)
+                harpoon:list():remove(harpoon:list():get(1))
             end
 
             vim.cmd(":terminal")
