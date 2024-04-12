@@ -140,8 +140,8 @@
     };
 
     extraConfig.github.user = "${git-username}";
-    userEmail = "${git-username}";
-    userName = "${git-email}";
+    userEmail = "${git-email}";
+    userName = "${git-username}";
   };
 
   programs.fish = {
