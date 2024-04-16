@@ -21,10 +21,42 @@ xcode-select --install
 ```
 - Follow steps in [original wiki for macos here](/docs/OG_README.md)
 
+1. Install `nixpkgs` with official script:
+
+```bash
+sh <(curl -L https://nixos.org/nix/install)
+```
+
+2. Install `nix-darwin` with official steps:
+
+```bash
+nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A installer
+./result/bin/darwin-installer
+```
+
+3. Answer the following with `y` to edit your default `configuration.nix` file:
+
+```bash
+Would you like to edit the default configuration.nix before starting? [y/n] y
+```
+
+4. Add the following to `configuration.nix` to enable `nix-command` and `flakes` features:
+
+```nix
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+```
+** NOTE** CTRL-O to save in pico
+
+5. Answer the following with `y` to setup `<darwin>` in `nix-channel` (though it won't be used):
+
+```bash
+Would you like to manage <darwin> with nix-channel? [y/n] y
+```
+
 ## Post nix & friends install:
 - install rust tools:
 ```zsh
-rustup install default
+rustup install stable
 rustup component add rust-analyzer
 ```
 - Link multiple programs home directory configs with:
@@ -49,8 +81,6 @@ map gp togglePinTab
 ```zsh
 just ansible-final-touches
 ```
-
-### Macos
 - [Docker-desktop install](https://docs.docker.com/desktop/install/mac-install/)
 - re-map `caps lock` to `control`
     - system settings -> keyboard -> keyboard shortcuts -> modifier keys
