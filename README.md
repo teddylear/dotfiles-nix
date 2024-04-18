@@ -6,11 +6,12 @@ Fork of [kickstart.nix](https://github.com/ALT-F4-LLC/kickstart.nix) and heavily
 
 Right now only have macos working on current computer, have to figure out more for work, etc
 
-## Install with nix
-
-**NOTE**: probably have to restart shell between a lot of the steps
-
-### Macos
+## First steps
+- re-map `caps lock` to `control`
+    - system settings -> keyboard -> keyboard shortcuts -> modifier keys
+- Put sound and bluetooth in top bar
+    - `control center`, set both to `Always Show in Menu Bar`
+- Turn dock on hiding mode
 - Base developer tools:
 ```zsh
 xcode-select --install
@@ -19,6 +20,12 @@ xcode-select --install
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
+## Install with nix
+
+**NOTE**: probably have to restart shell between a lot of the steps
+
+### Macos
 - Follow steps in [original wiki for macos here](/docs/OG_README.md)
 
 1. Install `nixpkgs` with official script:
@@ -53,16 +60,19 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 Would you like to manage <darwin> with nix-channel? [y/n] y
 ```
 
-## Post nix & friends install:
-- install rust tools:
-```zsh
-rustup install stable
-rustup component add rust-analyzer
+## Setup Terminal
+- Open `Applications` folder and open `Alacritty`
+    - Have to do this because of mac security  warnings
+- start fish shell
+```fish
+/run/current-system/sw/bin/fish
 ```
 - Link multiple programs home directory configs with:
 ```zsh
 just stow
 ```
+
+## Post nix & friends install:
 - [1password ssh agent setup](https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent)
 - github cli login:
 ```zsh
@@ -72,15 +82,23 @@ This should work post login:
 ```zsh
 gh auth status
 ```
+- remove and redownload dotfiles with ssh instead of https
 - `pyenv`, `tfenv`, `pkenv` version installs
-- in brave with vimium installed, add this custom keymapping:
-```
-map gp togglePinTab
+- Brave
+    - Add `1password`, `Dark Reader`, `vimium` extensions
+    - Import bookmarks (If backup?)
+    - Set defaut search to duckduckgo
+    - in brave with vimium installed, add this custom keymapping:
+    ```
+    map gp togglePinTab
+    ```
+- install rust tools:
+```zsh
+rustup install stable
+rustup component add rust-analyzer
 ```
 - final touches with ansible for directories and running some updates on repos...
 ```zsh
 just ansible-final-touches
 ```
 - [Docker-desktop install](https://docs.docker.com/desktop/install/mac-install/)
-- re-map `caps lock` to `control`
-    - system settings -> keyboard -> keyboard shortcuts -> modifier keys
