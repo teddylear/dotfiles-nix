@@ -74,6 +74,15 @@ just stow
 
 ## Post nix & friends install:
 - [1password ssh agent setup](https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent)
+- Brave
+    - Add `1password`, `Dark Reader`, `vimium` extensions
+    - Import bookmarks (If backup?)
+    - Set defaut search to duckduckgo
+    - in brave with vimium installed, add this custom keymapping:
+    ```
+    map gp togglePinTab
+    ```
+    - Sign in Github
 - github cli login:
 ```zsh
 gh auth login
