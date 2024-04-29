@@ -50,9 +50,6 @@ return {
                 harpoon:list():length() > 0
                 and string.match(harpoon:list():get(1).value, "term://", 1)
             then
-                print(
-                    "found terminal existing terminal at harpoon 1, removing..."
-                )
                 harpoon:list():remove(harpoon:list():get(1))
             end
 
