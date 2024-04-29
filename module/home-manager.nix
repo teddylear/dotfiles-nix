@@ -32,6 +32,7 @@
     ansible
     stow
     jira-cli-go
+    httpstat
 
     # lsps
     gopls
