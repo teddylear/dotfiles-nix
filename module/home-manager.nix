@@ -200,6 +200,7 @@
 
     shellAbbrs = {
       vim = "nvim";
+      gre = "git reset --hard HEAD";
       oldvim = "\vim";
       cat = "bat";
       gsw = "git switch";
