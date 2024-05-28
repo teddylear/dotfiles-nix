@@ -45,3 +45,4 @@ ubuntu-update:
 stow:
     stow -R nvim
     stow -R alacritty
+    stow -R amethyst
