@@ -33,6 +33,7 @@
     stow
     jira-cli-go
     httpstat
+    bottom
 
     # lsps
     gopls
@@ -214,24 +215,6 @@
       tmuxsession = "fish $HOME/tmux-session.fish";
     };
   };
-
-  # programs.zsh = {
-    # enable = true;
-    # enableAutosuggestions = true;
-    # enableCompletion = true;
-    # syntaxHighlighting.enable = true;
-
-    # # TODO: can I get rid of homebrew thing now that path is set correctly?
-    # initExtra = ''
-      # # https://discourse.nixos.org/t/brew-not-on-path-on-m1-mac/26770/4
-      # # make sure brew is on the path for M1
-      # # if [[ $(uname -m) == 'arm64' ]]; then
-          # # eval "$(/opt/homebrew/bin/brew shellenv)"
-      # # fi
-      # bindkey -v
-      # bindkey '^R' history-incremental-search-backward
-    # '';
-  # };
 
   programs.direnv = {
     enable = true;
