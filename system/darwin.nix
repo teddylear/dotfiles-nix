@@ -1,6 +1,5 @@
 {
   inputs,
-  overlays,
   system,
   username,
   git-username,
@@ -17,7 +16,6 @@ in
     system = "${system}";
     # modules: allows for reusable code
     modules = [
-      {nixpkgs.overlays = overlays;}
       {
         services.nix-daemon.enable = true;
         users.users.${username}.home = "/Users/${username}";

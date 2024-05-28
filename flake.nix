@@ -2,8 +2,7 @@
   description = "Example kickstart Nix development setup.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,13 +10,8 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -30,9 +24,6 @@
   }: let
     ## START SYSTEMS ###
     darwin-system = import ./system/darwin.nix;
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
     # nixos-system = import ./system/nixos.nix { inherit inputs username; };
     ## END SYSTEMS ###
   in {
@@ -41,7 +32,6 @@
       # darwin-x86_64 = darwin-system "x86_64-darwin";
       personal-laptop-old = darwin-system {
         inherit inputs;
-        inherit overlays;
         system = "x86_64-darwin";
         username = "kennethlear";
         git-username = "teddylear";
@@ -50,7 +40,6 @@
 
       personal-laptop = darwin-system {
         inherit inputs;
-        inherit overlays;
         system = "aarch64-darwin";
         username = "teddylear";
         git-username = "teddylear";
@@ -59,7 +48,6 @@
 
       business-laptop = darwin-system {
         inherit inputs;
-        inherit overlays;
         system = "aarch64-darwin";
         username = "klear";
         git-username = "klear-nasuni";
