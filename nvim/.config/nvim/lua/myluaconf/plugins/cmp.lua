@@ -4,7 +4,6 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "L3MON4D3/LuaSnip",
-        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-path",
         "saadparwaiz1/cmp_luasnip",
     },
@@ -19,12 +18,11 @@ return {
                 end,
             },
             mapping = {
-                ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.close(),
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                ["<tab>"] = cmp.config.disable,
+                ["<C-y>"] = cmp.mapping.confirm({
+                    behavior = cmp.ConfirmBehavior.Insert,
+                    select = true,
+                }),
                 ["<C-n>"] = cmp.mapping.select_next_item({
                     behavior = cmp.SelectBehavior.Insert,
                 }),
@@ -33,15 +31,13 @@ return {
                 }),
             },
             sources = {
-                { name = "nvim_lua" },
                 { name = "nvim_lsp" },
                 {
                     name = "buffer",
-                    -- Wait for 5 words in buffer
-                    keyword_length = 5,
+                    -- Wait for 2 words in buffer
+                    keyword_length = 2,
                 },
                 { name = "path" },
-                { name = "luasnip" },
             },
         })
     end,
