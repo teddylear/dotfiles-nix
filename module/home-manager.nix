@@ -13,7 +13,7 @@
 
 in {
 
-  program.neovim.package = nixpkgs-unstable.neovim;
+  program.neovim.package = inputs.nixpkgs-unstable.neovim;
 
   home.packages = with pkgs; [
     # cli tools
