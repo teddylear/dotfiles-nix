@@ -8,8 +8,13 @@
   pkgs,
   ...
 }: let
+
   pkgsUnstable = import <nixpkgs-unstable> {};
+
 in {
+
+  program.neovim.package = pkgsUnstable.neovim;
+
   home.packages = with pkgs; [
     # cli tools
     rustup
@@ -50,7 +55,6 @@ in {
     stylua
   ];
 
-  home.packages.pkgsUnstable.neovim;
 
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
