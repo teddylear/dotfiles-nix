@@ -9,11 +9,11 @@
   ...
 }: let
 
-  pkgsUnstable = import <nixpkgs-unstable> {};
+  # pkgsUnstable = import <nixpkgs-unstable> {};
 
 in {
 
-  program.neovim.package = pkgsUnstable.neovim;
+  program.neovim.package = nixpkgs-unstable.neovim;
 
   home.packages = with pkgs; [
     # cli tools
