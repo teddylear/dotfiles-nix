@@ -13,7 +13,7 @@
 
 in {
 
-  program.neovim.package = inputs.nixpkgs-unstable.neovim;
+
 
   home.packages = with pkgs; [
     # cli tools
@@ -30,7 +30,6 @@ in {
     gh
     awscli2
     unzip
-    neovim
     _1password
     pipenv
     fzf
@@ -95,6 +94,10 @@ in {
     "$HOME/development/language/go/bin"
   ];
   home.stateVersion = "23.11";
+
+  programs.neovim = {
+    package = input.nixpkgs-unstable;
+  };
 
   # copying altf4's delta and most of git config
   programs.git = {
