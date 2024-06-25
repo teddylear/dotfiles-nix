@@ -7,7 +7,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  pkgsUnstable = import <nixpkgs-unstable> {};
+in {
   home.packages = with pkgs; [
     # cli tools
     rustup
@@ -47,6 +49,9 @@
     alejandra
     stylua
   ];
+
+  home.packages.pkgsUnstable.neovim;
+
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
   home.file."tmux-session.fish" = {
