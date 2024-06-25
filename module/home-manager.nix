@@ -7,7 +7,14 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+let
+
+  pkgsUnstable = import <nixpkgs-unstable> {};
+
+in
+
+{
   home.packages = with pkgs; [
     # cli tools
     rustup
@@ -23,7 +30,7 @@
     gh
     awscli2
     unzip
-    neovim
+    pkgsUnstable.neovim
     _1password
     pipenv
     fzf
