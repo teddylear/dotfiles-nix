@@ -96,7 +96,7 @@ in {
   home.stateVersion = "23.11";
 
   programs.neovim = {
-    package = input.nixpkgs-unstable;
+    package = inputs.nixpkgs-unstable;
   };
 
   # copying altf4's delta and most of git config
