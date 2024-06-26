@@ -27,12 +27,12 @@ in
           ];
           casks = [
             "alacritty"
-            "amethyst"
             "1password"
             "brave-browser"
             "caffeine"
             "font-meslo-lg-nerd-font"
             "vlc"
+            "nikitabobko/tap/aerospace"
           ];
 
           brews = [
