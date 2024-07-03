@@ -41,7 +41,7 @@
     lua-language-server
     marksman
     nodePackages.bash-language-server
-    nodePackages.pyright
+    basedpyright
 
     # formatters
     alejandra

@@ -86,7 +86,7 @@ return {
                     or "python"
             end
 
-            require("lspconfig").pyright.setup({
+            require("lspconfig").basedpyright.setup({
                 before_init = function(params)
                     params.processId = vim.NIL
                 end,
@@ -99,6 +99,11 @@ return {
                 settings = {
                     pyright = {
                         autoImportCompletion = true,
+                    },
+                    basedpyright = {
+                        analysis = {
+                            typeCheckingMode = "off",
+                        },
                     },
                     python = {
                         analysis = {
