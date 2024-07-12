@@ -34,6 +34,8 @@
     jira-cli-go
     httpstat
     bottom
+    luajit
+    luajitPackages.luarocks
 
     # lsps
     gopls
@@ -263,6 +265,7 @@
       set-option -g status-interval 15
       set-option -g automatic-rename on
       set-option -g automatic-rename-format '#(basename "#{pane_current_path}")'
+      set-option -sg escape-time 10
 
       # 256 colors support
       set -g default-terminal "screen-256color"
