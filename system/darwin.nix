@@ -33,6 +33,7 @@ in
             "font-meslo-lg-nerd-font"
             "vlc"
             "nikitabobko/tap/aerospace"
+            "spotify"
           ];
 
           brews = [
