@@ -38,6 +38,13 @@ return {
                     enable = true,
                 },
             })
+
+            local map = vim.api.nvim_set_keymap
+
+            map("n", "<leader>tc", "<CMD>TSContextToggle<CR>", {
+                noremap = true,
+                desc = "Toggle TS Contexnt for parent",
+            })
         end,
     },
 }
