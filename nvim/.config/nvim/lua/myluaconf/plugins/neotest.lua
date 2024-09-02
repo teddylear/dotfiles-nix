@@ -6,8 +6,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "rouge8/neotest-rust",
         "nvim-neotest/nvim-nio",
-        -- NOTE: I don't actually use this yet, leaving here for now
-        -- "nvim-neotest/neotest-go",
+        "nvim-neotest/neotest-go",
     },
     ft = { "rust", "go" },
     config = function()
@@ -15,8 +14,7 @@ return {
         neotest.setup({
             adapters = {
                 require("neotest-rust"),
-                -- NOTE: I don't actually use this yet, leaving here for now
-                -- require("neotest-go"),
+                require("neotest-go"),
             },
             icons = {
                 failed = "",
@@ -29,7 +27,6 @@ return {
 
         local map = vim.api.nvim_set_keymap
 
-        -- TODO: Only load these for files we have neotests things for?
         map("n", "<leader>rt", "", {
             noremap = true,
             callback = function()
