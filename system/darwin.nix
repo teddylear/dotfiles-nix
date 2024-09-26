@@ -17,6 +17,7 @@ in
     # modules: allows for reusable code
     modules = [
       {
+        system.stateVersion = 5;
         services.nix-daemon.enable = true;
         users.users.${username}.home = "/Users/${username}";
 
