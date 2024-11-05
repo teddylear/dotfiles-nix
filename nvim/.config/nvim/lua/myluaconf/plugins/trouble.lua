@@ -1,23 +1,12 @@
 return {
     "folke/trouble.nvim",
-    opts = {
-        icons = false,
-        signs = {
-            -- icons / text used for a diagnostic
-            error = "",
-            warning = "",
-            hint = "",
-            information = "",
-            other = "﫠",
-        },
-    },
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
     keys = {
         {
             "<leader>tr",
-            "<cmd>TroubleToggle<cr>",
-            silent = true,
-            noremap = true,
-            desc = "Open Trouble menu to show lsp diagnostics",
+            "<cmd>Trouble diagnostics toggle<cr>",
+            desc = "Diagnostics (Trouble)",
         },
     },
 }
