@@ -74,3 +74,15 @@ map("n", "<leader>so", ":source %<CR>", {
     silent = true,
     desc = "source current file",
 })
+
+map("n", "Q", "@qj", {
+    noremap = true,
+    silent = true,
+    desc = "Play macro @q and go down one line",
+})
+
+map("x", "Q", ":norm @q<CR>", {
+    noremap = true,
+    silent = true,
+    desc = "Play macro @q on lines highlighted",
+})
