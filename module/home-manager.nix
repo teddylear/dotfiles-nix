@@ -24,7 +24,7 @@
     awscli2
     unzip
     neovim
-    _1password
+    _1password-cli
     pipenv
     fzf
     just
