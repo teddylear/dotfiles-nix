@@ -152,7 +152,6 @@
     enable = true;
 
     shellInit = ''
-      fish_config theme choose "Dracula Official"
       set fish_greeting
 
       pyenv init - | source

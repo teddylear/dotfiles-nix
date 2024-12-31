@@ -13,14 +13,6 @@
     update: yes
   tags:
     - nvim
-- name: Clone fish Dracula theme
-  ansible.builtin.git:
-    repo: 'git@github.com:dracula/fish.git'
-    dest: "{{ lookup('env', 'HOME') }}/code/fish"
-    force: yes
-    update: yes
-  tags:
-    - fish
 - name: Make config fish themes directory
   file:
     path: "{{ lookup('env', 'HOME') }}/.config/fish/themes"

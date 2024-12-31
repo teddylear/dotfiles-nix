@@ -10,7 +10,7 @@ enable-normalization-opposite-orientation-for-nested-containers = false
 start-at-login = true
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget open -n /Applications/alacritty.app'
+alt-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
 
 alt-j = 'focus left'
 alt-k = 'focus down'
