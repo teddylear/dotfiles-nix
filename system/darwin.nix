@@ -28,6 +28,7 @@ in
           ];
           casks = [
             "alacritty"
+            "ghostty"
             "1password"
             "brave-browser"
             "caffeine"

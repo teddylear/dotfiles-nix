@@ -46,3 +46,4 @@ stow:
     stow -R nvim
     stow -R alacritty
     stow -R aerospace
+    stow -R ghostty
