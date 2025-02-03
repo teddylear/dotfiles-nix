@@ -94,3 +94,14 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
         vim.cmd("setfiletype terraform")
     end,
 })
+
+
+local function propen()
+    local obj = vim.system({'propen'}, { text = true }):wait()
+    -- TODO: check error code of opening PR
+end
+
+vim.api.nvim_create_user_command("PRopen", propen, {
+    desc = "Removes Lsp Log",
+    nargs = 0,
+})
