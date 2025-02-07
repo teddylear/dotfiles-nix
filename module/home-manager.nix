@@ -45,6 +45,7 @@
     marksman
     nodePackages.bash-language-server
     basedpyright
+    zls
 
     # formatters
     alejandra
