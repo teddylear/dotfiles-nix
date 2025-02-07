@@ -33,6 +33,7 @@ return {
                     "terraform",
                     "nix",
                     "vimdoc",
+                    "zig"
                 },
                 highlight = {
                     enable = true,
