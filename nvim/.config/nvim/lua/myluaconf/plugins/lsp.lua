@@ -6,6 +6,7 @@ local ft = {
     "python",
     "sh",
     "markdown",
+    "zig"
 }
 
 return {
@@ -125,6 +126,11 @@ return {
                 before_init = function(params)
                     params.processId = vim.NIL
                 end,
+                root_dir = util.root_pattern(".git"),
+                capabilities = capabilities,
+            })
+
+            require("lspconfig").zls.setup({
                 root_dir = util.root_pattern(".git"),
                 capabilities = capabilities,
             })
