@@ -36,6 +36,7 @@
     bottom
     luajit
     luajitPackages.luarocks
+    pkgs.zigpkgs.master
 
     # lsps
     gopls

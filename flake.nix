@@ -13,6 +13,8 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs = inputs @ {
@@ -23,7 +25,12 @@
     ...
   }: let
     ## START SYSTEMS ###
-    darwin-system = import ./system/darwin.nix;
+    overlays = [
+      inputs.zig.overlays.default
+    ];
+    darwin-system = import ./system/darwin.nix {
+      inherit inputs overlays nixpkgs;
+    };
     # nixos-system = import ./system/nixos.nix { inherit inputs username; };
     ## END SYSTEMS ###
   in {
@@ -31,7 +38,6 @@
       # darwin-aarch64 = darwin-system "aarch64-darwin";
       # darwin-x86_64 = darwin-system "x86_64-darwin";
       personal-laptop-old = darwin-system {
-        inherit inputs;
         system = "x86_64-darwin";
         username = "kennethlear";
         git-username = "teddylear";
@@ -39,7 +45,8 @@
       };
 
       personal-laptop = darwin-system {
-        inherit inputs;
+        # TODO: move up if possible
+        # inherit inputs overlays nixpkgs;
         system = "aarch64-darwin";
         username = "teddylear";
         git-username = "teddylear";
@@ -47,7 +54,6 @@
       };
 
       business-laptop = darwin-system {
-        inherit inputs;
         system = "aarch64-darwin";
         username = "klear";
         git-username = "klear-nasuni";

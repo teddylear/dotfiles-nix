@@ -1,5 +1,8 @@
 {
   inputs,
+  nixpkgs,
+  overlays,
+}: {
   system,
   username,
   git-username,
@@ -61,5 +64,7 @@ in
         };
       }
       # add more nix modules here
+
+      {nixpkgs.overlays = overlays;}
     ];
   }
