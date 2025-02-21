@@ -135,7 +135,6 @@
 
     extraConfig = {
       color.ui = true;
-      # commit.gpgsign = true;
       diff.colorMoved = "zebra";
       fetch.prune = true;
       init.defaultBranch = "main";
@@ -143,6 +142,7 @@
       push.autoSetupRemote = true;
       rebase.autoStash = true;
       bash.showDirtyState = true;
+      branch.sort = "-committerdate";
     };
 
     extraConfig.github.user = "${git-username}";
