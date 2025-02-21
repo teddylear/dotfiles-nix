@@ -50,6 +50,9 @@
     # formatters
     alejandra
     stylua
+
+    # Debuggers
+    delve # Go
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
