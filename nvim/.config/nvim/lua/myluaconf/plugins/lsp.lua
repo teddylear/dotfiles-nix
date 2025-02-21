@@ -6,7 +6,7 @@ local ft = {
     "python",
     "sh",
     "markdown",
-    "zig"
+    "zig",
 }
 
 return {
