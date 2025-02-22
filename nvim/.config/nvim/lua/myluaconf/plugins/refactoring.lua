@@ -39,45 +39,5 @@ return {
                 desc = "Refactoring extract variable",
             }
         )
-
-        map("n", "<Leader>db", "", {
-            noremap = true,
-            silent = true,
-            callback = function()
-                return require("refactoring").debug.printf({ below = true })
-            end,
-            desc = "Refactoring plugin debug print statement",
-        })
-
-        map("n", "<Leader>dc", "", {
-            noremap = true,
-            silent = true,
-            callback = require("refactoring").debug.cleanup,
-            desc = "Refactoring plugin debug cleanup print statements",
-        })
-
-        map(
-            "v",
-            "<Leader>dv",
-            ":lua require('refactoring').debug.print_var()<CR>",
-            {
-                noremap = true,
-                silent = true,
-                expr = false,
-                desc = "Refactoring plugin debug print var",
-            }
-        )
-
-        map(
-            "n",
-            "<Leader>dn",
-            ":lua require('refactoring').debug.print_var({ normal = true })<CR>",
-            {
-                noremap = true,
-                silent = true,
-                expr = false,
-                desc = "Refactoring plugin debug print var",
-            }
-        )
     end,
 }
