@@ -53,6 +53,7 @@
 
     # Debuggers
     delve # Go
+    llvmPackages.lldb
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
