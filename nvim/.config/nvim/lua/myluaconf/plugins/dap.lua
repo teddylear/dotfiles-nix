@@ -15,7 +15,7 @@ return {
             executable = {
                 command = "dlv",
                 args = { "dap", "-l", "127.0.0.1:${port}" },
-            }
+            },
         }
 
         dap.configurations.go = {
@@ -23,21 +23,21 @@ return {
                 type = "delve",
                 name = "Debug",
                 request = "launch",
-                program = "${file}"
+                program = "${file}",
             },
             {
                 type = "delve",
                 name = "Debug test",
                 request = "launch",
                 mode = "test",
-                program = "${file}"
+                program = "${file}",
             },
             {
                 type = "delve",
                 name = "Debug test (go.mod)",
                 request = "launch",
                 mode = "test",
-                program = "./${relativeFileDirname}"
+                program = "./${relativeFileDirname}",
             },
             {
                 type = "delve",
@@ -50,26 +50,58 @@ return {
                     local test_name = vim.fn.input("Test name: ")
                     return { "-test.run", test_name }
                 end,
-            }
+            },
         }
 
         -- TODO: maybe change keybinds, see how these feel
         -- from prime: https://github.com/ThePrimeagen/init.lua/blob/cad018c8ec47617c1cf6c9fbdda218b0c7203e6b/lua/theprimeagen/lazy/dap.lua
-        vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Continue" })
-        vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: Step Over" })
-        vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: Step Into" })
+        vim.keymap.set(
+            "n",
+            "<leader>dc",
+            dap.continue,
+            { desc = "Debug: Continue" }
+        )
+        vim.keymap.set(
+            "n",
+            "<F10>",
+            dap.step_over,
+            { desc = "Debug: Step Over" }
+        )
+        vim.keymap.set(
+            "n",
+            "<F11>",
+            dap.step_into,
+            { desc = "Debug: Step Into" }
+        )
         vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: Step Out" })
-        vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+        vim.keymap.set(
+            "n",
+            "<leader>b",
+            dap.toggle_breakpoint,
+            { desc = "Debug: Toggle Breakpoint" }
+        )
         vim.keymap.set("n", "<leader>B", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
         end, { desc = "Debug: Set Conditional Breakpoint" })
 
-        vim.fn.sign_define('DapBreakpoint',
-            { text = '🔴', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+        vim.fn.sign_define(
+            "DapBreakpoint",
+            {
+                text = "🔴",
+                texthl = "DapBreakpoint",
+                linehl = "DapBreakpoint",
+                numhl = "DapBreakpoint",
+            }
+        )
 
-        local dapui = require('dapui')
+        local dapui = require("dapui")
         dapui.setup()
 
-        vim.keymap.set("n", "<leader>dt", dapui.toggle, { desc = "Debug: Toggle Breakpoint" })
+        vim.keymap.set(
+            "n",
+            "<leader>dt",
+            dapui.toggle,
+            { desc = "Debug: Toggle Breakpoint" }
+        )
     end,
 }
