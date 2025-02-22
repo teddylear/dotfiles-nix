@@ -4,10 +4,69 @@ return {
         "mfussenegger/nvim-dap",
         "nvim-neotest/nvim-nio",
     },
-    ft = { "go" },
+    ft = { "go", "zig" },
     config = function()
         local dap = require("dap")
         dap.set_log_level("INFO")
+
+        -- zig configuration when I'm ready
+        -- dap.adapters.lldb = {
+        -- type = "executable",
+        -- command = "/usr/bin/lldb-vscode", -- Adjust path
+        -- name = "lldb"
+        -- }
+
+        -- dap.configurations.zig = {
+        -- {
+        -- -- NOTE: when debugging with zig need to build with this
+        -- -- zig build -Drelease-safe=false
+        -- name = "Launch Zig Binary",
+        -- type = "lldb",
+        -- request = "launch",
+        -- program = function()
+        -- return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/zig-out/bin/", "file")
+        -- end,
+        -- cwd = "${workspaceFolder}",
+        -- stopOnEntry = false,
+        -- args = {}, -- Add arguments if needed
+        -- },
+        -- {
+        -- -- NOTE: `zig test <file>`
+        -- name = "Debug Zig Test File",
+        -- type = "lldb",
+        -- request = "launch",
+        -- program = function()
+        -- -- Compile the Zig test file into an executable before running
+        -- local test_binary = vim.fn.getcwd() .. "/zig-out/bin/test_executable"
+        -- vim.fn.system("zig test " .. vim.fn.expand("%") .. " -femit-bin=" .. test_binary)
+        -- return test_binary
+        -- end,
+        -- cwd = "${workspaceFolder}",
+        -- stopOnEntry = false,
+        -- args = {},
+        -- },
+        -- {
+        -- -- NOTE: `zig test <file>`
+        -- name = "Debug a Single Zig Test",
+        -- type = "lldb",
+        -- request = "launch",
+        -- program = function()
+        -- -- Prompt the user to enter the test function name
+        -- local test_name = vim.fn.input("Test name: ")
+        -- local test_binary = vim.fn.getcwd() .. "/zig-out/bin/test_executable"
+
+        -- -- Compile only the test file, filtering for the selected test function
+        -- vim.fn.system(
+        -- "zig test " .. vim.fn.expand("%") .. " -femit-bin=" .. test_binary .. " -tfilter " .. test_name
+        -- )
+
+        -- return test_binary
+        -- end,
+        -- cwd = "${workspaceFolder}",
+        -- stopOnEntry = false,
+        -- args = {},
+        -- },
+        -- }
 
         dap.adapters.delve = {
             type = "server",
