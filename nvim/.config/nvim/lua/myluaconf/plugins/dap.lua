@@ -27,7 +27,7 @@ return {
             },
             {
                 type = "delve",
-                name = "Debug test", -- configuration for debugging test files
+                name = "Debug test",
                 request = "launch",
                 mode = "test",
                 program = "${file}"
@@ -63,7 +63,7 @@ return {
         vim.keymap.set("n", "<leader>B", function()
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
         end, { desc = "Debug: Set Conditional Breakpoint" })
-        --
+
         vim.fn.sign_define('DapBreakpoint',
             { text = '🔴', texthl = 'DapBreakpoint', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
 
