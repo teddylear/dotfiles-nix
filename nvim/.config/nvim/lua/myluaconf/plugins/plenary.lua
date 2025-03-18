@@ -13,27 +13,14 @@ return {
             -- Open new tab
             vim.cmd(":tabnew")
 
-            -- From nvim-treesitter, running shell command and check for failure while
-            -- capturing result
-            local bash_location = vim.fn.system("which bash")
-            if vim.v.shell_error ~= 0 then
-                print("Error running `which bash`")
-                return
-            end
             local bufnr = vim.api.nvim_get_current_buf()
-
-            -- Sanitize removing newline character
-            if string.sub(bash_location, -1) == "\n" then
-                bash_location =
-                    string.sub(bash_location, 1, string.len(bash_location) - 1)
-            end
 
             vim.api.nvim_buf_set_lines(
                 bufnr,
                 0,
                 1,
                 false,
-                { "#!" .. bash_location }
+                { "#!/usr/bin/env bash" }
             )
             vim.api.nvim_buf_set_lines(
                 bufnr,
