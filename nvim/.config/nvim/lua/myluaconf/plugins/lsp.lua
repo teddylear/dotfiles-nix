@@ -172,13 +172,20 @@ return {
                 desc = "vim lsp get references",
             })
 
-            local group = vim.api.nvim_create_augroup("THE_KENSTER_LSP", {})
-            vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-                pattern = { "*.tf", "*.tfvars" },
+            local group = vim.api.nvim_create_augroup("THE_KENSTER_LSP", { clear = true })
+            -- From this article
+            -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
+            vim.api.nvim_create_autocmd("LspAttach", {
                 group = group,
-                callback = function()
-                    vim.lsp.buf.format({ async = true })
-                end,
+                callback = function(args)
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        buffer = args.buf,
+                        pattern = { "*.tf", "*.tfvars", "*.go", "*.rs", "*.lua" },
+                        callback = function()
+                            vim.lsp.buf.format { async = false, id = args.data.client_id }
+                        end,
+                    })
+                end
             })
         end,
     },
