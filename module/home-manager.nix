@@ -1,13 +1,14 @@
 {
-  inputs,
   git-username,
   git-email,
+  unstablePkgs
 }: {
   config,
-  lib,
   pkgs,
   ...
-}: {
+}:
+
+{
   home.packages = with pkgs; [
     # cli tools
     rustup
@@ -23,7 +24,8 @@
     gh
     awscli2
     unzip
-    neovim
+    unstablePkgs.neovim
+    # neovim
     _1password-cli
     pipenv
     fzf

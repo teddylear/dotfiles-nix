@@ -2,21 +2,21 @@
   inputs,
   nixpkgs,
   overlays,
+  nixpkgs-unstable
 }: {
   system,
   username,
   git-username,
   git-email,
 }:
-# TODO: might bring this back
-# system:
 let
   system-config = import ../module/configuration.nix;
   home-manager-config = import ../module/home-manager.nix;
+  pkgs = import nixpkgs { inherit system; };
+  unstablePkgs = import nixpkgs-unstable { inherit system; };
 in
   inputs.darwin.lib.darwinSystem {
-    # inherit system;
-    system = "${system}";
+    inherit system;
     # modules: allows for reusable code
     modules = [
       {
@@ -58,12 +58,11 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users."${username}" = home-manager-config {
-          inputs = inputs;
           git-email = "${git-email}";
           git-username = "${git-username}";
+          unstablePkgs = unstablePkgs;
         };
       }
-      # add more nix modules here
 
       {nixpkgs.overlays = overlays;}
     ];
