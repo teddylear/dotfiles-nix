@@ -13,12 +13,7 @@ return {
     {
         "j-hui/fidget.nvim",
         ft = ft,
-        opts = {
-            text = {
-                spinner = "bouncing_ball",
-            },
-        },
-        tag = "legacy",
+        opts = {},
     },
     {
         "neovim/nvim-lspconfig",
@@ -177,31 +172,30 @@ return {
                         end,
                     })
 
-                    local map = vim.api.nvim_set_keymap
-
-                    map("n", "<leader>gd", "", {
-                        noremap = true,
-                        callback = vim.lsp.buf.definition,
-                        desc = "vim lsp get definition under cursor",
-                    })
-
-                    map("n", "<leader>re", "", {
-                        noremap = true,
-                        callback = vim.lsp.buf.rename,
-                        desc = "vim lsp rename under cursor",
-                    })
-
-                    map("n", "<leader>gr", "", {
-                        noremap = true,
-                        callback = vim.lsp.buf.references,
-                        desc = "vim lsp get references",
-                    })
-
-                    map("n", "K", "", {
-                        noremap = true,
-                        callback = vim.lsp.buf.hover,
-                        desc = "vim lsp hover over symbol",
-                    })
+                    vim.keymap.set(
+                        "n",
+                        "<leader>gd",
+                        vim.lsp.buf.definition,
+                        { buffer = true, silent = true }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "<leader>re",
+                        vim.lsp.buf.rename,
+                        { buffer = true, silent = true }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "<leader>gr",
+                        vim.lsp.buf.references,
+                        { buffer = true, silent = true }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "K",
+                        vim.lsp.buf.hover,
+                        { buffer = true, silent = true }
+                    )
                 end,
             })
         end,
