@@ -94,3 +94,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
         vim.cmd("setfiletype terraform")
     end,
 })
+
+vim.diagnostic.config({
+    virtual_lines = true,
+})
