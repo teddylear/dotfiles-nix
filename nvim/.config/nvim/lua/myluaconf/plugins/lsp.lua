@@ -152,39 +152,57 @@ return {
                     update_in_insert = false,
                 })
 
-            local map = vim.api.nvim_set_keymap
+            -- TODO: change to doing all on Lsp attach?
 
-            map("n", "<leader>gd", "", {
-                noremap = true,
-                callback = vim.lsp.buf.definition,
-                desc = "vim lsp get definition under cursor",
-            })
-
-            map("n", "<leader>re", "", {
-                noremap = true,
-                callback = vim.lsp.buf.rename,
-                desc = "vim lsp rename under cursor",
-            })
-
-            map("n", "<leader>gr", "", {
-                noremap = true,
-                callback = vim.lsp.buf.references,
-                desc = "vim lsp get references",
-            })
-
-            local group = vim.api.nvim_create_augroup("THE_KENSTER_LSP", { clear = true })
+            local group =
+                vim.api.nvim_create_augroup("THE_KENSTER_LSP", { clear = true })
             -- From this article
             -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = group,
                 callback = function(args)
                     vim.api.nvim_create_autocmd("BufWritePre", {
-                        pattern = { "*.tf", "*.tfvars", "*.go", "*.rs", "*.lua" },
+                        pattern = {
+                            "*.tf",
+                            "*.tfvars",
+                            "*.go",
+                            "*.rs",
+                            "*.lua",
+                        },
                         callback = function()
-                            vim.lsp.buf.format { async = false, id = args.data.client_id }
+                            vim.lsp.buf.format({
+                                async = false,
+                                id = args.data.client_id,
+                            })
                         end,
                     })
-                end
+
+                    local map = vim.api.nvim_set_keymap
+
+                    map("n", "<leader>gd", "", {
+                        noremap = true,
+                        callback = vim.lsp.buf.definition,
+                        desc = "vim lsp get definition under cursor",
+                    })
+
+                    map("n", "<leader>re", "", {
+                        noremap = true,
+                        callback = vim.lsp.buf.rename,
+                        desc = "vim lsp rename under cursor",
+                    })
+
+                    map("n", "<leader>gr", "", {
+                        noremap = true,
+                        callback = vim.lsp.buf.references,
+                        desc = "vim lsp get references",
+                    })
+
+                    map("n", "K", "", {
+                        noremap = true,
+                        callback = vim.lsp.buf.hover,
+                        desc = "vim lsp hover over symbol",
+                    })
+                end,
             })
         end,
     },
