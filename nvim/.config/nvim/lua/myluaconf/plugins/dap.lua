@@ -143,15 +143,12 @@ return {
             dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
         end, { desc = "Debug: Set Conditional Breakpoint" })
 
-        vim.fn.sign_define(
-            "DapBreakpoint",
-            {
-                text = "🔴",
-                texthl = "DapBreakpoint",
-                linehl = "DapBreakpoint",
-                numhl = "DapBreakpoint",
-            }
-        )
+        vim.fn.sign_define("DapBreakpoint", {
+            text = "🔴",
+            texthl = "DapBreakpoint",
+            linehl = "DapBreakpoint",
+            numhl = "DapBreakpoint",
+        })
 
         local dapui = require("dapui")
         dapui.setup()

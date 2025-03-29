@@ -2,18 +2,17 @@
   inputs,
   nixpkgs,
   overlays,
-  nixpkgs-unstable
+  nixpkgs-unstable,
 }: {
   system,
   username,
   git-username,
   git-email,
-}:
-let
+}: let
   system-config = import ../module/configuration.nix;
   home-manager-config = import ../module/home-manager.nix;
-  pkgs = import nixpkgs { inherit system; };
-  unstablePkgs = import nixpkgs-unstable { inherit system; };
+  pkgs = import nixpkgs {inherit system;};
+  unstablePkgs = import nixpkgs-unstable {inherit system;};
 in
   inputs.darwin.lib.darwinSystem {
     inherit system;

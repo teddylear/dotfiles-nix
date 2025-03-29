@@ -1,14 +1,12 @@
 {
   git-username,
   git-email,
-  unstablePkgs
+  unstablePkgs,
 }: {
   config,
   pkgs,
   ...
-}:
-
-{
+}: {
   home.packages = with pkgs; [
     # cli tools
     rustup
