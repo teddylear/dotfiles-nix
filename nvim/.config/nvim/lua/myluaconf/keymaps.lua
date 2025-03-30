@@ -86,3 +86,12 @@ map("x", "Q", ":norm @q<CR>", {
     silent = true,
     desc = "Play macro @q on lines highlighted",
 })
+
+vim.keymap.set("n", "<leader>gv", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local current_config = vim.diagnostic.config().virtual_lines or false
+    local new_config = not current_config
+    vim.diagnostic.config({ virtual_lines = new_config })
+    vim.diagnostic.hide(nil, bufnr)
+    vim.diagnostic.show(nil, bufnr)
+end, { silent = true })
