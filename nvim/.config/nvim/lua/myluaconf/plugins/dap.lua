@@ -4,7 +4,7 @@ return {
         "mfussenegger/nvim-dap",
         "nvim-neotest/nvim-nio",
     },
-    ft = { "go", "zig" },
+    ft = { "go", "rust" },
     config = function()
         local dap = require("dap")
         dap.set_log_level("INFO")
@@ -74,6 +74,30 @@ return {
             executable = {
                 command = "dlv",
                 args = { "dap", "-l", "127.0.0.1:${port}" },
+            },
+        }
+
+        dap.adapters.lldb = {
+            type = "executable",
+            command = "lldb-vscode", -- or use Mason-installed 'codelldb'
+            name = "lldb",
+        }
+
+        dap.configurations.rust = {
+            {
+                name = "Launch",
+                type = "lldb",
+                request = "launch",
+                program = function()
+                    return vim.fn.input(
+                        "Path to executable: ",
+                        vim.fn.getcwd() .. "/target/debug/",
+                        "file"
+                    )
+                end,
+                cwd = "${workspaceFolder}",
+                stopOnEntry = false,
+                args = {},
             },
         }
 
@@ -157,7 +181,7 @@ return {
             "n",
             "<leader>dt",
             dapui.toggle,
-            { desc = "Debug: Toggle Breakpoint" }
+            { desc = "Debug: Toggle UI" }
         )
     end,
 }
