@@ -37,6 +37,7 @@
     luajit
     luajitPackages.luarocks
     pkgs.zigpkgs.master
+    eza
 
     # lsps
     gopls

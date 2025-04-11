@@ -44,7 +44,6 @@ in
             "pyenv"
             "tfenv"
             "pkenv"
-            "eza"
             "docker"
           ];
         };
