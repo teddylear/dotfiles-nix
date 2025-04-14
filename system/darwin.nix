@@ -13,6 +13,23 @@
   home-manager-config = import ../module/home-manager.nix;
   pkgs = import nixpkgs {inherit system;};
   unstablePkgs = import nixpkgs-unstable {inherit system;};
+  commonCasks = [
+    "ghostty"
+    "1password"
+    "brave-browser"
+    "caffeine"
+    "font-meslo-lg-nerd-font"
+    "nikitabobko/tap/aerospace"
+    "spotify"
+  ];
+
+  extraCasksForPersonalComp =
+    if "${git-username}" == "teddylear"
+    then [
+      "chatgpt"
+      "vlc"
+    ]
+    else [];
 in
   inputs.darwin.lib.darwinSystem {
     inherit system;
@@ -28,17 +45,7 @@ in
           taps = [
             "kwilczynski/homebrew-pkenv"
           ];
-          casks = [
-            "alacritty"
-            "ghostty"
-            "1password"
-            "brave-browser"
-            "caffeine"
-            "font-meslo-lg-nerd-font"
-            "vlc"
-            "nikitabobko/tap/aerospace"
-            "spotify"
-          ];
+          casks = commonCasks ++ extraCasksForPersonalComp;
 
           brews = [
             "pyenv"

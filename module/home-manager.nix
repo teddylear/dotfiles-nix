@@ -23,7 +23,6 @@
     awscli2
     unzip
     unstablePkgs.neovim
-    # neovim
     _1password-cli
     pipenv
     fzf
@@ -54,7 +53,7 @@
 
     # Debuggers
     delve # Go
-    llvmPackages.lldb
+    llvmPackages.lldb # rust and others
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
