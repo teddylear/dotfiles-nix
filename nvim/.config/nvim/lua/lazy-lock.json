@@ -19,7 +19,6 @@
   "neotest-rust": { "branch": "main", "commit": "e1cb22ecf0341fb894ef2ebde344389fe6e6fc8e" },
   "nerdcommenter": { "branch": "master", "commit": "66c07e4083ab02ed2540ac289cc602c70b858c13" },
   "none-ls.nvim": { "branch": "main", "commit": "8d99472fcccffd73d7501e54e9018bab5cb0c4ad" },
-  "nui.nvim": { "branch": "main", "commit": "8d3bce9764e627b62b07424e0df77f680d47ffdb" },
   "nvim-cmp": { "branch": "main", "commit": "059e89495b3ec09395262f16b1ad441a38081d04" },
   "nvim-dap": { "branch": "master", "commit": "7aade9e99bef5f0735cf966e715b3ce45515d786" },
   "nvim-dap-ui": { "branch": "master", "commit": "bc81f8d3440aede116f821114547a476b082b319" },

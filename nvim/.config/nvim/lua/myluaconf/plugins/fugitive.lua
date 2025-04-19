@@ -1,15 +1,11 @@
 return {
     "tpope/vim-fugitive",
     dependencies = {
-        "MunifTanjim/nui.nvim",
         "tpope/vim-rhubarb",
         "sindrets/diffview.nvim",
     },
     config = function()
         local map = vim.api.nvim_set_keymap
-
-        local Input = require("nui.input")
-        local event = require("nui.utils.autocmd").event
 
         local function createBranchIfNotExists(branch_name)
             local result = vim.api.nvim_exec2(
