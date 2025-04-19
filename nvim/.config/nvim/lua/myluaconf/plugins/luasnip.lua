@@ -1,7 +1,7 @@
 return {
     "L3MON4D3/LuaSnip",
     -- TODO: update
-    version = "2.2.0",
+    version = "v2.3",
     ft = { "lua", "terraform", "go", "python" },
     build = "make install_jsregexp",
     event = "InsertEnter",
