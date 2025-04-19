@@ -1,14 +1,12 @@
 return {
     "L3MON4D3/LuaSnip",
+    -- TODO: update
     version = "2.2.0",
+    ft = { "lua", "terraform", "go", "python" },
     build = "make install_jsregexp",
+    event = "InsertEnter",
     config = function()
         local ls = require("luasnip")
-        local fmt = require("luasnip.extras.fmt").fmt
-        local i = ls.insert_node
-        local s = ls.s
-        local t = ls.text_node
-        local rep = require("luasnip.extras").rep
 
         -- Settings from teej
         local types = require("luasnip.util.types")
@@ -23,73 +21,6 @@ return {
                     },
                 },
             },
-        })
-
-        ls.add_snippets("lua", {
-            ls.parser.parse_snippet("fn", "local function $1($2)\n    $0\nend"),
-            ls.parser.parse_snippet("cfn", "function $1:$2($3)\n    $0\nend"),
-            ls.parser.parse_snippet("ifs", "if $1 then\n    $0\nend"),
-            ls.parser.parse_snippet(
-                "ifel",
-                "if $1 then\n    $2\nelse $3\n    $0\nend"
-            ),
-            s("prn", fmt('print("{}:", {})', { i(1), rep(1) })),
-            s("prni", fmt('print("{}:", vim.inspect({}))', { i(1), rep(1) })),
-            s("hh", { t({ 'print("Hitting here!")' }) }),
-        })
-
-        ls.add_snippets("terraform", {
-            ls.parser.parse_snippet(
-                "vs",
-                'variable "$0" {\n  type = string\n}'
-            ),
-            ls.parser.parse_snippet(
-                "vn",
-                'variable "$0" {\n  type = number\n}'
-            ),
-            ls.parser.parse_snippet("vb", 'variable "$0" {\n  type = bool\n}'),
-            ls.parser.parse_snippet("rs", 'resource "$1" "$2" {\n\t$0\n}'),
-            ls.parser.parse_snippet("ds", 'data "$1" "$2" {\n\t$0\n}'),
-            ls.parser.parse_snippet("md", 'module "$1" {\n\tsource = "$0"\n}'),
-        })
-
-        ls.add_snippets("go", {
-            s("ife", {
-                t({ "if err != nil {", "\treturn " }),
-                i(0),
-                t({ "", "}" }),
-            }),
-            s(
-                "prn",
-                fmt('fmt.Println(fmt.Sprintf("{}: %v", {}))', { i(1), rep(1) })
-            ),
-            s("hh", t({ 'fmt.Println("Hitting here!")' })),
-        })
-
-        ls.add_snippets("python", {
-            s(
-                "prn",
-                fmt(
-                    'print(f"^%: {^%}")',
-                    { i(1), rep(1) },
-                    { delimiters = "^%" }
-                )
-            ),
-            s("hh", { t({ 'print("Hitting here!")' }) }),
-            s(
-                "main",
-                { t({ 'if __name__=="__main__":', '\tprint("Hello World!")' }) }
-            ),
-            s("class", {
-                t({ "class " }),
-                i(0),
-                t({
-                    ":",
-                    "",
-                    "\tdef __init__(self):",
-                    '\t\tprint("Hello World!")',
-                }),
-            }),
         })
 
         -- <c-k> is my expansion key
