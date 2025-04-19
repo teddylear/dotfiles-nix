@@ -60,18 +60,6 @@ vim.cmd("let g:NERDSpaceDelims = 1")
 -- local python3_host_prog_path = homedir .. "/.pyenv/shims/python"
 vim.cmd([[let g:python3_host_prog=$HOME . '/.pyenv/shims/python']])
 
-local function transparentBackground()
-    local highlight_groups = {
-        "Normal",
-        "SignColumn",
-        "NormalNC",
-    }
-
-    for _, group in ipairs(highlight_groups) do
-        vim.cmd(string.format("hi! %s ctermbg=NONE guibg=NONE", group))
-    end
-end
-
 local function trimWhiteSpace()
     vim.cmd("keeppatterns %s/\\s\\+$//e")
     vim.cmd("call winrestview(winsaveview())")
@@ -81,11 +69,6 @@ local my_augroup = vim.api.nvim_create_augroup("THE_KENSTER", { clear = true })
 vim.api.nvim_create_autocmd(
     "BufWritePre",
     { callback = trimWhiteSpace, group = my_augroup }
-)
-
-vim.api.nvim_create_autocmd(
-    "ColorScheme",
-    { callback = transparentBackground, group = my_augroup }
 )
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
