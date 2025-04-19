@@ -39,43 +39,12 @@ return {
         end
 
         local function gitBranch()
-            local input = Input({
-                position = "50%",
-                size = {
-                    width = 70,
-                    height = 10,
-                },
-                relative = "editor",
-                border = {
-                    highlight = "GitBranch",
-                    style = "rounded",
-                    text = {
-                        top = "Enter new Branch name",
-                        top_align = "center",
-                    },
-                },
-                win_options = {
-                    winblend = 10,
-                    winhighlight = "Normal:Normal",
-                },
-            }, {
-                prompt = "> ",
-                default_value = "",
-                on_close = function()
-                    print("No Branch created!")
-                end,
-                on_submit = function(commit_message)
-                    if commit_message == "" then
-                        print("You have to enter a branch name message silly")
-                    else
-                        createBranchIfNotExists(commit_message)
-                    end
-                end,
-            })
-            input:mount()
-            input:on(event.BufLeave, function()
-                input:unmount()
-            end)
+            local git_branch_name = vim.fn.input("Git Branch > ")
+            if git_branch_name == "" then
+                print("You have to enter a branch name message silly")
+            else
+                createBranchIfNotExists(git_branch_name)
+            end
         end
 
         local function gitRebase()
