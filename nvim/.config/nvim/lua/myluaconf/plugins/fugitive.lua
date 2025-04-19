@@ -55,49 +55,8 @@ return {
             vim.api.nvim_exec2('Git rebase -i "' .. branch .. '"', {})
         end
 
-        local function gitCommit()
-            local input = Input({
-                position = "50%",
-                size = {
-                    width = 70,
-                    height = 10,
-                },
-                relative = "editor",
-                border = {
-                    highlight = "GitCommit",
-                    style = "rounded",
-                    text = {
-                        top = "Enter commit message",
-                        top_align = "center",
-                    },
-                },
-                win_options = {
-                    winblend = 10,
-                    winhighlight = "Normal:Normal",
-                },
-            }, {
-                prompt = "> ",
-                default_value = "",
-                on_close = function()
-                    print("Commit cancelled!")
-                end,
-                on_submit = function(commit_message)
-                    if commit_message == "" then
-                        print("You have to enter a commit message silly")
-                    else
-                        vim.cmd('Git commit -m "' .. commit_message .. '"')
-                    end
-                end,
-            })
-            input:mount()
-            input:on(event.BufLeave, function()
-                input:unmount()
-            end)
-        end
-
-        map("n", "<leader>gc", "", {
+        map("n", "<leader>gc", "<CMD>G commit<CR>", {
             noremap = true,
-            callback = gitCommit,
             desc = "Git commit custom function",
         })
 
