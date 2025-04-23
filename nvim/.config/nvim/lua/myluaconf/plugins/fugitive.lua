@@ -51,9 +51,17 @@ return {
             vim.api.nvim_exec2('Git rebase -i "' .. branch .. '"', {})
         end
 
-        map("n", "<leader>gc", "<CMD>G commit<CR>", {
+        local function gitCommit()
+            vim.cmd("G commit")
+            vim.defer_fn(function()
+                vim.api.nvim_feedkeys("i", "n", false)
+            end, 50)
+        end
+
+        map("n", "<leader>gc", "", {
             noremap = true,
-            desc = "Git commit custom function",
+            callback = gitCommit,
+            desc = "Git commit and enter insert mode",
         })
 
         map("n", "<leader>rb", "", {
