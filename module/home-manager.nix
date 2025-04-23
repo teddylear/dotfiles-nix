@@ -54,6 +54,9 @@
     # Debuggers
     delve # Go
     llvmPackages.lldb # rust and others
+
+    bacon # rust background compiler rust
+    air # live reload for golang
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
