@@ -210,6 +210,7 @@
     };
 
     shellAbbrs = {
+      tsplit = "tmux split-window -h -p";
       vim = "nvim";
       gre = "git reset --hard HEAD";
       oldvim = "\vim";
