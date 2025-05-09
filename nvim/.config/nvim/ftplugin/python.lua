@@ -8,17 +8,10 @@ local rep = require("luasnip.extras").rep
 ls.add_snippets("python", {
     s(
         "prn",
-        fmt(
-            'print(f"^%: {^%}")',
-            { i(1), rep(1) },
-            { delimiters = "^%" }
-        )
+        fmt('print(f"^%: {^%}")', { i(1), rep(1) }, { delimiters = "^%" })
     ),
     s("hh", { t({ 'print("Hitting here!")' }) }),
-    s(
-        "main",
-        { t({ 'if __name__=="__main__":', '\tprint("Hello World!")' }) }
-    ),
+    s("main", { t({ 'if __name__=="__main__":', '\tprint("Hello World!")' }) }),
     s("class", {
         t({ "class " }),
         i(0),

@@ -11,9 +11,6 @@ ls.add_snippets("go", {
         i(0),
         t({ "", "}" }),
     }),
-    s(
-        "prn",
-        fmt('fmt.Println(fmt.Sprintf("{}: %v", {}))', { i(1), rep(1) })
-    ),
+    s("prn", fmt('fmt.Println(fmt.Sprintf("{}: %v", {}))', { i(1), rep(1) })),
     s("hh", t({ 'fmt.Println("Hitting here!")' })),
 })
