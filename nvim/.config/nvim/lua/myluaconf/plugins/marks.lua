@@ -7,7 +7,7 @@ return {
             next = "mn",
             preview = "m:",
             set_bookmark0 = "m0",
-            prev = false -- pass false to disable only this default mapping
-        }
+            prev = false, -- pass false to disable only this default mapping
+        },
     },
 }
