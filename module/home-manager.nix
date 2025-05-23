@@ -37,6 +37,7 @@
     luajitPackages.luarocks
     pkgs.zigpkgs.master
     eza
+    uv
 
     # lsps
     gopls
