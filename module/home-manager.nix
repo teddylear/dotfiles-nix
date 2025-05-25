@@ -11,6 +11,7 @@
     # cli tools
     rustup
     ripgrep
+    scooter
     bat
     jq
     tree
