@@ -8,13 +8,13 @@ update-nix:
 	nix flake update
 
 personal-laptop:
-	darwin-rebuild switch --flake ".#personal-laptop"
+	sudo darwin-rebuild switch --flake ".#personal-laptop"
 
 personal-laptop-old:
-	darwin-rebuild switch --flake ".#personal-laptop-old"
+	sudo darwin-rebuild switch --flake ".#personal-laptop-old"
 
 business-laptop:
-	darwin-rebuild switch --flake ".#business-laptop"
+	sudo darwin-rebuild switch --flake ".#business-laptop"
 
 ansible-final-touches:
     @echo "==> Running ansible..."
