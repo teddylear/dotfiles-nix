@@ -39,6 +39,7 @@
     pkgs.zigpkgs.master
     eza
     uv
+    jujutsu
 
     # lsps
     gopls
@@ -302,4 +303,10 @@
     # TODO: fix this later once I'm ready for linux
     # terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
+
+  home.file.".jjconfig.toml".text = ''
+    [user]
+    name = "${git-username}"
+    email = "${git-email}"
+  '';
 }
