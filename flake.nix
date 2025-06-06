@@ -10,6 +10,7 @@
     # jq '.nodes."nixpkgs-unstable".locked.rev' < flake.lock
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/46e634be05ce9dc6d4db8e664515ba10b78151ae";
 
+    # Test comment
     darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
       # TODO: Is this required?
