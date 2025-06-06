@@ -315,5 +315,6 @@
 
     [aliases]
     shortlog = ["log", "-n", "5"]
+    rebaseall = ["jj", "rebase", "-s", "'all:roots(trunk..@)'", "-d", "trunk"]
   '';
 }
