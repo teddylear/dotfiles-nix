@@ -308,5 +308,8 @@
     [user]
     name = "${git-username}"
     email = "${git-email}"
+
+    [ui]
+    paginate = "never"
   '';
 }
