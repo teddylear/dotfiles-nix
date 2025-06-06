@@ -308,5 +308,13 @@
     [user]
     name = "${git-username}"
     email = "${git-email}"
+
+    [ui]
+    paginate = "never"
+    default-command = "shortlog"
+
+    [aliases]
+    shortlog = ["log", "-n", "5"]
+    rebaseall = ["jj", "rebase", "-s", "'all:roots(trunk..@)'", "-d", "trunk"]
   '';
 }
