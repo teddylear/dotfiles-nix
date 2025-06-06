@@ -311,5 +311,9 @@
 
     [ui]
     paginate = "never"
+    default-command = "shortlog"
+
+    [aliases]
+    shortlog = ["log", "-n", "5"]
   '';
 }
