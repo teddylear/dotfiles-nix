@@ -176,6 +176,14 @@
       end
     '';
 
+    shellAliases = {
+      jd = "jj desc";
+      jf = "jj git fetch";
+      jn = "jj new";
+      jp = "jj git push";
+      js = "jj st";
+    };
+
     functions = {
       gb = ''
         set target_branch (git branch | fzf --reverse | tr -d '[:space:]')
