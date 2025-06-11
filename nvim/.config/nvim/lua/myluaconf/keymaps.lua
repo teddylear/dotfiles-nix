@@ -69,12 +69,6 @@ map("n", "<leader>f", "", {
     desc = "format from lsp",
 })
 
-map("n", "<leader>so", ":source %<CR>", {
-    noremap = true,
-    silent = true,
-    desc = "source current file",
-})
-
 map("n", "Q", "@qj", {
     noremap = true,
     silent = true,

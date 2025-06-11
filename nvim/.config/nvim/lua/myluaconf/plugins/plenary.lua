@@ -64,52 +64,6 @@ return {
             nargs = 0,
         })
 
-        local function screenShare()
-            local home_dir = vim.env.HOME
-            local alacritty_config_path_string =
-                "/dotfiles-nix/alacritty/.config/alacritty/alacritty.toml"
-            local alacritty_config_path = Path:new(
-                string.format("%s%s", home_dir, alacritty_config_path_string)
-            )
-            local alacritty_file_contents = alacritty_config_path:readlines()
-            local size_line_index
-            for i, line in ipairs(alacritty_file_contents) do
-                -- Check for contents of line and see if size is there
-                if string.find(line, "size") then
-                    size_line_index = i
-                end
-            end
-            local size_config_string = alacritty_file_contents[size_line_index]
-
-            -- split string
-            local t = {}
-            for str in string.gmatch(size_config_string, "([^" .. " " .. "]+)") do
-                table.insert(t, str)
-            end
-
-            -- size value is always second value
-            local current_size = tonumber(t[3])
-            print("current_size:", current_size)
-            if current_size == 18 then
-                alacritty_file_contents[size_line_index] = "size = 25.0"
-                vim.wo.relativenumber = false
-            else
-                alacritty_file_contents[size_line_index] = "size = 18.0"
-                vim.wo.relativenumber = true
-            end
-
-            local alacritty_file_string =
-                table.concat(alacritty_file_contents, "\n")
-            alacritty_config_path:write(alacritty_file_string, "w")
-        end
-
-        map("n", "<leader>sc", "", {
-            noremap = true,
-            silent = false,
-            callback = screenShare,
-            desc = "Enter screen share mode in alacritty",
-        })
-
         local function find_venv()
             if vim.env.VIRTUAL_ENV then
                 return vim.VIRTUAL_ENV
@@ -148,9 +102,9 @@ return {
 
             local pyright_config_string = string.format(
                 "{\n"
-                    .. '    "venvPath": "%s",\n'
-                    .. '    "venv": "%s"\n'
-                    .. "}",
+                .. '    "venvPath": "%s",\n'
+                .. '    "venv": "%s"\n'
+                .. "}",
                 venv_path,
                 venv_name
             )
