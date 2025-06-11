@@ -102,9 +102,9 @@ return {
 
             local pyright_config_string = string.format(
                 "{\n"
-                .. '    "venvPath": "%s",\n'
-                .. '    "venv": "%s"\n'
-                .. "}",
+                    .. '    "venvPath": "%s",\n'
+                    .. '    "venv": "%s"\n'
+                    .. "}",
                 venv_path,
                 venv_name
             )
