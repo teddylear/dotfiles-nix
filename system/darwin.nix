@@ -19,6 +19,7 @@
     "brave-browser"
     "caffeine"
     "font-meslo-lg-nerd-font"
+    "font-jetbrains-mono-nerd-font"
     "nikitabobko/tap/aerospace"
     "spotify"
   ];
@@ -45,6 +46,7 @@ in
           enable = true;
           taps = [
             "kwilczynski/homebrew-pkenv"
+            "homebrew/cask-fonts"
           ];
           casks = commonCasks ++ extraCasksForPersonalComp;
 
