@@ -18,7 +18,6 @@
     "1password"
     "brave-browser"
     "caffeine"
-    "font-meslo-lg-nerd-font"
     "font-jetbrains-mono-nerd-font"
     "nikitabobko/tap/aerospace"
     "spotify"
