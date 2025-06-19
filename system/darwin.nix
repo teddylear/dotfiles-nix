@@ -45,7 +45,6 @@ in
           enable = true;
           taps = [
             "kwilczynski/homebrew-pkenv"
-            "homebrew/cask-fonts"
           ];
           casks = commonCasks ++ extraCasksForPersonalComp;
 
