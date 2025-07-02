@@ -6,9 +6,8 @@ return {
     config = function()
         local hardtime = require("hardtime")
         hardtime.setup({})
-        hardtime.disable()
 
-        local enabled = false
+        local enabled = true
         vim.keymap.set("n", "<leader>ht", function()
             enabled = not enabled
             if enabled then
