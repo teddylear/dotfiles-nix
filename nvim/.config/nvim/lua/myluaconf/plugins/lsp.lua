@@ -163,6 +163,7 @@ return {
                             "*.go",
                             "*.rs",
                             "*.lua",
+                            "*.zig",
                         },
                         callback = function()
                             vim.lsp.buf.format({
