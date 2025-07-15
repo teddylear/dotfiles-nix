@@ -142,12 +142,9 @@ return {
                 })
             end
 
-            vim.lsp.handlers["textDocument/publishDiagnostics"] =
-                vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                    update_in_insert = false,
-                })
-
-            -- TODO: change to doing all on Lsp attach?
+            vim.diagnostic.config({
+                update_in_insert = false,
+            })
 
             local group =
                 vim.api.nvim_create_augroup("THE_KENSTER_LSP", { clear = true })
