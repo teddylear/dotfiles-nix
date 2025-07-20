@@ -78,6 +78,20 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     end,
 })
 
+-- Converted this to lua native for autosave current buffer on CursorHold
+-- https://github.com/justinmk/config/blob/c3e8dcd8b8e179fd9d3a16572b2d7c9be55c5104/.config/nvim/init.lua#L80
+vim.api.nvim_create_autocmd({ "BufHidden", "FocusLost", "WinLeave", "CursorHold" }, {
+    group = my_augroup,
+    pattern = "*",
+    callback = function()
+        local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+        local filename = vim.api.nvim_buf_get_name(0)
+        if buftype == "" and vim.fn.filereadable(filename) == 1 then
+            vim.cmd("silent! lockmarks update ++p")
+        end
+    end,
+})
+
 vim.diagnostic.config({
     virtual_lines = true,
 })
