@@ -45,21 +45,41 @@ return {
             })
         end
 
-        local function open_terminal_first_hp_position()
-            if
-                harpoon:list():length() > 0
-                and string.match(harpoon:list():get(1).value, "term://", 1)
-            then
-                harpoon:list():remove(harpoon:list():get(1))
+        local terminals = harpoon:list("terminals")
+
+        local function open_harpoon_terminal()
+            local entry = terminals:get(1)
+
+            if entry and type(entry.value) == "string" then
+                for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+                    if
+                        vim.api.nvim_buf_is_loaded(bufnr)
+                        and vim.api.nvim_buf_get_name(bufnr) == entry.value
+                    then
+                        vim.api.nvim_set_current_buf(bufnr)
+                        vim.cmd("startinsert")
+                        return
+                    end
+                end
             end
 
-            vim.cmd(":terminal")
-            harpoon:list():prepend()
+            vim.cmd("enew | terminal")
+            local bufnr = vim.api.nvim_get_current_buf()
+            local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+            terminals:prepend({
+                value = bufname,
+                context = {
+                    save = false,
+                },
+            })
+
+            vim.cmd("startinsert")
         end
 
-        map("n", "<leader>hp", "", {
+        map("n", "<leader>to", "", {
             noremap = true,
-            callback = open_terminal_first_hp_position,
+            callback = open_harpoon_terminal,
             desc = "Open new harpoon terminal in first harpoon position",
         })
     end,

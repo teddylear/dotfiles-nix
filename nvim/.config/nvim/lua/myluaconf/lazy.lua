@@ -57,6 +57,9 @@ local function lazy()
                 lazy = "💤 ",
             },
         },
+        change_detection = {
+            notify = false,
+        },
     }
 
     require("lazy").setup("myluaconf.plugins", lazy_options)
