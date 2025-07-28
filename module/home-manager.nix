@@ -71,7 +71,7 @@
   # Later for linux
   # home.file.".config/i3/config".source = ././config/i3-config;
   # home.file.".config/compton.conf".source = ././config/compton.conf;
-  
+
   home.sessionVariables = {
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
