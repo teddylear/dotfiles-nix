@@ -71,7 +71,7 @@
   # Later for linux
   # home.file.".config/i3/config".source = ././config/i3-config;
   # home.file.".config/compton.conf".source = ././config/compton.conf;
-
+  
   home.sessionVariables = {
     EDITOR = "nvim";
     LANG = "en_US.UTF-8";
@@ -89,7 +89,6 @@
     SSH_AUTH_SOCK = "$HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
     PIPENV_SHELL = "${pkgs.fish}/bin/fish";
     HOMEBREW_NO_AUTO_UPDATE = "1";
-    TERM = "ghostty";
   };
 
   home.sessionPath = [
@@ -290,7 +289,7 @@
       set-option -sg escape-time 10
 
       # 256 colors support
-      set -g default-terminal "tmux-256color"
+      set -g default-terminal "screen-256color"
 
       # sane scrolling
       set -g mouse on
@@ -309,7 +308,7 @@
       tmuxPlugins.vim-tmux-navigator
     ];
     shell = "${pkgs.fish}/bin/fish";
-    terminal = "tmux-256color";
+    terminal = "screen-256color";
     # TODO: fix this later once I'm ready for linux
     # terminal = if isDarwin then "screen-256color" else "xterm-256color";
   };
