@@ -36,7 +36,7 @@
     bottom
     luajit
     luajitPackages.luarocks
-    pkgs.zigpkgs.master
+    pkgs.zigpkgs."0.14.1"
     eza
     uv
     jujutsu
