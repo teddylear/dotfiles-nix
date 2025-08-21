@@ -180,7 +180,6 @@
     shellAliases = {
       jf = "jj git fetch";
       jn = "jj new";
-      jp = "jj git push";
       js = "jj st";
     };
 
@@ -236,6 +235,7 @@
       ll = "eza -l -g -a --icons";
       tmuxsession = "fish $HOME/tmux-session.fish";
       jd = "jj diff --git | delta --features=chameleon";
+      jp = "jj git push --bookmark";
     };
   };
 
