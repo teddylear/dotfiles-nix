@@ -131,6 +131,12 @@ return {
             desc = "Telescope grep current word under cursor",
         })
 
+        map("n", "<leader>pf", "", {
+            noremap = true,
+            callback = require("telescope.builtin").find_files,
+            desc = "Telescope find files",
+        })
+
         map("n", "<leader>pg", "", {
             noremap = true,
             callback = require("telescope.builtin").git_branches,
