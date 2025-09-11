@@ -50,6 +50,8 @@ return {
 
         local Path = require("plenary.path")
         local homedir = os.getenv("HOME")
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
 
         local function iam_actions()
             local iam_file_path = Path:new(
@@ -71,7 +73,15 @@ return {
                         iam_actions_map
                     ),
                     sorter = require("telescope.config").values.generic_sorter({}),
-                    attach_mappings = function(_, _)
+                    attach_mappings = function(prompt_bufnr, _)
+                        actions.select_default:replace(function()
+                            local selection = action_state.get_selected_entry()
+                            actions.close(prompt_bufnr)
+                            local val = tostring(selection[1])
+                            vim.schedule(function()
+                                vim.api.nvim_put({ val }, "c", true, true)
+                            end)
+                        end)
                         return true
                     end,
                 })
