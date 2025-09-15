@@ -5,6 +5,7 @@
   tags:
     - nvim
     - fish
+    - shaders
 - name: Clone aws-iam-actions-list
   ansible.builtin.git:
     repo: 'git@github.com:TryTryAgain/aws-iam-actions-list.git'
@@ -25,3 +26,26 @@
     dest: "{{ lookup('env', 'HOME') }}/.config/fish/themes/Dracula Official.theme"
   tags:
     - fish
+- name: Clone ghostty-shader-playground repo at specific commit
+  git:
+    repo: "https://github.com/KroneCorylus/ghostty-shader-playground"
+    dest: "{{ ansible_env.HOME }}/code/ghostty-shader-playground"
+    version: "b539cea7b34cdc883726db018ae09e8e3f862aea"
+    depth: 1
+    update: yes
+  tags:
+    - shaders
+- name: Ensure Ghostty config directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config/ghostty"
+    state: directory
+    mode: '0755'
+  tags:
+    - ghostty
+- name: Deploy Ghostty config
+  template:
+    src: ghostty-config.j2
+    dest: "{{ ansible_env.HOME }}/.config/ghostty/config"
+    mode: '0644'
+  tags:
+    - ghostty
