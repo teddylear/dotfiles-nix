@@ -111,3 +111,20 @@ rustup component add rust-analyzer
 just ansible-final-touches
 ```
 - [Docker-desktop install](https://docs.docker.com/desktop/install/mac-install/)
+
+## Zig
+With installing zig via nix, I got a bunch of weird issues. Instead installing from source:
+- [Download zig](http://ziglang.org/download/)
+```fish
+tar -xf zig-macos-aarch64-0.15.2.tar.xz
+sudo mv zig-macos-aarch64-0.15.2 /usr/local/zig
+sudo ln -s /usr/local/zig/zig /usr/local/bin/zig
+```
+- [Download zls](https://zigtools.org/zls/install/)
+```fish
+sudo mv ./zls /usr/local/bin/
+sudo chmod +x /usr/local/bin/zls
+which zls
+```
+
+

@@ -36,7 +36,7 @@
     bottom
     luajit
     luajitPackages.luarocks
-    pkgs.zigpkgs."0.14.1"
+    # pkgs.zigpkgs."0.15.2"
     eza
     uv
     jujutsu
@@ -48,7 +48,6 @@
     marksman
     nodePackages.bash-language-server
     basedpyright
-    zls
 
     # formatters
     alejandra
