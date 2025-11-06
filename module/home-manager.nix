@@ -23,7 +23,6 @@
     gh
     awscli2
     unzip
-    unstablePkgs.neovim
     _1password-cli
     pipenv
     fzf
@@ -36,7 +35,6 @@
     bottom
     luajit
     luajitPackages.luarocks
-    # pkgs.zigpkgs."0.15.2"
     eza
     uv
     jujutsu

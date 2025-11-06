@@ -73,6 +73,11 @@ just stow
 ```
 
 ## Post nix & friends install:
+- Install neovim via script below. Will require downloading latest bundle under 
+`~/Downloads` from [nvim github releases](https://github.com/neovim/neovim/tags)
+```zsh
+./scripts/install_neovim.sh
+```
 - [1password ssh agent setup](https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent)
 - Brave
     - Add `1password`, `Dark Reader`, `vimium` extensions
