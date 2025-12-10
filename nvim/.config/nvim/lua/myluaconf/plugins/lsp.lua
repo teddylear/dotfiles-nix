@@ -1,106 +1,58 @@
-local ft = {
-    "terraform",
-    "rust",
-    "go",
-    "lua",
-    "python",
-    "sh",
-    "markdown",
-    "zig",
-}
-
 return {
     {
         "j-hui/fidget.nvim",
-        ft = ft,
+        lazy = false,
         opts = {},
     },
     {
         "neovim/nvim-lspconfig",
-        ft = ft,
+        lazy = false, -- make sure configs are present before any FileType events
         dependencies = {
             { "folke/neodev.nvim", opts = {} },
             "hrsh7th/cmp-nvim-lsp",
         },
         config = function()
-            local util = require("lspconfig/util")
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities =
-                require("cmp_nvim_lsp").default_capabilities(capabilities)
+            -- LSP completion capabilities for nvim-cmp
+            local capabilities = require("cmp_nvim_lsp").default_capabilities(
+                vim.lsp.protocol.make_client_capabilities()
+            )
 
-            require("lspconfig").lua_ls.setup({
+            -- lua_ls
+            vim.lsp.config("lua_ls", {
                 capabilities = capabilities,
                 settings = {
                     Lua = {
-                        completion = {
-                            callSnippet = "Replace",
-                        },
+                        diagnostics = { globals = { "vim" } },
+                        completion = { callSnippet = "Replace" },
                     },
                 },
             })
 
-            -- From below thread on this issue
-            -- https://github.com/neovim/nvim-lspconfig/issues/500
-            local path = util.path
             local function get_python_path(workspace)
-                local python_path
-                -- Use activated virtualenv.
                 if vim.env.VIRTUAL_ENV then
-                    python_path =
-                        path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-                    print(
-                        string.format(
-                            "In a venv! Using that for lsp: %s",
-                            python_path
-                        )
-                    )
-                    return python_path
+                    return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
                 end
 
-                -- Find and use virtualenv from pipenv in workspace directory.
-                local match = vim.fn.glob(path.join(workspace, "Pipfile"))
-                if match ~= "" then
-                    local venv = vim.fn.trim(
-                        vim.fn.system(
-                            "PIPENV_PIPFILE=" .. match .. " pipenv --venv"
-                        )
-                    )
-                    python_path = path.join(venv, "bin", "python")
-                    print(
-                        string.format(
-                            "Found a Pipfile! Using that for lsp: %s",
-                            python_path
-                        )
-                    )
-                    return python_path
+                local pipfile = vim.fs.find("Pipfile", { path = workspace, upward = false })[1]
+                if pipfile then
+                    local venv = vim.fn.trim(vim.fn.system("PIPENV_PIPFILE=" .. pipfile .. " pipenv --venv"))
+                    return vim.fs.joinpath(venv, "bin", "python")
                 end
 
-                -- Fallback to system Python.
-                print("No venv or Pipfile found, using system python")
-                return vim.fn.exepath("python3")
-                    or vim.fn.exepath("python")
-                    or "python"
+                return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
             end
 
-            require("lspconfig").basedpyright.setup({
-                before_init = function(params)
-                    params.processId = vim.NIL
-                end,
-                on_init = function(client)
-                    client.config.settings.python.pythonPath =
-                        get_python_path(client.config.root_dir)
-                end,
-                root_dir = util.root_pattern(".git", "Pipfile"),
+            vim.lsp.config("basedpyright", {
                 capabilities = capabilities,
+                root_markers = { "pyproject.toml", "Pipfile", ".git" },
+                before_init = function(params) params.processId = vim.NIL end,
+                on_init = function(client)
+                    local root = client.config.root_dir
+                    client.config.settings.python.pythonPath = get_python_path(root)
+                end,
                 settings = {
-                    pyright = {
-                        autoImportCompletion = true,
-                    },
-                    basedpyright = {
-                        analysis = {
-                            typeCheckingMode = "off",
-                        },
-                    },
+                    pyright = { autoImportCompletion = true },
+                    basedpyright = { analysis = { typeCheckingMode = "off" } },
                     python = {
                         analysis = {
                             autoSearchPaths = true,
@@ -112,88 +64,59 @@ return {
                 },
             })
 
-            require("lspconfig").terraformls.setup({
-                capabilities = capabilities,
-                filetypes = { "hcl", "tf", "terraform", "tfvars" },
-            })
-
-            require("lspconfig").bashls.setup({
-                before_init = function(params)
-                    params.processId = vim.NIL
-                end,
-                root_dir = util.root_pattern(".git"),
+            vim.lsp.config("terraformls", {
                 capabilities = capabilities,
             })
 
-            require("lspconfig").zls.setup({
-                root_dir = util.root_pattern(".git"),
+            vim.lsp.config("bashls", {
                 capabilities = capabilities,
+                root_markers = { ".git" },
+                before_init = function(params) params.processId = vim.NIL end,
             })
 
-            local default_lsp_configs = {
+            vim.lsp.config("zls", {
+                capabilities = capabilities,
+                filetypes = { "zig", "zir" },
+                cmd = { "zls" },
+                root_markers = { "build.zig", "zls.json", ".git" },
+            })
+
+            for _, name in ipairs({ "gopls", "rust_analyzer", "marksman" }) do
+                vim.lsp.config(name, { capabilities = capabilities })
+            end
+
+            vim.diagnostic.config({ update_in_insert = false })
+
+            vim.lsp.enable({
+                "lua_ls",
+                "basedpyright",
+                "terraformls",
+                "bashls",
+                "zls",
                 "gopls",
                 "rust_analyzer",
                 "marksman",
-            }
-
-            for _, lsp_name in ipairs(default_lsp_configs) do
-                require("lspconfig")[lsp_name].setup({
-                    capabilities = capabilities,
-                })
-            end
-
-            vim.diagnostic.config({
-                update_in_insert = false,
             })
 
-            local group =
-                vim.api.nvim_create_augroup("THE_KENSTER_LSP", { clear = true })
-            -- From this article
-            -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
+            local group = vim.api.nvim_create_augroup("THE_KENSTER_LSP", { clear = true })
+
+            -- one format-on-save autocmd (avoid multiplying autocmds per attach)
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = group,
+                pattern = { "*.tf", "*.tfvars", "*.go", "*.rs", "*.lua", "*.zig" },
+                callback = function(args)
+                    vim.lsp.buf.format({ bufnr = args.buf, async = false })
+                end,
+            })
+
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = group,
                 callback = function(args)
-                    vim.api.nvim_create_autocmd("BufWritePre", {
-                        pattern = {
-                            "*.tf",
-                            "*.tfvars",
-                            "*.go",
-                            "*.rs",
-                            "*.lua",
-                            "*.zig",
-                        },
-                        callback = function()
-                            vim.lsp.buf.format({
-                                async = false,
-                                id = args.data.client_id,
-                            })
-                        end,
-                    })
-
-                    vim.keymap.set(
-                        "n",
-                        "<leader>gd",
-                        vim.lsp.buf.definition,
-                        { buffer = true, silent = true }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>re",
-                        vim.lsp.buf.rename,
-                        { buffer = true, silent = true }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>gr",
-                        vim.lsp.buf.references,
-                        { buffer = true, silent = true }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "K",
-                        vim.lsp.buf.hover,
-                        { buffer = true, silent = true }
-                    )
+                    local buf = args.buf
+                    vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { buffer = buf, silent = true })
+                    vim.keymap.set("n", "<leader>re", vim.lsp.buf.rename, { buffer = buf, silent = true })
+                    vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { buffer = buf, silent = true })
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = buf, silent = true })
                 end,
             })
         end,
