@@ -89,6 +89,7 @@
   };
 
   home.sessionPath = [
+    "$HOME/.local/bin"
     "$HOME/.cargo/bin"
     "$PYENV_ROOT/bin"
     "$HOME/.pkenv/bin"
