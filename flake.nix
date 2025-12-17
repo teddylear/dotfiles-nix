@@ -2,7 +2,7 @@
   description = "Example kickstart Nix development setup.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
     # switch back to unstable
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -13,11 +13,11 @@
     darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
       # TODO: Is this required?
-      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
