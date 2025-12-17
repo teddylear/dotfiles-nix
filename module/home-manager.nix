@@ -37,6 +37,7 @@
     eza
     uv
     jujutsu
+    neovim
 
     gopls
     terraform-ls

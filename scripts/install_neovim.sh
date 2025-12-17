@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# THIS IS DEPRECATED, BACK TO NIX
+
 # Manually download from https://github.com/neovim/neovim/releases/latest
 # Put in ~/Downloads
 # Assumes name is nvim-macos-arm64.tar.gz
@@ -40,4 +42,6 @@ rm "$HOME/Downloads/$tar_name"
 rm -rf "$HOME/Downloads/$tar_name"
 
 
-
+## Remove commands:
+# sudo rm -rf /usr/local/nvim
+# sudo rm /usr/local/bin/nvim
