@@ -34,10 +34,10 @@ vim.opt.incsearch = true
 vim.opt.undofile = true
 vim.opt.autoread = true
 vim.fn.timer_start(2000, function()
-  if vim.api.nvim_get_mode().mode == "n" then
-    vim.cmd("silent! checktime")
-  end
-end, { ['repeat'] = -1 })
+    if vim.api.nvim_get_mode().mode == "n" then
+        vim.cmd("silent! checktime")
+    end
+end, { ["repeat"] = -1 })
 
 -- set mouse wheel to work
 vim.opt.mouse = "a"
