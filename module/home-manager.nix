@@ -44,7 +44,6 @@
     lua-language-server
     marksman
     nodePackages.bash-language-server
-    basedpyright
 
     alejandra
     stylua

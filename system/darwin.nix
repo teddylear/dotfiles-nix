@@ -53,6 +53,7 @@ in
             "tfenv"
             "pkenv"
             "docker"
+            "ty"
           ];
         };
       }

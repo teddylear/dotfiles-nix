@@ -29,53 +29,18 @@ return {
                 },
             })
 
-            local function get_python_path(workspace)
-                if vim.env.VIRTUAL_ENV then
-                    return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
-                end
-
-                local pipfile = vim.fs.find(
-                    "Pipfile",
-                    { path = workspace, upward = false }
-                )[1]
-                if pipfile then
-                    local venv = vim.fn.trim(
-                        vim.fn.system(
-                            "PIPENV_PIPFILE=" .. pipfile .. " pipenv --venv"
-                        )
-                    )
-                    return vim.fs.joinpath(venv, "bin", "python")
-                end
-
-                return vim.fn.exepath("python3")
-                    or vim.fn.exepath("python")
-                    or "python"
-            end
-
-            vim.lsp.config("basedpyright", {
+            vim.lsp.config("ty", {
                 capabilities = capabilities,
                 root_markers = { "pyproject.toml", "Pipfile", ".git" },
-                before_init = function(params)
-                    params.processId = vim.NIL
-                end,
-                on_init = function(client)
-                    local root = client.config.root_dir
-                    client.config.settings.python.pythonPath =
-                        get_python_path(root)
-                end,
+                cmd = { "ty", "server" },
                 settings = {
-                    pyright = { autoImportCompletion = true },
-                    basedpyright = { analysis = { typeCheckingMode = "off" } },
-                    python = {
-                        analysis = {
-                            autoSearchPaths = true,
-                            diagnosticMode = "openFilesOnly",
-                            useLibraryCodeForTypes = true,
-                            typeCheckingMode = "off",
-                        },
+                    ty = {
+                        diagnosticMode = "openFilesOnly",
+                        completions = { autoImport = true },
                     },
                 },
             })
+            vim.lsp.enable("ty")
 
             vim.lsp.config("terraformls", { capabilities = capabilities })
 
@@ -102,7 +67,8 @@ return {
 
             vim.lsp.enable({
                 "lua_ls",
-                "basedpyright",
+                -- "basedpyright",
+                "ty",
                 "terraformls",
                 "bashls",
                 "zls",
