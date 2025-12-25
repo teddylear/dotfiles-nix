@@ -38,6 +38,7 @@
     uv
     jujutsu
     neovim
+    hurl
 
     gopls
     terraform-ls
