@@ -228,6 +228,7 @@
       tmuxsession = "fish $HOME/tmux-session.fish";
       jd = "jj diff --git | delta --features=chameleon";
       jp = "jj git push --bookmark";
+      ld = "lumen diff";
     };
   };
 

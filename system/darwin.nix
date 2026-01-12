@@ -45,6 +45,7 @@ in
           enable = true;
           taps = [
             "kwilczynski/homebrew-pkenv"
+            "jnsahaj/lumen"
           ];
           casks = commonCasks ++ extraCasksForPersonalComp;
 
@@ -54,6 +55,7 @@ in
             "pkenv"
             "docker"
             "ty"
+            "lumen"
           ];
         };
       }
