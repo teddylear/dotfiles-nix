@@ -88,6 +88,7 @@
     "$HOME/.tfenv/bin"
     "/opt/homebrew/bin/"
     "$HOME/development/language/go/bin"
+    "$HOME/.opencode/bin"
   ];
 
   home.stateVersion = "23.11";
