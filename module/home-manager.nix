@@ -17,7 +17,6 @@
     delta
     sd
     neofetch
-    mcfly
     fd
     gh
     awscli2
@@ -39,6 +38,7 @@
     jujutsu
     neovim
     hurl
+    atuin
 
     gopls
     terraform-ls
@@ -115,6 +115,14 @@
     };
   };
 
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true; 
+    settings = {
+      update_check = false; 
+    };
+  };
+
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
@@ -163,7 +171,6 @@
       set fish_greeting
 
       pyenv init - | source
-      mcfly init fish | source
 
       if test -f "$HOME/local_fish_config.fish";
         source $HOME/local_fish_config.fish
