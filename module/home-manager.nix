@@ -6,7 +6,11 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  inherit (pkgs) lib;
+
+  enableOpenCode = git-username == "teddylear";
+in {
   home.packages = with pkgs; [
     rustup
     ripgrep
@@ -80,16 +84,19 @@
     HOMEBREW_NO_AUTO_UPDATE = "1";
   };
 
-  home.sessionPath = [
-    "$HOME/.local/bin"
-    "$HOME/.cargo/bin"
-    "$PYENV_ROOT/bin"
-    "$HOME/.pkenv/bin"
-    "$HOME/.tfenv/bin"
-    "/opt/homebrew/bin/"
-    "$HOME/development/language/go/bin"
-    "$HOME/.opencode/bin"
-  ];
+  home.sessionPath =
+    [
+      "$HOME/.local/bin"
+      "$HOME/.cargo/bin"
+      "$PYENV_ROOT/bin"
+      "$HOME/.pkenv/bin"
+      "$HOME/.tfenv/bin"
+      "/opt/homebrew/bin/"
+      "$HOME/development/language/go/bin"
+    ]
+    ++ lib.optionals enableOpenCode [
+      "$HOME/.opencode/bin"
+    ];
 
   home.stateVersion = "23.11";
 
@@ -117,9 +124,9 @@
 
   programs.atuin = {
     enable = true;
-    enableFishIntegration = true; 
+    enableFishIntegration = true;
     settings = {
-      update_check = false; 
+      update_check = false;
     };
   };
 
