@@ -184,12 +184,6 @@ in {
       end
     '';
 
-    shellAliases = {
-      jf = "jj git fetch";
-      jn = "jj new";
-      js = "jj st";
-    };
-
     functions = {
       gb = ''
         set target_branch (git branch | fzf --reverse | tr -d '[:space:]')
@@ -227,11 +221,10 @@ in {
     };
 
     shellAbbrs = {
-      tsplit = "tmux split-window -h -p";
-      vim = "nvim";
-      gre = "git reset --hard HEAD";
-      oldvim = "\\vim";
-      cat = "bat";
+      jf = "jj git fetch";
+      jn = "jj new";
+      js = "jj st";
+      ld = "lumen diff";
       gsw = "git switch";
       gsc = "git switch -c";
       gd = "git diff";
@@ -239,11 +232,23 @@ in {
       gp = "git pull";
       gps = "git push";
       gcm = "git commit -m";
+      tsplit = "tmux split-window -h -p";
+      vim = "nvim";
+      gre = "git reset --hard HEAD";
+      oldvim = "\\vim";
+      cat = "bat";
       ll = "eza -l -g -a --icons";
       tmuxsession = "fish $HOME/tmux-session.fish";
       jd = "jj diff --git | delta --features=chameleon";
       jp = "jj git push --bookmark";
-      ld = "lumen diff";
+      jbs = {
+        expansion = "jj bookmark set % -r @";
+        setCursor = true;
+      };
+      jbc = {
+        expansion = "jj bookmark create % -r @";
+        setCursor = true;
+      };
     };
   };
 
