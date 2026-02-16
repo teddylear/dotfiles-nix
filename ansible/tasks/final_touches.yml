@@ -49,3 +49,16 @@
     mode: '0644'
   tags:
     - ghostty
+- name: Check if ryu is installed
+  ansible.builtin.command: command -v ryu
+  register: ryu_check
+  changed_when: false
+  failed_when: false
+  tags:
+    - jj-ryu
+- name: Install jj-ryu via cargo (git)
+  ansible.builtin.command: cargo install --git https://github.com/dmmulroy/jj-ryu
+  when: ryu_check.rc != 0
+  tags:
+    - jj-ryu
+
