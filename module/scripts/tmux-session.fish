@@ -1,6 +1,6 @@
 #!/run/current-system/sw/bin/fish
 
-set SESSIONNAME "tmuxsession"
+set SESSIONNAME "home"
 tmux new-session -s "$SESSIONNAME" -c "$HOME/Documents" -d
 tmux rename-window -t 0 "Documents"
 tmux send-key -t 0 vim Space . Enter\

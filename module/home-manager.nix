@@ -195,6 +195,91 @@ in {
         nvim $file
       '';
 
+      jjws = ''
+        if not set -q argv[1]
+            echo "usage: jjws <bookmark-name>" >&2
+            return 2
+        end
+
+        set -l bookmark $argv[1]
+        # TODO: update this to git/jj root.
+        set -l cwd_name (basename (pwd))
+        set -l ws_dir "$cwd_name:$bookmark"
+
+        echo "🚀 Creating JJ workspace for bookmark: $bookmark"
+        echo "📁 Target directory: ../$ws_dir"
+        echo ""
+
+        if jj workspace add "../$ws_dir" --name "$bookmark"
+            echo ""
+            echo "✅ Workspace created successfully for: $bookmark"
+        else
+            echo ""
+            echo "❌ Failed to create workspace for: $bookmark" >&2
+            return 1
+        end
+
+
+        set -l tmux_session "$cwd_name~$bookmark"
+        tmux new-session -d -s "$tmux_session" -c "../$ws_dir"
+        tmux move-window -s "$tmux_session:0" -t "$tmux_session:1"
+        tmux rename-window -t "$tmux_session:1" "editor"
+        # TODO: open vim here
+        tmux new-window -t "$tmux_session:0" -n "Documents" -c "$HOME/Documents/"
+        tmux new-window -t "$tmux_session:2" -n "shell" -c "../$ws_dir"
+        tmux new-window -t "$tmux_session:3" -n "AI" -c "../$ws_dir"
+        tmux new-window -t "$tmux_session:9" -n "DOTFILES" -c "$HOME/dotfiles-nix/"
+        echo "✅ Created tmux session: $ws_dir"
+
+        # TODO: Any local machine specific instrutions
+      '';
+
+      jjcl = ''
+        if not set -q argv[1]
+            echo "usage: jjcl <bookmark-name>" >&2
+            return 2
+        end
+
+        set -l bookmark $argv[1]
+        set -l cwd_name (basename (pwd))
+        set -l ws_dir "../$cwd_name:$bookmark"
+
+        echo "🧹 Cleaning up JJ workspace for: $bookmark"
+        echo "📁 Target directory: $ws_dir"
+        echo ""
+
+        # Check directory exists
+        if not test -d "$ws_dir"
+            echo "❌ Directory does not exist: $ws_dir" >&2
+            return 1
+        end
+
+        # Forget workspace
+        if not jj workspace forget "$bookmark"
+            echo "❌ Failed to forget workspace: $bookmark" >&2
+            return 1
+        end
+
+        # Delete directory
+        rm -rf "$ws_dir"
+
+        echo "✅ Workspace removed: $bookmark and directory deleted: $ws_dir"
+        tmux kill-session -t "$cwd_name~$bookmark"
+        echo "✅ Tmux session `$cwd_name~$bookmark` removed"
+      '';
+
+      ts = ''
+        set -l session (tmux list-sessions -F '#S' 2>/dev/null | fzf --reverse)
+        or return
+
+        if set -q TMUX
+            tmux switch-client -t "$session"
+        else
+            tmux attach -t "$session"
+        end
+      '';
+
+
       fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color normal) '\n > '";
 
       fish_user_key_bindings = "fish_vi_key_bindings";
@@ -292,8 +377,11 @@ in {
       bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 
       set-option -g status-interval 15
-      set-option -g automatic-rename on
-      set-option -g automatic-rename-format '#(basename "#{pane_current_path}")'
+      # set-option -g automatic-rename on
+      # set-option -g automatic-rename-format '#(basename "#{pane_current_path}")'
+      set -g automatic-rename off
+      set -g allow-rename off
+
       set-option -sg escape-time 10
 
       set -g default-terminal "screen-256color"
@@ -303,11 +391,17 @@ in {
       set-option -sa terminal-overrides ',xterm-256color:RGB'
 
       set -g default-command fish
-      set -g status off
+      set -g status-left-length 100
+
+      set -g @catppuccin_flavor "mocha"
+      set -g allow-set-title off
+      set -g window-status-format "#[fg=#11111b,bg=#{@thm_overlay_2}] #I "
+      set -g window-status-current-format "#[fg=#11111b,bg=#{@thm_mauve}] #I "
     '';
 
     plugins = with pkgs; [
       tmuxPlugins.vim-tmux-navigator
+      tmuxPlugins.catppuccin
     ];
 
     shell = "${pkgs.fish}/bin/fish";
