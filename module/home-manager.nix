@@ -279,7 +279,6 @@ in {
         end
       '';
 
-
       fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color normal) '\n > '";
 
       fish_user_key_bindings = "fish_vi_key_bindings";
