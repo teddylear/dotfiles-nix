@@ -89,3 +89,38 @@ vim.keymap.set("n", "<leader>gv", function()
     vim.diagnostic.hide(nil, bufnr)
     vim.diagnostic.show(nil, bufnr)
 end, { silent = true })
+
+local function send_visual_ref(target)
+    local start_line = vim.fn.getpos("v")[2]
+    local end_line = vim.fn.getpos(".")[2]
+
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+
+    local file = vim.fn.expand("%:.")
+    local ref = string.format("@%s:%d-%d", file, start_line, end_line)
+
+    local cmd = string.format(
+        "tmux send-keys -t %s %s",
+        target,
+        vim.fn.shellescape(ref)
+    )
+
+    -- DEBUG OUTPUT
+    vim.notify("AI Debug: cmd=" .. cmd)
+
+    vim.fn.system(cmd)
+end
+
+vim.keymap.set("x", "<leader>ai", function()
+    send_visual_ref("%3")
+end, {
+    desc = "Send visual selection file:line reference to AI tmux pane",
+})
+
+vim.keymap.set("x", "<leader>ai", function()
+    send_visual_ref(":3")
+end, {
+    desc = "Send visual selection file:line reference to AI tmux pane",
+})
