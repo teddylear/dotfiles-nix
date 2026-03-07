@@ -196,42 +196,52 @@ in {
       '';
 
       jjws = ''
-        if not set -q argv[1]
-            echo "usage: jjws <bookmark-name>" >&2
-            return 2
-        end
+         if not set -q argv[1]
+             echo "usage: jjws <workspace-name>" >&2
+             return 2
+         end
 
-        set -l bookmark $argv[1]
-        # TODO: update this to git/jj root.
-        set -l cwd_name (basename (pwd))
-        set -l ws_dir "$cwd_name:$bookmark"
+         set -l workspace $argv[1]
+         set -l cwd_name (basename (pwd))
+         set -l ws_dir "../$cwd_name:$workspace"
+         set -l tmux_session "$cwd_name~$workspace"
 
-        echo "🚀 Creating JJ workspace for bookmark: $bookmark"
-        echo "📁 Target directory: ../$ws_dir"
-        echo ""
+         echo "🚀 Preparing JJ workspace: $workspace"
 
-        if jj workspace add "../$ws_dir" --name "$bookmark"
-            echo ""
-            echo "✅ Workspace created successfully for: $bookmark"
-        else
-            echo ""
-            echo "❌ Failed to create workspace for: $bookmark" >&2
-            return 1
-        end
+         # Force JJ to print only workspace names, one per line.
+         set -l workspaces (jj workspace list -T 'name ++ "\n"' | string trim)
 
+         if contains -- "$workspace" $workspaces
+             echo "ℹ️ Workspace already exists: $workspace"
+         else
+             echo "📁 Creating workspace at: $ws_dir"
 
-        set -l tmux_session "$cwd_name~$bookmark"
-        tmux new-session -d -s "$tmux_session" -c "../$ws_dir"
-        tmux move-window -s "$tmux_session:0" -t "$tmux_session:1"
-        tmux rename-window -t "$tmux_session:1" "editor"
-        # TODO: open vim here
-        tmux new-window -t "$tmux_session:0" -n "Documents" -c "$HOME/Documents/"
-        tmux new-window -t "$tmux_session:2" -n "shell" -c "../$ws_dir"
-        tmux new-window -t "$tmux_session:3" -n "AI" -c "../$ws_dir"
-        tmux new-window -t "$tmux_session:9" -n "DOTFILES" -c "$HOME/dotfiles-nix/"
-        echo "✅ Created tmux session: $ws_dir"
+             jj workspace add "$ws_dir" --name "$workspace"
+             or begin
+                 echo "❌ Failed to create workspace: $workspace" >&2
+                 return 1
+             end
+         end
 
-        # TODO: Any local machine specific instrutions
+         if not tmux has-session -t "$tmux_session" 2>/dev/null
+             tmux new-session -d -s "$tmux_session" -c "$ws_dir"
+             tmux move-window -s "$tmux_session:0" -t "$tmux_session:1"
+             tmux rename-window -t "$tmux_session:1" "editor"
+             # tmux send-keys -t "$tmux_session:1" "nvim ." C-m
+             tmux new-window -t "$tmux_session:0" -n "Documents" -c "$HOME/Documents/"
+             tmux new-window -t "$tmux_session:2" -n "shell" -c "$ws_dir"
+             tmux new-window -t "$tmux_session:3" -n "AI" -c "$ws_dir"
+             tmux new-window -t "$tmux_session:9" -n "DOTFILES" -c "$HOME/dotfiles-nix/"
+             echo "✅ Created tmux session: $tmux_session"
+         else
+             echo "ℹ️ tmux session already exists: $tmux_session"
+         end
+
+         if set -q TMUX
+             tmux switch-client -t "$tmux_session"
+         else
+             tmux attach-session -t "$tmux_session"
+         end
       '';
 
       jjcl = ''
