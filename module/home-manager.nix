@@ -396,6 +396,7 @@ in {
       set -g allow-set-title off
       set -g window-status-format "#[fg=#11111b,bg=#{@thm_overlay_2}] #I "
       set -g window-status-current-format "#[fg=#11111b,bg=#{@thm_mauve}] #I "
+      set -g status-position top
     '';
 
     plugins = with pkgs; [
