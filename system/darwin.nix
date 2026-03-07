@@ -19,6 +19,7 @@
     "brave-browser"
     "caffeine"
     "font-jetbrains-mono-nerd-font"
+    "font-iosevka-term-nerd-font"
     "nikitabobko/tap/aerospace"
     "spotify"
   ];
