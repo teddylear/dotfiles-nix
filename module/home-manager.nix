@@ -195,6 +195,50 @@ in {
         nvim $file
       '';
 
+      create_tmux_session = ''
+        if not set -q argv[1]; or not set -q argv[2]
+            echo "usage: create_tmux_session <dir> <session>" >&2
+            return 2
+        end
+
+        set -l ws_dir $argv[1]
+        set -l tmux_session_name $argv[2]
+
+        if not tmux has-session -t "$tmux_session_name" 2>/dev/null
+            tmux new-session -d -s "$tmux_session_name" -c "$ws_dir"
+            tmux move-window -s "$tmux_session_name:0" -t "$tmux_session_name:1"
+            tmux rename-window -t "$tmux_session_name:1" "editor"
+            # tmux send-keys -t "$tmux_session_name:1" "nvim ." C-m
+            tmux new-window -t "$tmux_session_name:0" -n "Documents" -c "$HOME/Documents/"
+            tmux new-window -t "$tmux_session_name:2" -n "shell" -c "$ws_dir"
+            tmux new-window -t "$tmux_session_name:3" -n "AI" -c "$ws_dir"
+            tmux new-window -t "$tmux_session_name:9" -n "DOTFILES" -c "$HOME/dotfiles-nix/"
+            echo "✅ Created tmux session: $tmux_session_name"
+        else
+            echo "ℹ️ tmux session already exists: $tmux_session_name"
+        end
+      '';
+
+      tsesh = ''
+        if not set -q argv[1]
+            echo "usage: tsesh <name>" >&2
+            return 2
+        end
+
+        set -l cwd_name (basename (pwd))
+        set -l cwd_dir (pwd)
+        set -l session_name "$cwd_name~$argv[1]"
+
+        create_tmux_session "$cwd_dir" "$session_name"
+        or return 1
+
+        if set -q TMUX
+            tmux switch-client -t "$session_name"
+        else
+            tmux attach-session -t "$session_name"
+        end
+      '';
+
       jjws = ''
          if not set -q argv[1]
              echo "usage: jjws <workspace-name>" >&2
@@ -223,19 +267,8 @@ in {
              end
          end
 
-         if not tmux has-session -t "$tmux_session" 2>/dev/null
-             tmux new-session -d -s "$tmux_session" -c "$ws_dir"
-             tmux move-window -s "$tmux_session:0" -t "$tmux_session:1"
-             tmux rename-window -t "$tmux_session:1" "editor"
-             # tmux send-keys -t "$tmux_session:1" "nvim ." C-m
-             tmux new-window -t "$tmux_session:0" -n "Documents" -c "$HOME/Documents/"
-             tmux new-window -t "$tmux_session:2" -n "shell" -c "$ws_dir"
-             tmux new-window -t "$tmux_session:3" -n "AI" -c "$ws_dir"
-             tmux new-window -t "$tmux_session:9" -n "DOTFILES" -c "$HOME/dotfiles-nix/"
-             echo "✅ Created tmux session: $tmux_session"
-         else
-             echo "ℹ️ tmux session already exists: $tmux_session"
-         end
+         create_tmux_session "$ws_dir" "$tmux_session"
+         or return 1
 
          if set -q TMUX
              tmux switch-client -t "$tmux_session"
@@ -332,7 +365,7 @@ in {
       oldvim = "\\vim";
       cat = "bat";
       ll = "eza -l -g -a --icons";
-      tmuxsession = "fish $HOME/tmux-session.fish";
+      tmuxhome = "fish $HOME/tmux-session.fish";
       jd = "jj diff --git | delta --features=chameleon";
       jp = "jj git push --bookmark";
       jbs = {
