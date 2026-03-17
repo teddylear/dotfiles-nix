@@ -90,7 +90,7 @@ vim.keymap.set("n", "<leader>gv", function()
     vim.diagnostic.show(nil, bufnr)
 end, { silent = true })
 
-local function send_visual_ref(target)
+local function copy_visual_ref()
     local start_line = vim.fn.getpos("v")[2]
     local end_line = vim.fn.getpos(".")[2]
 
@@ -101,26 +101,12 @@ local function send_visual_ref(target)
     local file = vim.fn.expand("%:.")
     local ref = string.format("@%s:%d-%d", file, start_line, end_line)
 
-    local cmd = string.format(
-        "tmux send-keys -t %s %s",
-        target,
-        vim.fn.shellescape(ref)
-    )
-
-    -- DEBUG OUTPUT
-    vim.notify("AI Debug: cmd=" .. cmd)
-
-    vim.fn.system(cmd)
+    vim.fn.setreg("+", ref)
+    vim.notify("Copied reference to clipboard")
 end
 
 vim.keymap.set("x", "<leader>ai", function()
-    send_visual_ref("%3")
+    copy_visual_ref()
 end, {
-    desc = "Send visual selection file:line reference to AI tmux pane",
-})
-
-vim.keymap.set("x", "<leader>ai", function()
-    send_visual_ref(":3")
-end, {
-    desc = "Send visual selection file:line reference to AI tmux pane",
+    desc = "Copy visual selection file:line reference to clipboard",
 })
