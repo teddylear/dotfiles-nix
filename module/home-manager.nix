@@ -240,41 +240,41 @@ in {
       '';
 
       jjws = ''
-         if not set -q argv[1]
-             echo "usage: jjws <workspace-name>" >&2
-             return 2
-         end
+        if not set -q argv[1]
+            echo "usage: jjws <workspace-name>" >&2
+            return 2
+        end
 
-         set -l workspace $argv[1]
-         set -l cwd_name (basename (pwd))
-         set -l ws_dir "../$cwd_name:$workspace"
-         set -l tmux_session "$cwd_name~$workspace"
+        set -l workspace $argv[1]
+        set -l cwd_name (basename (pwd))
+        set -l ws_dir "../$cwd_name:$workspace"
+        set -l tmux_session "$cwd_name~$workspace"
 
-         echo "🚀 Preparing JJ workspace: $workspace"
+        echo "🚀 Preparing JJ workspace: $workspace"
 
-         # Force JJ to print only workspace names, one per line.
-         set -l workspaces (jj workspace list -T 'name ++ "\n"' | string trim)
+        # Force JJ to print only workspace names, one per line.
+        set -l workspaces (jj workspace list -T 'name ++ "\n"' | string trim)
 
-         if contains -- "$workspace" $workspaces
-             echo "ℹ️ Workspace already exists: $workspace"
-         else
-             echo "📁 Creating workspace at: $ws_dir"
+        if contains -- "$workspace" $workspaces
+            echo "ℹ️ Workspace already exists: $workspace"
+        else
+            echo "📁 Creating workspace at: $ws_dir"
 
-             jj workspace add "$ws_dir" --name "$workspace"
-             or begin
-                 echo "❌ Failed to create workspace: $workspace" >&2
-                 return 1
-             end
-         end
+            jj workspace add "$ws_dir" --name "$workspace"
+            or begin
+                echo "❌ Failed to create workspace: $workspace" >&2
+                return 1
+            end
+        end
 
-         create_tmux_session "$ws_dir" "$tmux_session"
-         or return 1
+        create_tmux_session "$ws_dir" "$tmux_session"
+        or return 1
 
-         if set -q TMUX
-             tmux switch-client -t "$tmux_session"
-         else
-             tmux attach-session -t "$tmux_session"
-         end
+        if set -q TMUX
+            tmux switch-client -t "$tmux_session"
+        else
+            tmux attach-session -t "$tmux_session"
+        end
       '';
 
       jjcl = ''
