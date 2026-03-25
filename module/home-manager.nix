@@ -322,6 +322,19 @@ in {
         end
       '';
 
+      tw = ''
+        if not set -q TMUX
+            echo "tw: must be run inside tmux" >&2
+            return 1
+        end
+
+        set -l window (tmux list-windows -F '#I:#W' 2>/dev/null | fzf --reverse)
+        or return
+
+        set -l window_index (string split -m1 ':' -- "$window")[1]
+        tmux select-window -t "$window_index"
+      '';
+
       fish_prompt = "string join '' -- (set_color 50fa7b) (prompt_pwd --full-length-dirs 2) (set_color bd93f9) (fish_git_prompt) (set_color normal) '\n > '";
 
       fish_user_key_bindings = "fish_vi_key_bindings";
