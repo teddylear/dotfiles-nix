@@ -42,11 +42,13 @@ return {
             print("Created test.sh")
         end
 
-        map("n", "<leader>ts", "", {
-            noremap = true,
-            callback = createTestScript,
-            desc = "Create Test Script",
-        })
+        -- NOTE: Disabled because <leader>ts is used for Telescope tmux-session picker.
+        -- Uncomment this and use a different keymap if needed for future nvim plugin work.
+        -- map("n", "<leader>ts", "", {
+        --     noremap = true,
+        --     callback = createTestScript,
+        --     desc = "Create Test Script",
+        -- })
 
         local function removeLspLog()
             local lsp_file_path = "/.local/state/nvim/lsp.log"

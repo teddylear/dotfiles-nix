@@ -123,6 +123,50 @@ return {
                 :find()
         end
 
+        local function tmux_sessions()
+            local sessions = vim.fn.systemlist("tmux list-sessions -F '#S' 2>/dev/null")
+            if vim.v.shell_error ~= 0 or #sessions == 0 then
+                print("No tmux sessions found")
+                return
+            end
+
+            require("telescope.pickers")
+                .new({}, {
+                    prompt_title = "Tmux Sessions",
+                    finder = require("telescope.finders").new_table({
+                        results = sessions,
+                    }),
+                    sorter = require("telescope.config").values.generic_sorter({}),
+                    attach_mappings = function(prompt_bufnr, _)
+                        actions.select_default:replace(function()
+                            local selection = action_state.get_selected_entry()
+                            if not selection then
+                                actions.close(prompt_bufnr)
+                                return
+                            end
+
+                            actions.close(prompt_bufnr)
+                            local session = tostring(selection[1])
+                            local escaped_session = vim.fn.shellescape(session)
+
+                            if vim.env.TMUX and vim.env.TMUX ~= "" then
+                                vim.cmd(
+                                    "silent !tmux switch-client -t "
+                                        .. escaped_session
+                                )
+                            else
+                                vim.cmd("silent !tmux attach -t " .. escaped_session)
+                            end
+
+                            vim.cmd("redraw!")
+                        end)
+
+                        return true
+                    end,
+                })
+                :find()
+        end
+
         local map = vim.api.nvim_set_keymap
 
         map("n", "<leader>lg", "", {
@@ -164,6 +208,12 @@ return {
             noremap = true,
             callback = iam_actions,
             desc = "List iam actions from aws",
+        })
+
+        map("n", "<leader>ts", "", {
+            noremap = true,
+            callback = tmux_sessions,
+            desc = "Telescope switch tmux session",
         })
     end,
 }
