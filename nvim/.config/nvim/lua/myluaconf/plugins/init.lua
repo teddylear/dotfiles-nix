@@ -9,8 +9,7 @@ return {
 
             -- configure it
             catppuccin.setup({
-                -- flavour = "macchiato",
-                flavour = "mocha",
+                flavour = "macchiato",
                 transparent_background = false,
                 integrations = {
                     fidget = true,
