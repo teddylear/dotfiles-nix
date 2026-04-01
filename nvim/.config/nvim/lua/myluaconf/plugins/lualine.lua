@@ -18,7 +18,7 @@ return {
 
             require("lualine").setup({
                 options = {
-                    theme = "catppuccin",
+                    theme = "auto",
                     icons_enabled = true,
                     -- This sets relative path
                     globalstatus = true,
