@@ -167,6 +167,56 @@ return {
                 :find()
         end
 
+        local function tmux_windows()
+            if not vim.env.TMUX or vim.env.TMUX == "" then
+                print("Not inside tmux")
+                return
+            end
+
+            local windows = vim.fn.systemlist("tmux list-windows -F '#I: #W' 2>/dev/null")
+            if vim.v.shell_error ~= 0 or #windows == 0 then
+                print("No tmux windows found")
+                return
+            end
+
+            require("telescope.pickers")
+                .new({}, {
+                    prompt_title = "Tmux Windows",
+                    finder = require("telescope.finders").new_table({
+                        results = windows,
+                    }),
+                    sorter = require("telescope.config").values.generic_sorter({}),
+                    attach_mappings = function(prompt_bufnr, _)
+                        actions.select_default:replace(function()
+                            local selection = action_state.get_selected_entry()
+                            if not selection then
+                                actions.close(prompt_bufnr)
+                                return
+                            end
+
+                            actions.close(prompt_bufnr)
+
+                            local window_entry = tostring(selection[1])
+                            local window_index = window_entry:match("^([^:]+):")
+                            if not window_index then
+                                print("Could not parse tmux window index")
+                                return
+                            end
+
+                            local escaped_window_index = vim.fn.shellescape(window_index)
+                            vim.cmd(
+                                "silent !tmux select-window -t "
+                                    .. escaped_window_index
+                            )
+                            vim.cmd("redraw!")
+                        end)
+
+                        return true
+                    end,
+                })
+                :find()
+        end
+
         local map = vim.api.nvim_set_keymap
 
         map("n", "<leader>lg", "", {
@@ -214,6 +264,12 @@ return {
             noremap = true,
             callback = tmux_sessions,
             desc = "Telescope switch tmux session",
+        })
+
+        map("n", "<leader>tw", "", {
+            noremap = true,
+            callback = tmux_windows,
+            desc = "Telescope switch tmux window",
         })
     end,
 }
