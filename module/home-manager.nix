@@ -40,6 +40,7 @@ in {
     eza
     uv
     jujutsu
+    jjui
     neovim
     hurl
     atuin
