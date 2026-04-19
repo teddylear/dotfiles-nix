@@ -124,7 +124,8 @@ return {
         end
 
         local function tmux_sessions()
-            local sessions = vim.fn.systemlist("tmux list-sessions -F '#S' 2>/dev/null")
+            local sessions =
+                vim.fn.systemlist("tmux list-sessions -F '#S' 2>/dev/null")
             if vim.v.shell_error ~= 0 or #sessions == 0 then
                 print("No tmux sessions found")
                 return
@@ -155,7 +156,9 @@ return {
                                         .. escaped_session
                                 )
                             else
-                                vim.cmd("silent !tmux attach -t " .. escaped_session)
+                                vim.cmd(
+                                    "silent !tmux attach -t " .. escaped_session
+                                )
                             end
 
                             vim.cmd("redraw!")
@@ -173,7 +176,8 @@ return {
                 return
             end
 
-            local windows = vim.fn.systemlist("tmux list-windows -F '#I: #W' 2>/dev/null")
+            local windows =
+                vim.fn.systemlist("tmux list-windows -F '#I: #W' 2>/dev/null")
             if vim.v.shell_error ~= 0 or #windows == 0 then
                 print("No tmux windows found")
                 return
@@ -203,7 +207,8 @@ return {
                                 return
                             end
 
-                            local escaped_window_index = vim.fn.shellescape(window_index)
+                            local escaped_window_index =
+                                vim.fn.shellescape(window_index)
                             vim.cmd(
                                 "silent !tmux select-window -t "
                                     .. escaped_window_index

@@ -102,20 +102,8 @@ return {
                     local buf = args.buf
                     vim.keymap.set(
                         "n",
-                        "<leader>gd",
-                        vim.lsp.buf.definition,
-                        { buffer = buf, silent = true }
-                    )
-                    vim.keymap.set(
-                        "n",
                         "<leader>re",
                         vim.lsp.buf.rename,
-                        { buffer = buf, silent = true }
-                    )
-                    vim.keymap.set(
-                        "n",
-                        "<leader>gr",
-                        vim.lsp.buf.references,
                         { buffer = buf, silent = true }
                     )
                     vim.keymap.set(
