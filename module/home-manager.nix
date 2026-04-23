@@ -41,7 +41,9 @@ in {
     uv
     jujutsu
     jjui
-    neovim
+    # switching between the two depending on when neovim updates
+    unstablePkgs.neovim
+    # neovim
     hurl
     atuin
 

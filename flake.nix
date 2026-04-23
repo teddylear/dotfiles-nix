@@ -8,7 +8,7 @@
     # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     # Then use command to get hash and update below when commented out:
     # jq '.nodes."nixpkgs-unstable".locked.rev' < flake.lock
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/d0fc30899600b9b3466ddb260fd83deb486c32f1";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/b12141ef619e0a9c1c84dc8c684040326f27cdcc";
 
     darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
