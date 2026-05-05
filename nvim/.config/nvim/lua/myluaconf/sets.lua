@@ -2,7 +2,7 @@ local homedir = os.getenv("HOME")
 
 vim.g.mapleader = " " -- settings leader key to space
 
-vim.o.syntax = "on"
+vim.cmd("syntax enable")
 vim.o.softtabstop = 4
 vim.o.termguicolors = true
 vim.o.hidden = true
