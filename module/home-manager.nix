@@ -42,6 +42,7 @@ in {
     luajitPackages.luarocks
     eza
     uv
+    unstablePkgs.tree-sitter
     jjPkg
     jjui
     # switching between the two depending on when neovim updates

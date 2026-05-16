@@ -1,51 +1,34 @@
 return {
     {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = {},
-    },
-    {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        lazy = false,
+        build = ":TSUpdate",
         config = function()
-            local ts_update = require("nvim-treesitter.install").update({
-                with_sync = true,
-            })
-            ts_update()
+            local ts = require("nvim-treesitter")
 
-            -- TODO: can this be opt?
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = {
-                    "python",
-                    "go",
-                    "lua",
-                    "yaml",
-                    "json",
-                    "bash",
-                    "rust",
-                    "dockerfile",
-                    "typescript",
-                    "ruby",
-                    "javascript",
-                    "query",
-                    "cpp",
-                    "markdown",
-                    "hcl",
-                    "puppet",
-                    "terraform",
-                    "nix",
-                    "vimdoc",
-                    "zig",
-                },
-                highlight = {
-                    enable = true,
-                },
+            ts.setup({})
+
+            local group = vim.api.nvim_create_augroup(
+                "myluaconf-treesitter-highlight",
+                { clear = true }
+            )
+
+            vim.api.nvim_create_autocmd("FileType", {
+                group = group,
+                callback = function(args)
+                    pcall(vim.treesitter.start, args.buf)
+                end,
             })
 
-            local map = vim.api.nvim_set_keymap
-
-            map("n", "<leader>tc", "<CMD>TSContext toggle<CR>", {
-                noremap = true,
-                desc = "Toggle TS Contexnt for parent",
+            vim.keymap.set("n", "<leader>tc", "<CMD>TSContext toggle<CR>", {
+                desc = "Toggle TS Context for parent",
             })
         end,
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {},
     },
 }
