@@ -27,6 +27,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lumen = {
+      # v2.22.0
+      url = "github:jnsahaj/lumen?rev=dd38dbe6504ac7a34d1e5f7cab826abe88632058";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zig.url = "github:mitchellh/zig-overlay";
   };
 

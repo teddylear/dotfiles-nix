@@ -46,7 +46,6 @@ in
           enable = true;
           taps = [
             "kwilczynski/homebrew-pkenv"
-            "jnsahaj/lumen"
           ];
           casks = commonCasks ++ extraCasksForPersonalComp;
 
@@ -56,7 +55,6 @@ in
             "pkenv"
             "docker"
             "ty"
-            "lumen"
           ];
         };
       }
@@ -71,6 +69,7 @@ in
           git-email = "${git-email}";
           git-username = "${git-username}";
           hunkPkg = inputs.hunk.packages.${system}.hunk;
+          lumenPkg = inputs.lumen.packages.${system}.lumen;
           unstablePkgs = unstablePkgs;
         };
       }

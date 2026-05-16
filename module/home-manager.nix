@@ -2,6 +2,7 @@
   git-username,
   git-email,
   hunkPkg,
+  lumenPkg,
   unstablePkgs,
 }: {
   config,
@@ -63,6 +64,7 @@ in {
     bacon
     air
     hunkPkg
+    lumenPkg
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
