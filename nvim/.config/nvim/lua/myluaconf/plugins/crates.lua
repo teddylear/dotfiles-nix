@@ -1,13 +1,14 @@
 return {
     "Saecki/crates.nvim",
-    dependencies = { "nvimtools/none-ls.nvim" },
-    ft = { "rust" },
+    event = { "BufRead Cargo.toml", "BufNewFile Cargo.toml" },
     config = function()
         local crates = require("crates")
         crates.setup({
-            null_ls = {
+            lsp = {
                 enabled = true,
-                name = "crates.nvim",
+                actions = true,
+                completion = true,
+                hover = true,
             },
             popup = {
                 autofocus = true,
