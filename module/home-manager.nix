@@ -1,6 +1,7 @@
 {
   git-username,
   git-email,
+  jjPkg,
   hunkPkg,
   lumenPkg,
   unstablePkgs,
@@ -41,7 +42,7 @@ in {
     luajitPackages.luarocks
     eza
     uv
-    jujutsu
+    jjPkg
     jjui
     # switching between the two depending on when neovim updates
     unstablePkgs.neovim
@@ -488,6 +489,8 @@ in {
 
     [git]
     default-remote = "origin"
-    push-new-bookmarks = true
+
+    [remotes.origin]
+    auto-track-bookmarks = "*"
   '';
 }

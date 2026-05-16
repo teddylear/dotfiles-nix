@@ -33,6 +33,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    jj = {
+      # v0.41.0
+      url = "github:jj-vcs/jj?rev=413f539283e5a87f0a2c64dec54a5258a1bee78f";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zig.url = "github:mitchellh/zig-overlay";
   };
 

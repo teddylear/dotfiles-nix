@@ -68,6 +68,7 @@ in
         home-manager.users."${username}" = home-manager-config {
           git-email = "${git-email}";
           git-username = "${git-username}";
+          jjPkg = inputs.jj.packages.${system}.jujutsu;
           hunkPkg = inputs.hunk.packages.${system}.hunk;
           lumenPkg = inputs.lumen.packages.${system}.lumen;
           unstablePkgs = unstablePkgs;
