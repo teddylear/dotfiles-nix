@@ -398,6 +398,10 @@ in {
         expansion = "jj bookmark create % -r @";
         setCursor = true;
       };
+      jba = {
+        expansion = "jj bookmark advance %";
+        setCursor = true;
+      };
     };
   };
 
