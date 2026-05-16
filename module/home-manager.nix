@@ -1,6 +1,7 @@
 {
   git-username,
   git-email,
+  hunkPkg,
   unstablePkgs,
 }: {
   config,
@@ -61,6 +62,7 @@ in {
 
     bacon
     air
+    hunkPkg
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
@@ -368,6 +370,7 @@ in {
       jn = "jj new";
       js = "jj st";
       ld = "lumen diff";
+      hd = "hunk diff";
       gsw = "git switch";
       gsc = "git switch -c";
       gd = "git diff";

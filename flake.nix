@@ -21,6 +21,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hunk = {
+      # v0.12.1
+      url = "github:modem-dev/hunk?rev=cef118e21d5b6e325732b45464b1d0743e320011";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zig.url = "github:mitchellh/zig-overlay";
   };
 

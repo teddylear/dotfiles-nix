@@ -70,6 +70,7 @@ in
         home-manager.users."${username}" = home-manager-config {
           git-email = "${git-email}";
           git-username = "${git-username}";
+          hunkPkg = inputs.hunk.packages.${system}.hunk;
           unstablePkgs = unstablePkgs;
         };
       }

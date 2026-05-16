@@ -47,3 +47,4 @@ stow:
     stow -R alacritty
     stow -R aerospace
     stow -R ghostty
+    stow -R hunk
