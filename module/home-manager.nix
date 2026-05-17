@@ -443,7 +443,7 @@ in {
 
       set-window-option -g mode-keys vi
       bind-key -T copy-mode-vi 'v' send -X begin-selection
-      bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
+      bind-key -T copy-mode-vi 'y' send -X copy-selection
 
       set-option -g status-interval 15
       # set-option -g automatic-rename on
