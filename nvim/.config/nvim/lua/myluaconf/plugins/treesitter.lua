@@ -1,9 +1,39 @@
+local languages = {
+    "bash",
+    "c",
+    "cpp",
+    "dockerfile",
+    "ecma",
+    "go",
+    "hcl",
+    "javascript",
+    "json",
+    "jsx",
+    "lua",
+    "markdown",
+    "markdown_inline",
+    "nix",
+    "puppet",
+    "python",
+    "query",
+    "ruby",
+    "rust",
+    "terraform",
+    "typescript",
+    "vimdoc",
+    "yaml",
+    "zig",
+}
+
 return {
     {
         "nvim-treesitter/nvim-treesitter",
         branch = "main",
         lazy = false,
-        build = ":TSUpdate",
+        build = function()
+            require("nvim-treesitter").install(languages):wait(300000)
+            require("nvim-treesitter").update():wait(300000)
+        end,
         config = function()
             local ts = require("nvim-treesitter")
 
@@ -13,6 +43,10 @@ return {
             ts.setup({
                 install_dir = vim.fn.stdpath("data") .. "/site",
             })
+
+            -- Fresh machines need explicit parser installation on main.
+            -- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/README.md#setup
+            ts.install(languages)
 
             local group = vim.api.nvim_create_augroup(
                 "myluaconf-treesitter-highlight",
