@@ -28,8 +28,8 @@
     };
 
     lumen = {
-      # v2.22.0
-      url = "github:jnsahaj/lumen?rev=dd38dbe6504ac7a34d1e5f7cab826abe88632058";
+      # v2.28.0
+      url = "github:jnsahaj/lumen?rev=91aa6acb93842f0e72e1a9d5ea20d64813bbbadd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

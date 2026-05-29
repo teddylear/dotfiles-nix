@@ -228,17 +228,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1778795902,
-        "narHash": "sha256-MTo+0rtzPO4Xmf9XVySPyFvGOuJoEA//LKNuUL5ybLk=",
+        "lastModified": 1780511344,
+        "narHash": "sha256-+RBcIzUpQy1oB9i+2cF2YJtrtW3CgslrAyWCQZV1nDg=",
         "owner": "jnsahaj",
         "repo": "lumen",
-        "rev": "dd38dbe6504ac7a34d1e5f7cab826abe88632058",
+        "rev": "91aa6acb93842f0e72e1a9d5ea20d64813bbbadd",
         "type": "github"
       },
       "original": {
         "owner": "jnsahaj",
         "repo": "lumen",
-        "rev": "dd38dbe6504ac7a34d1e5f7cab826abe88632058",
+        "rev": "91aa6acb93842f0e72e1a9d5ea20d64813bbbadd",
         "type": "github"
       }
     },
