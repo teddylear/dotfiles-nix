@@ -74,6 +74,10 @@ in {
     source = ././scripts/tmux-session.fish;
     executable = true;
   };
+  home.file.".local/bin/tui_tmux_window.sh" = {
+    source = ././scripts/tui_tmux_window.sh;
+    executable = true;
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -371,7 +375,7 @@ in {
       jf = "jj git fetch";
       jn = "jj new";
       js = "jj st";
-      ld = "lumen diff";
+      ld = "tui_tmux_window.sh 'lumen diff'";
       hd = "hunk diff";
       gsw = "git switch";
       gsc = "git switch -c";
@@ -387,6 +391,7 @@ in {
       cat = "bat";
       ll = "eza -l -g -a --icons";
       tmuxhome = "fish $HOME/tmux-session.fish";
+      tuiw = "tui_tmux_window.sh";
       jd = "jj diff --git | delta --features=chameleon";
       jp = "jj git push --bookmark";
       jbs = {
