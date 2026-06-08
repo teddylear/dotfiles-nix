@@ -35,6 +35,7 @@ in {
     nodejs_20
     ansible
     stow
+    hyperfine
     jira-cli-go
     httpstat
     bottom
@@ -186,7 +187,7 @@ in {
     shellInit = ''
       set fish_greeting
 
-      pyenv init - | source
+      pyenv init --path --no-rehash | source
 
       if test -f "$HOME/local_fish_config.fish";
         source $HOME/local_fish_config.fish
@@ -407,8 +408,8 @@ in {
   };
 
   programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+    enable = false;
+    nix-direnv.enable = false;
   };
 
   programs.go = {
