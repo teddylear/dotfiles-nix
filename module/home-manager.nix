@@ -23,7 +23,6 @@ in {
     tree
     delta
     sd
-    neofetch
     fd
     gh
     awscli2
@@ -32,7 +31,7 @@ in {
     pipenv
     fzf
     just
-    nodejs_20
+    nodejs_22
     ansible
     stow
     hyperfine
@@ -56,7 +55,7 @@ in {
     terraform-ls
     lua-language-server
     marksman
-    nodePackages.bash-language-server
+    bash-language-server
 
     alejandra
     stylua
