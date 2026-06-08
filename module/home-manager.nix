@@ -187,8 +187,6 @@ in {
     shellInit = ''
       set fish_greeting
 
-      pyenv init --path --no-rehash | source
-
       if test -f "$HOME/local_fish_config.fish";
         source $HOME/local_fish_config.fish
       end
