@@ -33,6 +33,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    herdr = {
+      url = "github:ogulcancelik/herdr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     jj = {
       # v0.41.0
       url = "github:jj-vcs/jj?rev=413f539283e5a87f0a2c64dec54a5258a1bee78f";
@@ -64,6 +69,7 @@
       personal-laptop-old = darwin-system {
         system = "x86_64-darwin";
         username = "kennethlear";
+        machineName = "personal-laptop-old";
         git-username = "teddylear";
         git-email = "20077627+teddylear@users.noreply.github.com";
       };
@@ -71,6 +77,7 @@
       personal-laptop = darwin-system {
         system = "aarch64-darwin";
         username = "teddylear";
+        machineName = "personal-laptop";
         git-username = "teddylear";
         git-email = "20077627+teddylear@users.noreply.github.com";
       };
@@ -78,6 +85,7 @@
       business-laptop = darwin-system {
         system = "aarch64-darwin";
         username = "klear";
+        machineName = "business-laptop";
         git-username = "klear-nasuni";
         git-email = "73537396+klear-nasuni@users.noreply.github.com";
       };

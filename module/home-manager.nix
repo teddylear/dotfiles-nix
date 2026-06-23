@@ -3,7 +3,9 @@
   git-email,
   jjPkg,
   hunkPkg,
+  herdrPkg,
   lumenPkg,
+  enableHerdr,
   unstablePkgs,
 }: {
   config,
@@ -67,6 +69,8 @@ in {
     air
     hunkPkg
     lumenPkg
+  ] ++ lib.optionals enableHerdr [
+    herdrPkg
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;

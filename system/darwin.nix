@@ -6,6 +6,7 @@
 }: {
   system,
   username,
+  machineName,
   git-username,
   git-email,
 }: let
@@ -13,6 +14,7 @@
   home-manager-config = import ../module/home-manager.nix;
   pkgs = import nixpkgs {inherit system;};
   unstablePkgs = import nixpkgs-unstable {inherit system;};
+  enableHerdr = machineName == "personal-laptop";
   commonCasks = [
     "ghostty"
     "1password"
@@ -70,7 +72,9 @@ in
           git-username = "${git-username}";
           jjPkg = inputs.jj.packages.${system}.jujutsu;
           hunkPkg = inputs.hunk.packages.${system}.hunk;
+          herdrPkg = inputs.herdr.packages.${system}.default;
           lumenPkg = inputs.lumen.packages.${system}.lumen;
+          enableHerdr = enableHerdr;
           unstablePkgs = unstablePkgs;
         };
       }
