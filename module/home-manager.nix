@@ -5,7 +5,7 @@
   hunkPkg,
   herdrPkg,
   lumenPkg,
-  enableHerdr,
+  personalMachine,
   unstablePkgs,
 }: {
   config,
@@ -69,8 +69,9 @@ in {
     air
     hunkPkg
     lumenPkg
-  ] ++ lib.optionals enableHerdr [
+  ] ++ lib.optionals personalMachine [
     herdrPkg
+    pi-coding-agent
   ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
