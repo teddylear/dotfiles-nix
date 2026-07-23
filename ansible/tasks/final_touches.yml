@@ -61,4 +61,23 @@
   when: ryu_check.rc != 0
   tags:
     - jj-ryu
+- name: Check installed rustup components for stable toolchain
+  ansible.builtin.command: rustup component list --installed --toolchain stable
+  register: rustup_stable_components
+  changed_when: false
+  failed_when: false
+  when: is_personal_machine | bool
+  tags:
+    - rust
+    - clippy
+- name: Ensure clippy is installed for stable rustup toolchain
+  ansible.builtin.command: rustup component add clippy --toolchain stable
+  when:
+    - is_personal_machine | bool
+    - rustup_stable_components is defined
+    - rustup_stable_components.rc == 0
+    - "'clippy' not in rustup_stable_components.stdout"
+  tags:
+    - rust
+    - clippy
 

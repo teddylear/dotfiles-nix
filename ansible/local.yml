@@ -1,3 +1,7 @@
 - hosts: localhost
+  vars:
+    personal_machine_users:
+      - teddylear
+    is_personal_machine: "{{ ansible_facts.user_id in personal_machine_users }}"
   tasks:
    - import_tasks: tasks/final_touches.yml
