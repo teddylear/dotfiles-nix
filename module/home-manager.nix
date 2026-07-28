@@ -16,63 +16,65 @@
 
   enableOpenCode = git-username == "teddylear";
 in {
-  home.packages = with pkgs; [
-    rustup
-    ripgrep
-    scooter
-    bat
-    jq
-    tree
-    delta
-    sd
-    fd
-    gh
-    awscli2
-    unzip
-    _1password-cli
-    pipenv
-    fzf
-    just
-    nodejs_22
-    ansible
-    stow
-    hyperfine
-    jira-cli-go
-    httpstat
-    bottom
-    luajit
-    luajitPackages.luarocks
-    eza
-    uv
-    unstablePkgs.tree-sitter
-    jjPkg
-    jjui
-    # switching between the two depending on when neovim updates
-    unstablePkgs.neovim
-    # neovim
-    hurl
-    atuin
+  home.packages = with pkgs;
+    [
+      rustup
+      ripgrep
+      scooter
+      bat
+      jq
+      tree
+      delta
+      sd
+      fd
+      gh
+      awscli2
+      unzip
+      _1password-cli
+      pipenv
+      fzf
+      just
+      nodejs_22
+      ansible
+      stow
+      hyperfine
+      jira-cli-go
+      httpstat
+      bottom
+      luajit
+      luajitPackages.luarocks
+      eza
+      uv
+      unstablePkgs.tree-sitter
+      jjPkg
+      jjui
+      # switching between the two depending on when neovim updates
+      unstablePkgs.neovim
+      # neovim
+      hurl
+      atuin
 
-    gopls
-    terraform-ls
-    lua-language-server
-    marksman
-    bash-language-server
+      gopls
+      terraform-ls
+      lua-language-server
+      marksman
+      bash-language-server
 
-    alejandra
-    stylua
+      alejandra
+      stylua
 
-    delve
-    llvmPackages.lldb
+      delve
+      llvmPackages.lldb
 
-    bacon
-    air
-    hunkPkg
-    lumenPkg
-  ] ++ lib.optionals personalMachine [
-    herdrPkg
-    pi-coding-agent
-  ];
+      bacon
+      air
+      hunkPkg
+      lumenPkg
+    ]
+    ++ lib.optionals personalMachine [
+      herdrPkg
+      pi-coding-agent
+    ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;
   home.file."tmux-session.fish" = {
