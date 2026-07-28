@@ -46,6 +46,8 @@ stow:
     stow -R nvim
     stow -R alacritty
     stow -R aerospace
-    if [ -f "$HOME/.config/herdr/config.toml" ] && [ ! -L "$HOME/.config/herdr/config.toml" ]; then mv "$HOME/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml.bak.$(date +%s)"; fi
-    stow -R herdr
+
+personal-stow: stow
+    stow -R pi
     stow -R hunk
+    stow -R herdr
