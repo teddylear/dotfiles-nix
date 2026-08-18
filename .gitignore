@@ -1,15 +1,25 @@
 nvim/plugins
 hunk/.config/hunk/state.json
 
-# pi coding agent: keep auth, conversation history, caches, and local state out of git
+# pi coding agent: keep auth, OAuth/API keys, conversation history, caches, and local state out of git
 pi/.pi/agent/auth.json
+pi/.pi/agent/oauth.json
+pi/.pi/agent/oauth.json.*
 pi/.pi/agent/credentials.json
 pi/.pi/agent/tokens.json
 pi/.pi/agent/secrets.json
+pi/.pi/agent/api-keys.json
+pi/.pi/agent/*secret*.json
+pi/.pi/agent/*credential*.json
+pi/.pi/agent/*token*.json
+pi/.pi/agent/*.key
+pi/.pi/agent/.env*
 pi/.pi/agent/sessions/
 pi/.pi/agent/logs/
 pi/.pi/agent/cache/
+pi/.pi/agent/npm/
+pi/.pi/agent/bin/
+pi/.pi/agent/tools/
 pi/.pi/agent/state.json
-pi/.pi/agent/.env*
 pi/.pi/agent/*.log
 pi/.pi/agent/*.bak*

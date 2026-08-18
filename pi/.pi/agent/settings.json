@@ -3,5 +3,55 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "medium",
-  "theme": "dark"
+  "hideThinkingBlock": false,
+  "theme": "mine",
+  "quietStartup": false,
+  "collapseChangelog": false,
+  "enableInstallTelemetry": true,
+  "doubleEscapeAction": "tree",
+  "treeFilterMode": "default",
+  "editorPaddingX": 0,
+  "autocompleteMaxVisible": 5,
+  "showHardwareCursor": false,
+  "warnings": {
+    "anthropicExtraUsage": true
+  },
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 20000
+  },
+  "branchSummary": {
+    "reserveTokens": 16384,
+    "skipPrompt": false
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3,
+    "baseDelayMs": 2000,
+    "provider": {
+      "maxRetryDelayMs": 60000
+    }
+  },
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time",
+  "transport": "sse",
+  "terminal": {
+    "showImages": true,
+    "imageWidthCells": 60,
+    "clearOnShrink": false
+  },
+  "images": {
+    "autoResize": true,
+    "blockImages": false
+  },
+  "markdown": {
+    "codeBlockIndent": "  "
+  },
+  "packages": [],
+  "extensions": [],
+  "skills": [],
+  "prompts": [],
+  "themes": [],
+  "enableSkillCommands": true
 }

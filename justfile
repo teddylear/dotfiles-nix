@@ -47,7 +47,16 @@ stow:
     stow -R alacritty
     stow -R aerospace
 
-personal-stow: stow
-    stow -R pi
+stow-pi-settings:
+    mkdir -p ~/.pi/agent
+    ln -sfn "{{justfile_directory()}}/pi/.pi/agent/settings.json" ~/.pi/agent/settings.json
+
+stow-pi-theme:
+    mkdir -p ~/.pi/agent
+    ln -sfn "{{justfile_directory()}}/pi/.pi/agent/themes" ~/.pi/agent/themes
+
+stow-pi: stow-pi-settings stow-pi-theme
+
+personal-stow: stow stow-pi
     stow -R hunk
     stow -R herdr
