@@ -4,11 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
-    # switch back to unstable
-    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # Then use command to get hash and update below when commented out:
-    # jq '.nodes."nixpkgs-unstable".locked.rev' < flake.lock
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/15f4ee454b1dce334612fa6843b3e05cf546efab";
+    # For neovim
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     darwin = {
       inputs.nixpkgs.follows = "nixpkgs";
