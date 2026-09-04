@@ -55,6 +55,7 @@ cmd-0 = 'workspace 10'
 
 # Window moves use a modal flow to avoid global number-chord conflicts.
 # Press cmd-m, then 1..0 to move the focused window.
+# If bare numbers are swallowed by the focused app, press cmd-m, then cmd-1..cmd-0 instead.
 # This intentionally overrides macOS's default Cmd-M minimize shortcut while AeroSpace is running.
 cmd-m = 'mode move-workspace'
 
@@ -73,6 +74,16 @@ alt-r = 'mode resize'
 8 = ['move-node-to-workspace 8', 'mode main']
 9 = ['move-node-to-workspace 9', 'mode main']
 0 = ['move-node-to-workspace 10', 'mode main']
+cmd-1 = ['move-node-to-workspace 1', 'mode main']
+cmd-2 = ['move-node-to-workspace 2', 'mode main']
+cmd-3 = ['move-node-to-workspace 3', 'mode main']
+cmd-4 = ['move-node-to-workspace 4', 'mode main']
+cmd-5 = ['move-node-to-workspace 5', 'mode main']
+cmd-6 = ['move-node-to-workspace 6', 'mode main']
+cmd-7 = ['move-node-to-workspace 7', 'mode main']
+cmd-8 = ['move-node-to-workspace 8', 'mode main']
+cmd-9 = ['move-node-to-workspace 9', 'mode main']
+cmd-0 = ['move-node-to-workspace 10', 'mode main']
 esc = 'mode main'
 enter = 'mode main'
 
