@@ -4,4 +4,4 @@ command = /run/current-system/sw/bin/fish
 shell-integration = fish
 cursor-style-blink = false
 theme = "tokyonight storm"
-custom-shader = "{{ ansible_env.HOME }}/code/ghostty-shader-playground/shaders/cursor_smear.glsl"
+custom-shader = "{{ ansible_facts.env.HOME }}/code/ghostty-shader-playground/shaders/cursor_smear.glsl"
