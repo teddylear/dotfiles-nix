@@ -73,7 +73,6 @@ in {
     ]
     ++ lib.optionals personalMachine [
       herdrPkg
-      pi-coding-agent
     ];
 
   home.file.".ssh/config".source = ././config/ssh-agent-config;

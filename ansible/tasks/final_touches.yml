@@ -49,6 +49,28 @@
     mode: '0644'
   tags:
     - ghostty
+- name: Install Pi coding agent via npm
+  when: is_personal_machine | bool
+  tags:
+    - pi
+  block:
+    - name: Ensure local npm prefix directory exists
+      ansible.builtin.file:
+        path: "{{ ansible_facts.env.HOME }}/.local"
+        state: directory
+        mode: '0755'
+
+    - name: Check if Pi is installed via local npm prefix
+      ansible.builtin.command: "{{ ansible_facts.env.HOME }}/.local/bin/pi --version"
+      register: pi_local_check
+      changed_when: false
+      failed_when: false
+
+    - name: Install Pi coding agent
+      ansible.builtin.command: npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+      environment:
+        npm_config_prefix: "{{ ansible_facts.env.HOME }}/.local"
+      when: pi_local_check.rc != 0
 - name: Configure Pi extension integration for Herdr
   when: is_personal_machine | bool
   tags:
