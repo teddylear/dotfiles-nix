@@ -58,5 +58,4 @@ stow-pi-theme:
 stow-pi: stow-pi-settings stow-pi-theme
 
 personal-stow: stow stow-pi
-    stow -R hunk
     stow -R herdr

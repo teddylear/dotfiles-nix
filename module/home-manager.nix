@@ -2,7 +2,6 @@
   git-username,
   git-email,
   jjPkg,
-  hunkPkg,
   herdrPkg,
   lumenPkg,
   personalMachine,
@@ -68,7 +67,6 @@ in {
 
       bacon
       air
-      hunkPkg
       lumenPkg
     ]
     ++ lib.optionals personalMachine [
@@ -382,7 +380,6 @@ in {
       jn = "jj new";
       js = "jj st";
       ld = "tui_tmux_window.sh 'lumen diff'";
-      hd = "hunk diff";
       gsw = "git switch";
       gsc = "git switch -c";
       gd = "git diff";

@@ -1,5 +1,4 @@
 nvim/plugins
-hunk/.config/hunk/state.json
 
 # pi coding agent: keep auth, OAuth/API keys, conversation history, caches, and local state out of git
 pi/.pi/agent/auth.json

@@ -71,7 +71,6 @@ in
           git-email = "${git-email}";
           git-username = "${git-username}";
           jjPkg = inputs.jj.packages.${system}.jujutsu;
-          hunkPkg = inputs.hunk.packages.${system}.hunk;
           herdrPkg = inputs.herdr.packages.${system}.default;
           lumenPkg = inputs.lumen.packages.${system}.lumen;
           personalMachine = personalMachine;
