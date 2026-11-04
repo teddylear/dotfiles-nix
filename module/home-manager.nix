@@ -56,7 +56,6 @@ in {
       gopls
       terraform-ls
       lua-language-server
-      marksman
       bash-language-server
 
       alejandra

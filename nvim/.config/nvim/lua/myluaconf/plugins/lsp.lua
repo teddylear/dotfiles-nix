@@ -59,7 +59,7 @@ return {
                 root_markers = { "build.zig", "zls.json", ".git" },
             })
 
-            for _, name in ipairs({ "gopls", "rust_analyzer", "marksman" }) do
+            for _, name in ipairs({ "gopls", "rust_analyzer" }) do
                 vim.lsp.config(name, { capabilities = capabilities })
             end
 
@@ -74,7 +74,6 @@ return {
                 "zls",
                 "gopls",
                 "rust_analyzer",
-                "marksman",
             })
 
             local group =
