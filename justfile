@@ -55,7 +55,12 @@ stow-pi-theme:
     mkdir -p ~/.pi/agent
     ln -sfn "{{justfile_directory()}}/pi/.pi/agent/themes" ~/.pi/agent/themes
 
-stow-pi: stow-pi-settings stow-pi-theme
+stow-pi-plannotator:
+    mkdir -p ~/.pi/agent ~/.plannotator
+    ln -sfn "{{justfile_directory()}}/pi/.pi/agent/plannotator.json" ~/.pi/agent/plannotator.json
+    ln -sfn "{{justfile_directory()}}/pi/.plannotator/config.json" ~/.plannotator/config.json
+
+stow-pi: stow-pi-settings stow-pi-theme stow-pi-plannotator
 
 personal-stow: stow stow-pi
     stow -R herdr

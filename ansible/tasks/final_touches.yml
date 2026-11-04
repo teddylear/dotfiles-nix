@@ -53,6 +53,7 @@
   when: is_personal_machine | bool
   tags:
     - pi
+    - plannotator
   block:
     - name: Ensure local npm prefix directory exists
       ansible.builtin.file:
@@ -71,6 +72,27 @@
       environment:
         npm_config_prefix: "{{ ansible_facts.env.HOME }}/.local"
       when: pi_local_check.rc != 0
+- name: Install Plannotator for Pi
+  when: is_personal_machine | bool
+  tags:
+    - pi
+    - plannotator
+  block:
+    - name: Check if the Plannotator Pi package is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_facts.env.HOME }}/.pi/agent/npm/node_modules/@plannotator/pi-extension/package.json"
+      register: plannotator_package_stat
+
+    # Install the pinned release only when missing; leave existing versions
+    # untouched. Pi registers the extension and its bundled skill in settings.
+    - name: Install Plannotator Pi package 0.28.49 when missing
+      ansible.builtin.command:
+        argv:
+          - "{{ ansible_facts.env.HOME }}/.local/bin/pi"
+          - install
+          - npm:@plannotator/pi-extension@0.28.49
+      when: not plannotator_package_stat.stat.exists
+
 - name: Configure Pi extension integration for Herdr
   when: is_personal_machine | bool
   tags:
